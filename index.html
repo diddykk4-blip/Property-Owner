@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WealthMarket - Property Owner Application</title>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- App Shell: Header -->
+    <header class="app-header">
+        <div class="header-content">
+            <div class="header-actions">
+                <div class="save-status" id="global-save-status">
+                    <span class="save-dot"></span>
+                    <span class="save-text">Saved</span>
+                </div>
+                <div class="user-profile">
+                    <div class="user-avatar">JA</div>
+                    <div class="user-name">John Adeola</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Toast Notification Container -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <div class="app-layout">
+        <!-- App Shell: Sidebar -->
+        <aside class="app-sidebar">
+            <div class="sidebar-logo-area">
+                <img src="Design System/Logo image.png" alt="WealthMarket Logo" class="brand-logo" />
+                <div class="logo-text">WealthMarket</div>
+            </div>
+            <div class="sidebar-top-branding">
+                <div class="mobile-menu-icon" style="display:none;">≡</div>
+                <div class="module-dropdown">
+                    <img src="Design System/Logo image.png" alt="Icon" class="mod-icon">
+                    <select class="mod-select">
+                        <option>WM Property Owner</option>
+                    </select>
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="index.html" class="sidebar-item active" data-target="screen-a">
+                    <span class="icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M12 20V10M18 20V4M6 20v-4" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </span>
+                    <span>Dashboard</span>
+                </a>
+
+                <a href="#" class="sidebar-item" id="nav-applications">
+                    <span class="icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M12 21V11M22 21H2M19 21V7C19 5.89543 18.1046 5 17 5H7C5.89543 5 5 5.89543 5 7V21M15 21V17C15 15.8954 14.1046 15 13 15H11C9.89543 15 9 15.8954 9 17V21M9 9H9.01M15 9H15.01M9 12H9.01M15 12H15.01">
+                            </path>
+                        </svg>
+                    </span>
+                    <span>My Applications</span>
+                    <span class="badge" style="display:none;">0</span>
+                </a>
+                <a href="#" class="sidebar-item">
+                    <span class="icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z">
+                            </path>
+                        </svg>
+                    </span>
+                    <span>Documents</span>
+                </a>
+                <a href="#" class="sidebar-item">
+                    <span class="icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M13.5 22H7A2 2 0 0 1 5 20V4a2 2 0 0 1 2-2h6.63a2 2 0 0 1 1.41.59l3.37 3.37A2 2 0 0 1 19 7.37V10.5M16 19l2 2 4-4M13 2v4a1 1 0 0 0 1 1h4">
+                            </path>
+                        </svg>
+                    </span>
+                    <span>My Projects</span>
+                </a>
+
+                <a href="#" class="sidebar-item mt-custom">
+                    <span class="icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                            <line x1="3" y1="9" x2="21" y2="9"></line>
+                            <line x1="9" y1="21" x2="9" y2="9"></line>
+                        </svg>
+                    </span>
+                    <span>Profile</span>
+                </a>
+                <a href="#" class="sidebar-item">
+                    <span class="icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                            <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                        </svg>
+                    </span>
+                    <span>Notifications</span>
+                </a>
+                <a href="#" class="sidebar-item">
+                    <span class="icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="3"></circle>
+                            <path
+                                d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33h.09a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z">
+                            </path>
+                        </svg>
+                    </span>
+                    <span>Settings</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main View Container -->
+        <main class="app-main">
+            <!-- Breadcrumbs (Hidden on Dashboard) -->
+            <div class="breadcrumbs" id="app-breadcrumbs" style="display: none;">
+                <a href="#">Dashboard</a>
+                <span class="separator">›</span>
+                <a href="#">Applications</a>
+                <span class="separator">›</span>
+                <span class="current">New Application</span>
+            </div>
+
+            <!-- Stepper (Hidden on Dashboard & Success) -->
+            <div class="stepper-container" id="app-stepper" style="display: none;">
+                <div class="stepper">
+                    <div class="step" data-step="1">
+                        <div class="step-indicator">1</div>
+                        <span class="step-label">Property Details</span>
+                    </div>
+                    <div class="step-connector"></div>
+                    <div class="step" data-step="2">
+                        <div class="step-indicator">2</div>
+                        <span class="step-label">Ownership & Docs</span>
+                    </div>
+                    <div class="step-connector"></div>
+                    <div class="step" data-step="3">
+                        <div class="step-indicator">3</div>
+                        <span class="step-label">Completion Status</span>
+                    </div>
+                    <div class="step-connector"></div>
+                    <div class="step" data-step="4">
+                        <div class="step-indicator">4</div>
+                        <span class="step-label">Recovery Preference</span>
+                    </div>
+                    <div class="step-connector"></div>
+                    <div class="step" data-step="5">
+                        <div class="step-indicator">5</div>
+                        <span class="step-label">Review & Submit</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Views Container -->
+            <div class="views-wrapper">
+
+                <!-- SCREEN A: Dashboard -->
+                <section id="screen-a" class="view-section active">
+                    <div class="welcome-banner">
+                        <div class="banner-content">
+                            <span class="banner-sub">Welcome back,</span>
+                            <h2 class="banner-title">John Adeola</h2>
+                            <p class="banner-text">You haven't started an application yet. Complete your
+                                building<br>using WealthMarket's warrant financing — no cash loans needed.</p>
+                        </div>
+                        <div class="banner-action">
+                            <button class="btn btn-primary" id="btn-start-app">+ Start New Application</button>
+                            <span class="action-hint">Takes about 15 minutes</span>
+                        </div>
+                    </div>
+
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <span class="stat-label">Applications</span>
+                            <span class="stat-value text-primary">0</span>
+                            <span class="stat-desc">No applications yet</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-label">Active Projects</span>
+                            <span class="stat-value">—</span>
+                            <span class="stat-desc">Start an application first</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-label">Warrants Issued</span>
+                            <span class="stat-value">—</span>
+                            <span class="stat-desc">Pending application</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-label">Recovery Status</span>
+                            <span class="stat-value">—</span>
+                            <span class="stat-desc">Not started</span>
+                        </div>
+                    </div>
+
+                    <div class="checklist-teaser">
+                        <h3 class="teaser-title">Before you apply — quick checklist</h3>
+                        <div class="teaser-grid">
+                            <div class="teaser-col">
+                                <div class="check-item"><span class="check-icon done">✓</span> I own the land (with
+                                    title document)</div>
+                                <div class="check-item"><span class="check-icon done">✓</span> Building is at least 50%
+                                    complete</div>
+                                <div class="check-item"><span class="check-icon pending"></span> I have
+                                    architectural/building plans</div>
+                            </div>
+                            <div class="teaser-col">
+                                <div class="check-item"><span class="check-icon pending"></span> Building permit is
+                                    available</div>
+                                <div class="check-item"><span class="check-icon pending"></span> No encumbrances on the
+                                    property</div>
+                                <div class="check-item"><span class="check-icon pending"></span> Structural integrity
+                                    test done (or willing)</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SCREEN B: Step 1 Property Details -->
+                <section id="screen-b" class="view-section">
+                    <div class="form-layout">
+                        <!-- Left Form Area -->
+                        <div class="form-main">
+                            <div class="section-header">
+                                <h2>Tell us about your property</h2>
+                                <p>We need basic details about the building you want to complete. All fields marked
+                                    <span class="req">*</span> are required.
+                                </p>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Property Type <span class="req">*</span></label>
+                                <div class="selection-cards" id="property-type-selector">
+                                    <div class="select-card active" data-value="residential">
+                                        <span class="card-icon">🏠</span>
+                                        <span class="card-title">Residential</span>
+                                        <span class="card-sub">Bungalow, duplex, flat</span>
+                                    </div>
+                                    <div class="select-card" data-value="commercial">
+                                        <span class="card-icon">🏢</span>
+                                        <span class="card-title">Commercial</span>
+                                        <span class="card-sub">Office, retail, mixed</span>
+                                    </div>
+                                    <div class="select-card" data-value="industrial">
+                                        <span class="card-icon">🏭</span>
+                                        <span class="card-title">Industrial</span>
+                                        <span class="card-sub">Warehouse, factory</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group flex-1">
+                                    <label>Building Sub-type <span class="req">*</span></label>
+                                    <div class="select-wrapper">
+                                        <select class="form-input">
+                                            <option>Bungalow (Single Storey)</option>
+                                            <option>Duplex / 2-Storey</option>
+                                            <option>Block of Flats</option>
+                                            <option>Terrace House</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group flex-1">
+                                    <label>Number of Bedrooms <span class="req">*</span></label>
+                                    <div class="select-wrapper">
+                                        <select class="form-input">
+                                            <option>— Select —</option>
+                                            <option>1 Bedroom</option>
+                                            <option selected>3 Bedrooms</option>
+                                            <option>4 Bedrooms</option>
+                                            <option>5+ Bedrooms</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Property Address <span class="req">*</span></label>
+                                <input type="text" class="form-input filled"
+                                    value="No. 14, Olatunde Ayoola Street, Anthony Village" readonly>
+                                <div class="form-row mt-3">
+                                    <div class="select-wrapper flex-1">
+                                        <select class="form-input">
+                                            <option>Lagos State</option>
+                                        </select>
+                                    </div>
+                                    <div class="select-wrapper flex-1">
+                                        <select class="form-input">
+                                            <option>Lagos Mainland LGA</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Pin on Map <span class="optional">(optional but recommended)</span></label>
+                                <button class="map-placeholder-btn">
+                                    📍 Click to pin your property location on map
+                                </button>
+                                <span class="input-hint">Helps our agent locate the property for inspection.</span>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group flex-1">
+                                    <label>Land Size <span class="req">*</span></label>
+                                    <div class="input-with-suffix">
+                                        <input type="text" class="form-input filled" value="450" readonly>
+                                        <span class="suffix">sqm</span>
+                                    </div>
+                                </div>
+                                <div class="form-group flex-1">
+                                    <label>Building Footprint</label>
+                                    <div class="input-with-suffix">
+                                        <input type="text" class="form-input" placeholder="e.g. 250">
+                                        <span class="suffix">sqm</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Brief Description</label>
+                                <textarea class="form-textarea"
+                                    placeholder="Briefly describe the building, e.g. 3-bedroom bungalow, roofed and plastered, windows not yet installed..."></textarea>
+                                <span class="input-hint">Max 300 characters</span>
+                            </div>
+                        </div>
+
+                        <!-- Right Sidebar Area -->
+                        <aside class="form-sidebar">
+                            <div class="app-id-card">
+                                <span class="id-label">Application ID</span>
+                                <span class="id-value">WM-2025-04821</span>
+                                <span class="id-date">Started Dec 2, 2025 · 09:41 AM</span>
+                            </div>
+
+                            <div class="sidebar-block">
+                                <h3>Steps Checklist</h3>
+                                <div class="check-list">
+                                    <div class="list-item"><span class="bullet active"></span> <strong>Step 1:</strong>
+                                        Property Details</div>
+                                    <div class="list-item"><span class="bullet pending"></span> Step 2: Ownership & Docs
+                                    </div>
+                                    <div class="list-item"><span class="bullet pending"></span> Step 3: Completion
+                                        Status</div>
+                                    <div class="list-item"><span class="bullet pending"></span> Step 4: Recovery
+                                        Preference</div>
+                                    <div class="list-item"><span class="bullet pending"></span> Step 5: Review & Submit
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="sidebar-block">
+                                <h3>Need Help?</h3>
+                                <p class="help-text">
+                                    Call a WealthMarket agent:<br>
+                                    <strong class="text-primary">0800-WEALTH-1</strong><br><br>
+                                    Mon–Fri, 8am–6pm WAT
+                                </p>
+                            </div>
+                        </aside>
+                    </div>
+
+                    <!-- Form Footer Actions -->
+                    <div class="form-actions">
+                        <button class="btn btn-ghost">✕ Save & Exit</button>
+                        <div class="action-right">
+                            <span class="step-counter">Step 1 of 5</span>
+                            <button class="btn btn-primary btn-next" data-next="screen-c">Continue to Step 2 →</button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SCREEN C: Step 2 Ownership & Docs -->
+                <section id="screen-c" class="view-section">
+                    <div class="form-layout">
+                        <div class="form-main">
+                            <div class="section-header">
+                                <h2>Ownership & Building Plans</h2>
+                                <p>Upload your land title and building plan documents. Files must be PDF, JPG, or PNG
+                                    and under 50MB each.</p>
+                            </div>
+
+                            <div class="info-alert">
+                                <span class="alert-icon">ℹ️</span>
+                                <p>All documents are encrypted and stored securely. They are only shared with assigned
+                                    WealthMarket agents and assessors.</p>
+                            </div>
+
+                            <div class="form-group mt-4">
+                                <label>Land Title Document <span class="req">*</span></label>
+                                <div class="upload-zone uploaded" id="upload-title">
+                                    <span class="upload-icon">📄</span>
+                                    <span class="upload-filename">Certificate of Occupancy.pdf</span>
+                                    <span class="upload-meta">2.4 MB · Uploaded ✓ &nbsp;<span
+                                            class="text-error remove-file">Remove</span></span>
+                                </div>
+                                <span class="input-hint">Accepted: C of O, Deed of Assignment, Governor's Consent,
+                                    Survey Plan</span>
+                            </div>
+
+                            <label class="mt-4">Building Plans <span class="req">*</span> <span class="optional">(at
+                                    least one required)</span></label>
+                            <div class="upload-grid">
+                                <div class="upload-item">
+                                    <label class="compact-label">Architectural Plan <span class="req">*</span></label>
+                                    <div class="upload-zone uploaded mini" id="upload-arch">
+                                        <span class="upload-icon">🏛️</span>
+                                        <span class="upload-filename">ArchPlan_v2.pdf</span>
+                                        <span class="upload-meta">8.1 MB · ✓</span>
+                                    </div>
+                                </div>
+                                <div class="upload-item">
+                                    <label class="compact-label">Mechanical Plan</label>
+                                    <div class="upload-zone mini empty" id="upload-mech">
+                                        <span class="upload-icon empty-icon">⚙️</span>
+                                        <span class="upload-filename">Click to upload</span>
+                                        <span class="upload-meta">PDF, JPG, PNG · max 50MB</span>
+                                    </div>
+                                </div>
+                                <div class="upload-item">
+                                    <label class="compact-label">Electrical Plan</label>
+                                    <div class="upload-zone mini empty" id="upload-elec">
+                                        <span class="upload-icon empty-icon">⚡</span>
+                                        <span class="upload-filename">Click to upload</span>
+                                        <span class="upload-meta">PDF, JPG, PNG · max 50MB</span>
+                                    </div>
+                                </div>
+                                <div class="upload-item">
+                                    <label class="compact-label">Building Permit <span class="req">*</span></label>
+                                    <div class="upload-zone mini empty" id="upload-permit">
+                                        <span class="upload-icon empty-icon">📋</span>
+                                        <span class="upload-filename">Click to upload</span>
+                                        <span class="upload-meta">PDF, JPG, PNG · max 50MB</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="warning-alert mt-4">
+                                <span class="alert-icon">⚠️</span>
+                                <p><strong>Building permit not available?</strong> You can still proceed. Our agent will
+                                    guide you on obtaining it — this is required before final approval.</p>
+                            </div>
+                        </div>
+
+                        <!-- Right Sidebar Area -->
+                        <aside class="form-sidebar">
+                            <div class="app-id-card">
+                                <span class="id-label">Application ID</span>
+                                <span class="id-value">WM-2025-04821</span>
+                                <span class="id-date">Step 2 of 5</span>
+                            </div>
+
+                            <div class="sidebar-block">
+                                <h3>Steps Checklist</h3>
+                                <div class="check-list">
+                                    <div class="list-item"><span class="bullet done"></span> Step 1: Property Details
+                                    </div>
+                                    <div class="list-item"><span class="bullet active"></span> <strong>Step 2: Ownership
+                                            & Docs</strong></div>
+                                    <div class="list-item"><span class="bullet pending"></span> Step 3: Completion
+                                        Status</div>
+                                    <div class="list-item"><span class="bullet pending"></span> Step 4: Recovery
+                                        Preference</div>
+                                    <div class="list-item"><span class="bullet pending"></span> Step 5: Review & Submit
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="sidebar-block">
+                                <h3>Documents</h3>
+                                <div class="check-list">
+                                    <div class="list-item"><span class="bullet done"></span> Land Title</div>
+                                    <div class="list-item"><span class="bullet done"></span> Architectural Plan</div>
+                                    <div class="list-item"><span class="bullet pending"></span> Mechanical Plan</div>
+                                    <div class="list-item"><span class="bullet pending"></span> Electrical Plan</div>
+                                    <div class="list-item"><span class="bullet pending"></span> Building Permit</div>
+                                </div>
+                            </div>
+                        </aside>
+                    </div>
+                    <div class="form-actions">
+                        <button class="btn btn-secondary btn-back" data-back="screen-b">← Back</button>
+                        <div class="action-right">
+                            <span class="step-counter">Step 2 of 5</span>
+                            <button class="btn btn-primary btn-next" data-next="screen-d">Continue to Step 3 →</button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SCREEN D: Step 3 Completion Status -->
+                <section id="screen-d" class="view-section">
+                    <div class="form-layout">
+                        <div class="form-main">
+                            <div class="section-header">
+                                <h2>How far along is your building?</h2>
+                                <p>Your completion level determines eligibility. A minimum of 50% is required for this
+                                    program.</p>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Estimated Completion Level <span class="req">*</span></label>
+                                <div class="completion-slider-container">
+                                    <div class="slider-header">
+                                        <div class="slider-val-wrap">
+                                            <span class="slider-value" id="completion-val-display">65%</span>
+                                            <span class="slider-sub">Estimated completion</span>
+                                        </div>
+                                        <div class="slider-status" id="completion-status-msg">
+                                            <span class="status-yes">✓ Eligible</span>
+                                            <span class="status-req">Min. 50% required</span>
+                                        </div>
+                                    </div>
+                                    <div class="slider-track-wrap">
+                                        <input type="range" class="custom-slider" id="completion-slider-input" min="0"
+                                            max="100" value="65">
+                                        <div class="slider-labels">
+                                            <span>0%</span>
+                                            <span>25%</span>
+                                            <span class="req-mark">50% min</span>
+                                            <span>75%</span>
+                                            <span>100%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <span class="input-hint mt-2">Drag the slider or type a value. This will be verified by
+                                    a WealthMarket agent during the site assessment.</span>
+                            </div>
+
+                            <div class="form-group mt-4">
+                                <label>Work Completed So Far <span class="req">*</span></label>
+                                <div class="stage-checkboxes mt-2">
+                                    <label class="stage-check active">
+                                        <input type="checkbox" checked>
+                                        <span class="stage-title">Foundation</span>
+                                    </label>
+                                    <label class="stage-check active">
+                                        <input type="checkbox" checked>
+                                        <span class="stage-title">Block Walls</span>
+                                    </label>
+                                    <label class="stage-check active">
+                                        <input type="checkbox" checked>
+                                        <span class="stage-title">Roofing</span>
+                                    </label>
+                                    <label class="stage-check active">
+                                        <input type="checkbox" checked>
+                                        <span class="stage-title">Plastering</span>
+                                    </label>
+                                    <label class="stage-check">
+                                        <input type="checkbox">
+                                        <span class="stage-title">Windows & Doors</span>
+                                    </label>
+                                    <label class="stage-check">
+                                        <input type="checkbox">
+                                        <span class="stage-title">Electrical Rough-in</span>
+                                    </label>
+                                    <label class="stage-check">
+                                        <input type="checkbox">
+                                        <span class="stage-title">Plumbing</span>
+                                    </label>
+                                    <label class="stage-check">
+                                        <input type="checkbox">
+                                        <span class="stage-title">Tiling & Finishes</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="form-row mt-4">
+                                <div class="form-group flex-1">
+                                    <label>Year Construction Started <span class="req">*</span></label>
+                                    <div class="select-wrapper">
+                                        <select class="form-input">
+                                            <option>2020</option>
+                                            <option selected>2021</option>
+                                            <option>2022</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group flex-1">
+                                    <label>Year Construction Stalled</label>
+                                    <div class="select-wrapper">
+                                        <select class="form-input">
+                                            <option selected>2022</option>
+                                            <option>2023</option>
+                                            <option>2024</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Why did construction stop? <span class="optional">(optional)</span></label>
+                                <textarea class="form-textarea"
+                                    placeholder="e.g. Ran out of funds, material costs increased..."></textarea>
+                            </div>
+                        </div>
+
+                        <aside class="form-sidebar">
+                            <div class="app-id-card">
+                                <span class="id-label">Application ID</span>
+                                <span class="id-value">WM-2025-04821</span>
+                                <span class="id-date">Step 3 of 5</span>
+                            </div>
+
+                            <div class="sidebar-block">
+                                <h3>Eligibility Check</h3>
+                                <div class="eligibility-card" id="sidebar-eligibility">
+                                    <span class="elig-val">65%</span>
+                                    <span class="elig-status">✓ Meets minimum</span>
+                                    <span class="elig-sub">50% required · You qualify</span>
+                                </div>
+                            </div>
+
+                            <div class="sidebar-block">
+                                <h3>What Happens Next</h3>
+                                <p class="help-text text-sm">
+                                    After submission, a WealthMarket agent will:<br><br>
+                                    1. Call you within <strong>48hrs</strong><br>
+                                    2. Schedule a site visit<br>
+                                    3. Verify your completion level
+                                </p>
+                            </div>
+                        </aside>
+                    </div>
+                    <div class="form-actions">
+                        <button class="btn btn-secondary btn-back" data-back="screen-c">← Back</button>
+                        <div class="action-right">
+                            <span class="step-counter">Step 3 of 5</span>
+                            <button class="btn btn-primary btn-next" id="btn-to-step-4" data-next="screen-e">Continue to
+                                Step 4 →</button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SCREEN E: Step 4 Recovery Preference -->
+                <section id="screen-e" class="view-section">
+                    <div class="form-layout">
+                        <div class="form-main">
+                            <div class="section-header">
+                                <h2>How would you like to repay?</h2>
+                                <p>Select your preferred method for retiring the market warrants used to complete your
+                                    building. You can discuss this further with your assigned agent.</p>
+                            </div>
+
+                            <div class="info-alert mb-4">
+                                <span class="alert-icon">ℹ️</span>
+                                <p>Your selection here is a <strong>preference</strong>, not a binding agreement. Final
+                                    terms will be agreed upon with your WealthMarket agent after the property
+                                    assessment.</p>
+                            </div>
+
+                            <div class="recovery-options">
+                                <!-- Option A -->
+                                <div class="recovery-card active" data-option="A" data-title="Rental Recovery">
+                                    <div class="recovery-icon">🏘️</div>
+                                    <div class="recovery-content">
+                                        <div class="recovery-header">
+                                            <h4>Option A — Rental Recovery</h4>
+                                            <span class="badge badge-selected">SELECTED</span>
+                                        </div>
+                                        <p class="recovery-desc">WealthMarket puts your building up for rent. All rental
+                                            income goes to us until the full warrant amount plus interest is recovered.
+                                            You regain full income rights after recovery.</p>
+                                        <div class="recovery-meta">
+                                            <span><strong>Best for:</strong> Owners who want passive recovery</span>
+                                            <span><strong>Timeline:</strong> Typically 3–7 years</span>
+                                        </div>
+                                    </div>
+                                    <div class="radio-circle active">
+                                        <div class="radio-dot"></div>
+                                    </div>
+                                </div>
+
+                                <!-- Option B -->
+                                <div class="recovery-card" data-option="B" data-title="Property Partition">
+                                    <div class="recovery-icon quiet">✂️</div>
+                                    <div class="recovery-content">
+                                        <div class="recovery-header">
+                                            <h4>Option B — Property Partition</h4>
+                                            <span class="badge badge-selected hidden">SELECTED</span>
+                                        </div>
+                                        <p class="recovery-desc">Your building is divided into two units. You keep one
+                                            unit entirely — WealthMarket sells the other unit to recover the warrants.
+                                            Split ratio is determined by the valuer.</p>
+                                        <div class="recovery-meta quiet-meta">
+                                            <span><strong>Best for:</strong> Multi-unit buildings</span>
+                                            <span><strong>Timeline:</strong> Recovery on sale</span>
+                                        </div>
+                                    </div>
+                                    <div class="radio-circle"></div>
+                                </div>
+
+                                <!-- Option C -->
+                                <div class="recovery-card" data-option="C" data-title="Mortgage Onlending">
+                                    <div class="recovery-icon quiet">🏦</div>
+                                    <div class="recovery-content">
+                                        <div class="recovery-header">
+                                            <h4>Option C — Mortgage Onlending</h4>
+                                            <span class="badge badge-selected hidden">SELECTED</span>
+                                        </div>
+                                        <p class="recovery-desc">A WealthMarket mortgage onlender pays for your building
+                                            completion. You repay them directly with interest. You retain full ownership
+                                            from day one. Onlenders receive special 10× reflation terms.</p>
+                                        <div class="recovery-meta quiet-meta">
+                                            <span><strong>Best for:</strong> Owners wanting full title retention</span>
+                                            <span><strong>Timeline:</strong> Depends on mortgage term</span>
+                                        </div>
+                                    </div>
+                                    <div class="radio-circle"></div>
+                                </div>
+                            </div>
+
+                            <div class="warning-alert mt-4">
+                                <span class="alert-icon">⚠️</span>
+                                <p>Not sure which to pick? Leave it as your best guess for now — your assigned
+                                    WealthMarket agent will walk you through the implications before you sign any
+                                    agreement.</p>
+                            </div>
+                        </div>
+
+                        <aside class="form-sidebar">
+                            <div class="app-id-card">
+                                <span class="id-label">Application ID</span>
+                                <span class="id-value">WM-2025-04821</span>
+                                <span class="id-date">Step 4 of 5 · Almost done</span>
+                            </div>
+
+                            <div class="sidebar-block">
+                                <h3>Selected Option</h3>
+                                <div class="selected-option-card">
+                                    <span class="opt-label" id="sidebar-opt-label">Option A</span>
+                                    <span class="opt-title" id="sidebar-opt-title">Rental Recovery</span>
+                                </div>
+                            </div>
+
+                            <div class="sidebar-block">
+                                <h3>Steps Checklist</h3>
+                                <div class="check-list">
+                                    <div class="list-item"><span class="bullet done"></span> Step 1: Property Details
+                                    </div>
+                                    <div class="list-item"><span class="bullet done"></span> Step 2: Ownership & Docs
+                                    </div>
+                                    <div class="list-item"><span class="bullet done"></span> Step 3: Completion Status
+                                    </div>
+                                    <div class="list-item"><span class="bullet active"></span> <strong>Step 4:
+                                            Recovery</strong></div>
+                                    <div class="list-item"><span class="bullet pending"></span> Step 5: Review & Submit
+                                    </div>
+                                </div>
+                            </div>
+                        </aside>
+                    </div>
+                    <div class="form-actions">
+                        <button class="btn btn-secondary btn-back" data-back="screen-d">← Back</button>
+                        <div class="action-right">
+                            <span class="step-counter">Step 4 of 5</span>
+                            <button class="btn btn-primary btn-next" data-next="screen-f">Review & Submit →</button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SCREEN F: Step 5 Review & Submit -->
+                <section id="screen-f" class="view-section">
+                    <div class="form-layout" style="justify-content: center;">
+                        <div class="form-main"
+                            style="max-width: 680px; margin: 0 auto; background: var(--white); border-left: 1px solid var(--wire-border); border-right: 1px solid var(--wire-border);">
+                            <div class="section-header text-center">
+                                <h2>Review your application</h2>
+                                <p>Please check all details carefully. You can edit any section before submitting.</p>
+                            </div>
+
+                            <div class="summary-section">
+                                <div class="summary-header">
+                                    <h4>📍 Property Details</h4>
+                                    <span class="edit-link btn-jump" data-target="screen-b">Edit ✏️</span>
+                                </div>
+                                <div class="summary-content">
+                                    <div class="summary-row"><span class="s-key">Property Type</span><span
+                                            class="s-val">Residential — Bungalow (Single Storey)</span></div>
+                                    <div class="summary-row"><span class="s-key">Bedrooms</span><span class="s-val">3
+                                            Bedrooms</span></div>
+                                    <div class="summary-row"><span class="s-key">Address</span><span class="s-val">14
+                                            Olatunde Ayoola St, Anthony Village, Lagos Mainland, Lagos</span></div>
+                                    <div class="summary-row"><span class="s-key">Land Size</span><span class="s-val">450
+                                            sqm</span></div>
+                                </div>
+                            </div>
+
+                            <div class="summary-section mt-4">
+                                <div class="summary-header">
+                                    <h4>📁 Ownership & Documents</h4>
+                                    <span class="edit-link btn-jump" data-target="screen-c">Edit ✏️</span>
+                                </div>
+                                <div class="summary-content">
+                                    <div class="summary-row"><span class="s-key">Land Title</span><span
+                                            class="s-val">Certificate of Occupancy.pdf ✓</span></div>
+                                    <div class="summary-row"><span class="s-key">Architectural Plan</span><span
+                                            class="s-val">ArchPlan_v2.pdf ✓</span></div>
+                                    <div class="summary-row"><span class="s-key">Mechanical Plan</span><span
+                                            class="s-val text-warning">Not uploaded — to be submitted later</span></div>
+                                    <div class="summary-row"><span class="s-key">Electrical Plan</span><span
+                                            class="s-val text-warning">Not uploaded — to be submitted later</span></div>
+                                    <div class="summary-row"><span class="s-key">Building Permit</span><span
+                                            class="s-val text-warning">Not available — agent will assist</span></div>
+                                </div>
+                            </div>
+
+                            <div class="summary-section mt-4">
+                                <div class="summary-header">
+                                    <h4>🏗️ Completion Status</h4>
+                                    <span class="edit-link btn-jump" data-target="screen-d">Edit ✏️</span>
+                                </div>
+                                <div class="summary-content">
+                                    <div class="summary-row"><span class="s-key">Completion Level</span><span
+                                            class="s-val" id="review-comp-val">65% — Eligible ✓</span></div>
+                                    <div class="summary-row"><span class="s-key">Construction Started</span><span
+                                            class="s-val">2021</span></div>
+                                    <div class="summary-row"><span class="s-key">Construction Stalled</span><span
+                                            class="s-val">2022</span></div>
+                                    <div class="summary-row"><span class="s-key">Completed Stages</span><span
+                                            class="s-val">Foundation, Block Walls, Roofing, Plastering</span></div>
+                                </div>
+                            </div>
+
+                            <div class="summary-section mt-4">
+                                <div class="summary-header">
+                                    <h4>💳 Recovery Preference</h4>
+                                    <span class="edit-link btn-jump" data-target="screen-e">Edit ✏️</span>
+                                </div>
+                                <div class="summary-content">
+                                    <div class="summary-row"><span class="s-key">Selected Method</span><span
+                                            class="s-val" id="review-rec-val">Option A — Rental Recovery</span></div>
+                                    <div class="summary-row"><span class="s-key">Note</span><span
+                                            class="s-val quiet">Final terms to be agreed with assigned agent</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="declaration-box mt-4">
+                                <h4>Declaration</h4>
+                                <p>I confirm that all information provided in this application is accurate and truthful.
+                                    I understand that providing false information may result in immediate
+                                    disqualification and legal consequences. I consent to WealthMarket agents conducting
+                                    a site visit to verify the details above.</p>
+                                <label class="decl-check">
+                                    <input type="checkbox" id="decl-checkbox" checked>
+                                    <span>I agree to the above declaration and WealthMarket's <a href="#">Terms &
+                                            Conditions</a></span>
+                                </label>
+                            </div>
+
+                            <div class="form-actions px-0" style="border-top:none; position:relative;">
+                                <button class="btn btn-secondary btn-back flex-1" data-back="screen-e">← Back</button>
+                                <button class="btn btn-primary btn-next flex-2" data-next="screen-g"
+                                    style="justify-content: center; padding: 16px;">Submit Application →</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SCREEN G: Success State -->
+                <section id="screen-g" class="view-section">
+                    <div class="success-container">
+                        <div class="success-card">
+                            <div class="success-icon-large">✓</div>
+                            <h2 class="success-title">Application Submitted!</h2>
+                            <p class="success-desc">Your application WM-2025-04821 has been received. A WealthMarket
+                                agent will contact you within 48 hours to confirm next steps.</p>
+
+                            <div class="timeline-strip">
+                                <div class="tl-node">
+                                    <div class="tl-dot done">✓</div>
+                                    <span class="tl-label active">Application<br>Submitted</span>
+                                </div>
+                                <div class="tl-node">
+                                    <div class="tl-dot next">2</div>
+                                    <span class="tl-label">Document<br>Verification</span>
+                                </div>
+                                <div class="tl-node">
+                                    <div class="tl-dot future">3</div>
+                                    <span class="tl-label">Site<br>Assessment</span>
+                                </div>
+                                <div class="tl-node">
+                                    <div class="tl-dot future">4</div>
+                                    <span class="tl-label">Pre-Qual<br>Review</span>
+                                </div>
+                                <div class="tl-node">
+                                    <div class="tl-dot future">5</div>
+                                    <span class="tl-label">Approval &<br>Warrants</span>
+                                </div>
+                            </div>
+
+                            <div class="app-id-card mx-auto mt-4 text-left" style="max-width:320px;">
+                                <span class="id-label" style="opacity:0.5; font-size:9px;">Your Application
+                                    Reference</span>
+                                <span class="id-value" style="color:var(--primary-base);">WM-2025-04821</span>
+                                <span class="id-date" style="opacity:0.5; font-size:9px;">Keep this ID safe — use it for
+                                    all future correspondence</span>
+                            </div>
+
+                            <div class="success-actions mt-4">
+                                <button class="btn btn-primary w-full justify-center" id="btn-return-dash">Go to My
+                                    Dashboard →</button>
+                                <button class="btn btn-secondary w-full justify-center mt-2"
+                                    style="font-size:12px;">Download Confirmation PDF</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>

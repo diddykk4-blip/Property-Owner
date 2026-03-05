@@ -1,0 +1,1670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WealthMarket — Submit Application Wireframe</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green-dark:  #1A5C38;
+    --green-mid:   #2E8B57;
+    --green-light: #E8F5EE;
+    --gold:        #C9A84C;
+    --gold-light:  #FBF4E0;
+    --wire-bg:     #F4F4F1;
+    --wire-border: #D0D0CB;
+    --wire-label:  #888888;
+    --wire-fill:   #E2E2DE;
+    --text:        #1C1C1C;
+    --white:       #FFFFFF;
+    --red:         #C0392B;
+    --blue:        #2980B9;
+    --blue-light:  #EBF5FB;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: #E8E8E4;
+    color: var(--text);
+  }
+
+  /* ── PAGE HEADER ───────────────────────────────────── */
+  .page-header {
+    background: var(--green-dark);
+    color: white;
+    padding: 18px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 3px solid var(--gold);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .page-header h1 { font-family: 'DM Serif Display', serif; font-size: 18px; }
+  .page-header p { font-size: 11px; opacity: 0.6; margin-top: 2px; }
+  .badge { background: var(--gold); color: var(--green-dark); font-size: 10px; font-weight: 700; padding: 4px 10px; border-radius: 20px; }
+  .badge-outline { background: rgba(255,255,255,0.12); color: white; font-size: 10px; padding: 4px 10px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.2); }
+
+  /* ── SECTION DIVIDERS ─────────────────────────────── */
+  .section-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--green-dark);
+    padding: 36px 48px 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: var(--wire-border); }
+  .section-label .step-pill {
+    background: var(--green-dark);
+    color: white;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 20px;
+  }
+
+  /* ── SCREEN WRAPPER ────────────────────────────────── */
+  .screens-row {
+    display: flex;
+    gap: 32px;
+    padding: 0 48px 40px;
+    align-items: flex-start;
+  }
+  .screen-wrap { flex: 1; min-width: 0; }
+  .screen-title {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--wire-label);
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .screen-num {
+    width: 22px; height: 22px;
+    background: var(--green-dark);
+    color: white;
+    border-radius: 50%;
+    font-size: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; flex-shrink: 0;
+  }
+
+  /* ── BROWSER CHROME ────────────────────────────────── */
+  .browser {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.10);
+    overflow: hidden;
+    border: 1px solid var(--wire-border);
+  }
+  .browser-bar {
+    background: #EFEFEC;
+    padding: 9px 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid var(--wire-border);
+  }
+  .browser-dots { display: flex; gap: 5px; }
+  .browser-dots span { width: 10px; height: 10px; border-radius: 50%; background: var(--wire-border); display: block; }
+  .browser-url { flex: 1; background: white; border: 1px solid var(--wire-border); border-radius: 4px; padding: 4px 10px; font-size: 11px; color: var(--wire-label); }
+
+  /* ── GLOBAL NAV ───────────────────────────────────── */
+  .nav {
+    background: var(--green-dark);
+    padding: 0 28px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .nav-logo { display: flex; align-items: center; gap: 8px; }
+  .nav-logo-icon { width: 26px; height: 26px; background: var(--gold); border-radius: 5px; display: flex; align-items: center; justify-content: center; }
+  .nav-logo-icon span { color: var(--green-dark); font-size: 13px; font-weight: 800; }
+  .nav-logo-text { color: white; font-size: 12px; font-weight: 600; }
+  .nav-right { display: flex; align-items: center; gap: 16px; }
+  .nav-user { display: flex; align-items: center; gap: 8px; }
+  .nav-avatar { width: 28px; height: 28px; background: var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; color: var(--green-dark); }
+  .nav-username { color: rgba(255,255,255,0.8); font-size: 11px; }
+  .nav-notif { width: 28px; height: 28px; background: rgba(255,255,255,0.1); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 14px; position: relative; }
+  .notif-dot { width: 7px; height: 7px; background: var(--gold); border-radius: 50%; position: absolute; top: 4px; right: 4px; }
+
+  /* ── DASHBOARD SIDEBAR + CONTENT LAYOUT ───────────── */
+  .app-layout { display: flex; min-height: 560px; }
+  .sidebar {
+    width: 200px;
+    background: #F9F9F6;
+    border-right: 1px solid var(--wire-border);
+    padding: 20px 0;
+    flex-shrink: 0;
+  }
+  .sidebar-section-label {
+    font-size: 9px;
+    font-weight: 700;
+    color: var(--wire-label);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0 16px 6px;
+    margin-top: 14px;
+  }
+  .sidebar-item {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 9px 16px;
+    font-size: 11px;
+    color: var(--wire-label);
+    cursor: pointer;
+    border-left: 3px solid transparent;
+  }
+  .sidebar-item.active {
+    background: var(--green-light);
+    color: var(--green-dark);
+    font-weight: 600;
+    border-left-color: var(--green-dark);
+  }
+  .sidebar-item.active .sidebar-icon { color: var(--green-dark); }
+  .sidebar-icon { font-size: 13px; width: 16px; text-align: center; }
+  .sidebar-badge { margin-left: auto; background: var(--gold); color: var(--green-dark); font-size: 8px; font-weight: 700; padding: 1px 5px; border-radius: 10px; }
+
+  .main-content { flex: 1; background: var(--wire-bg); overflow: hidden; }
+
+  /* ── BREADCRUMB ───────────────────────────────────── */
+  .breadcrumb {
+    padding: 12px 24px;
+    font-size: 10px;
+    color: var(--wire-label);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: white;
+    border-bottom: 1px solid var(--wire-border);
+  }
+  .breadcrumb a { color: var(--green-dark); font-weight: 500; }
+  .breadcrumb span { color: var(--wire-label); }
+
+  /* ── FORM STEPPER ─────────────────────────────────── */
+  .form-stepper {
+    display: flex;
+    background: white;
+    border-bottom: 1px solid var(--wire-border);
+    padding: 0 24px;
+  }
+  .stepper-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 16px 14px 0;
+    margin-right: 8px;
+    font-size: 10px;
+    color: var(--wire-label);
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .stepper-item.active {
+    color: var(--green-dark);
+    font-weight: 600;
+    border-bottom-color: var(--green-dark);
+  }
+  .stepper-item.done { color: var(--green-mid); }
+  .stepper-dot {
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    font-size: 9px;
+    font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--wire-border);
+    color: var(--wire-label);
+    flex-shrink: 0;
+  }
+  .stepper-dot.active { background: var(--green-dark); color: white; }
+  .stepper-dot.done { background: var(--green-mid); color: white; }
+  .stepper-connector { width: 20px; height: 1px; background: var(--wire-border); margin-right: 8px; flex-shrink: 0; }
+  .stepper-connector.done { background: var(--green-mid); }
+
+  /* ── FORM BODY ─────────────────────────────────────── */
+  .form-body { padding: 24px; }
+  .form-section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 17px;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+  .form-section-sub { font-size: 11px; color: var(--wire-label); margin-bottom: 20px; line-height: 1.5; }
+
+  .form-group { margin-bottom: 14px; }
+  .form-label {
+    font-size: 10px;
+    font-weight: 600;
+    color: #555;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .req { color: var(--red); }
+  .form-input {
+    width: 100%;
+    border: 1.5px solid var(--wire-border);
+    border-radius: 6px;
+    padding: 9px 12px;
+    font-size: 12px;
+    font-family: 'DM Sans', sans-serif;
+    color: #444;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .form-input.active { border-color: var(--green-mid); }
+  .form-input.filled { border-color: var(--wire-border); background: white; }
+  .form-input.error { border-color: var(--red); background: #FEF8F8; }
+  .input-hint { font-size: 9px; color: var(--wire-label); margin-top: 3px; line-height: 1.4; }
+  .input-error { font-size: 9px; color: var(--red); margin-top: 3px; }
+  .form-row { display: flex; gap: 12px; }
+  .form-row .form-group { flex: 1; }
+
+  .select-wrap {
+    position: relative;
+    display: block;
+  }
+  .select-wrap select {
+    appearance: none;
+    width: 100%;
+    border: 1.5px solid var(--wire-border);
+    border-radius: 6px;
+    padding: 9px 32px 9px 12px;
+    font-size: 12px;
+    font-family: 'DM Sans', sans-serif;
+    color: #444;
+    background: white url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23999'/%3E%3C/svg%3E") no-repeat right 12px center;
+    cursor: pointer;
+  }
+
+  .textarea-input {
+    width: 100%;
+    border: 1.5px solid var(--wire-border);
+    border-radius: 6px;
+    padding: 10px 12px;
+    font-size: 12px;
+    font-family: 'DM Sans', sans-serif;
+    color: #444;
+    background: white;
+    resize: none;
+    height: 70px;
+    line-height: 1.5;
+  }
+
+  /* ── COMPLETION SLIDER ────────────────────────────── */
+  .completion-slider {
+    background: white;
+    border: 1.5px solid var(--wire-border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .slider-track {
+    height: 6px;
+    background: var(--wire-fill);
+    border-radius: 3px;
+    margin: 10px 0 8px;
+    position: relative;
+  }
+  .slider-fill {
+    height: 100%;
+    background: var(--green-mid);
+    border-radius: 3px;
+    width: 65%;
+  }
+  .slider-thumb {
+    width: 16px; height: 16px;
+    background: var(--green-dark);
+    border-radius: 50%;
+    position: absolute;
+    top: -5px;
+    left: 64%;
+    border: 2px solid white;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+  }
+  .slider-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 9px;
+    color: var(--wire-label);
+  }
+  .slider-value {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--green-dark);
+    font-family: 'DM Serif Display', serif;
+  }
+  .slider-sublabel { font-size: 10px; color: var(--wire-label); margin-top: 2px; }
+
+  /* ── PROPERTY TYPE CARDS ──────────────────────────── */
+  .type-cards { display: flex; gap: 10px; margin-bottom: 0; }
+  .type-card {
+    flex: 1;
+    border: 1.5px solid var(--wire-border);
+    border-radius: 8px;
+    padding: 12px 10px;
+    text-align: center;
+    cursor: pointer;
+    background: white;
+    transition: all 0.15s;
+  }
+  .type-card.selected {
+    border-color: var(--green-dark);
+    background: var(--green-light);
+  }
+  .type-card-icon { font-size: 20px; margin-bottom: 6px; }
+  .type-card-label { font-size: 10px; font-weight: 600; color: var(--text); }
+  .type-card-sub { font-size: 9px; color: var(--wire-label); margin-top: 2px; }
+  .type-card.selected .type-card-label { color: var(--green-dark); }
+
+  /* ── RADIO GROUP ───────────────────────────────────── */
+  .radio-group { display: flex; flex-direction: column; gap: 8px; }
+  .radio-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border: 1.5px solid var(--wire-border);
+    border-radius: 7px;
+    background: white;
+    cursor: pointer;
+  }
+  .radio-item.selected { border-color: var(--green-dark); background: var(--green-light); }
+  .radio-circle {
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    border: 2px solid var(--wire-border);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .radio-circle.selected { border-color: var(--green-dark); }
+  .radio-inner { width: 8px; height: 8px; background: var(--green-dark); border-radius: 50%; display: none; }
+  .radio-circle.selected .radio-inner { display: block; }
+  .radio-text { font-size: 11px; font-weight: 500; color: var(--text); }
+  .radio-sub { font-size: 9px; color: var(--wire-label); margin-top: 1px; }
+
+  /* ── FORM FOOTER ACTIONS ──────────────────────────── */
+  .form-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 24px;
+    background: white;
+    border-top: 1px solid var(--wire-border);
+  }
+  .btn {
+    padding: 10px 20px;
+    border-radius: 7px;
+    font-size: 11px;
+    font-weight: 600;
+    font-family: 'DM Sans', sans-serif;
+    cursor: pointer;
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .btn-primary { background: var(--green-dark); color: white; }
+  .btn-secondary { background: var(--wire-bg); border: 1.5px solid var(--wire-border); color: #555; }
+  .btn-ghost { background: none; color: var(--wire-label); font-size: 11px; cursor: pointer; border: none; font-family: 'DM Sans', sans-serif; }
+  .btn-sm { padding: 7px 14px; font-size: 10px; }
+
+  /* ── INFO CALLOUT ────────────────────────────────── */
+  .callout {
+    border-radius: 7px;
+    padding: 12px 14px;
+    font-size: 10px;
+    margin-bottom: 16px;
+    display: flex;
+    gap: 10px;
+    line-height: 1.6;
+  }
+  .callout-info { background: var(--blue-light); border-left: 3px solid var(--blue); color: #1A3550; }
+  .callout-warning { background: var(--gold-light); border-left: 3px solid var(--gold); color: #5C4A10; }
+  .callout-success { background: var(--green-light); border-left: 3px solid var(--green-mid); color: var(--green-dark); }
+  .callout-icon { font-size: 14px; flex-shrink: 0; margin-top: 1px; }
+
+  /* ── ADDRESS BUILDER ──────────────────────────────── */
+  .address-map-placeholder {
+    width: 100%;
+    height: 90px;
+    background: var(--wire-fill);
+    border: 1.5px dashed var(--wire-border);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    color: var(--wire-label);
+    gap: 6px;
+    margin-bottom: 6px;
+  }
+
+  /* ── RIGHT PANEL ─────────────────────────────────── */
+  .right-panel {
+    width: 220px;
+    flex-shrink: 0;
+    border-left: 1px solid var(--wire-border);
+    background: white;
+    padding: 18px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .panel-section-title {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--green-dark);
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .checklist-item {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 10px;
+    color: var(--wire-label);
+    padding: 4px 0;
+  }
+  .check-icon { width: 16px; height: 16px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 9px; flex-shrink: 0; }
+  .check-icon.done { background: var(--green-light); color: var(--green-dark); }
+  .check-icon.pending { background: var(--wire-fill); color: var(--wire-label); }
+  .check-icon.active { background: var(--gold-light); color: var(--gold); border: 1px solid var(--gold); }
+
+  .save-status {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 9px;
+    color: var(--wire-label);
+    padding: 6px 8px;
+    background: var(--wire-bg);
+    border-radius: 5px;
+  }
+  .save-dot { width: 7px; height: 7px; background: var(--green-mid); border-radius: 50%; }
+
+  /* ── APPLICATION ID CARD ─────────────────────────── */
+  .app-id-card {
+    background: var(--green-dark);
+    border-radius: 7px;
+    padding: 12px;
+    color: white;
+  }
+  .app-id-label { font-size: 8px; opacity: 0.6; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 4px; }
+  .app-id-value { font-size: 14px; font-weight: 700; font-family: 'DM Serif Display', serif; letter-spacing: 0.05em; }
+  .app-id-date { font-size: 8px; opacity: 0.5; margin-top: 3px; }
+
+  /* ── REVIEW / SUMMARY SCREEN ─────────────────────── */
+  .summary-section {
+    background: white;
+    border: 1px solid var(--wire-border);
+    border-radius: 8px;
+    margin-bottom: 14px;
+    overflow: hidden;
+  }
+  .summary-section-header {
+    background: var(--wire-bg);
+    padding: 9px 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--wire-border);
+  }
+  .summary-section-title { font-size: 11px; font-weight: 700; color: var(--green-dark); }
+  .edit-link { font-size: 10px; color: var(--blue); cursor: pointer; }
+  .summary-row {
+    display: flex;
+    padding: 8px 14px;
+    border-bottom: 1px solid var(--wire-bg);
+    gap: 8px;
+  }
+  .summary-row:last-child { border-bottom: none; }
+  .summary-key { font-size: 10px; color: var(--wire-label); width: 130px; flex-shrink: 0; }
+  .summary-val { font-size: 10px; color: var(--text); font-weight: 500; }
+
+  /* ── SUBMISSION SUCCESS ───────────────────────────── */
+  .success-card {
+    background: white;
+    border-radius: 10px;
+    border: 1px solid var(--wire-border);
+    padding: 40px 36px;
+    text-align: center;
+  }
+  .success-icon {
+    width: 64px; height: 64px;
+    background: var(--green-light);
+    border-radius: 50%;
+    margin: 0 auto 18px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 28px;
+    border: 2px solid var(--green-mid);
+  }
+  .success-title { font-family: 'DM Serif Display', serif; font-size: 20px; color: var(--text); margin-bottom: 8px; }
+  .success-sub { font-size: 11px; color: var(--wire-label); line-height: 1.7; max-width: 320px; margin: 0 auto 24px; }
+  .timeline-strip {
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    margin-bottom: 24px;
+  }
+  .timeline-node {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    max-width: 90px;
+    position: relative;
+  }
+  .timeline-node::after {
+    content: '';
+    position: absolute;
+    top: 12px;
+    left: 50%;
+    right: -50%;
+    height: 2px;
+    background: var(--wire-border);
+  }
+  .timeline-node:last-child::after { display: none; }
+  .timeline-dot {
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px;
+    font-weight: 700;
+    z-index: 1;
+    margin-bottom: 6px;
+  }
+  .timeline-dot.done { background: var(--green-mid); color: white; }
+  .timeline-dot.next { background: var(--gold); color: var(--green-dark); }
+  .timeline-dot.future { background: var(--wire-fill); color: var(--wire-label); }
+  .timeline-label { font-size: 8px; text-align: center; color: var(--wire-label); line-height: 1.3; }
+  .timeline-label.active { color: var(--green-dark); font-weight: 600; }
+
+  /* ── ANNOTATIONS ─────────────────────────────────── */
+  .annotations {
+    padding: 12px 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .annotation {
+    display: flex;
+    align-items: flex-start;
+    gap: 7px;
+    font-size: 10px;
+    color: #555;
+    line-height: 1.5;
+  }
+  .annotation-num {
+    width: 16px; height: 16px;
+    background: var(--gold);
+    color: var(--green-dark);
+    border-radius: 50%;
+    font-size: 9px;
+    font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  /* ── PROGRESS INDICATOR STEP 2 ─────────────────────── */
+  .app-progress-header {
+    padding: 16px 24px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .app-progress-title { font-size: 12px; font-weight: 700; color: var(--text); }
+  .app-progress-sub { font-size: 10px; color: var(--wire-label); }
+  .progress-bar-thin {
+    height: 3px;
+    background: var(--wire-fill);
+    margin: 8px 24px 0;
+    border-radius: 2px;
+  }
+  .progress-bar-fill { height: 100%; border-radius: 2px; background: var(--green-mid); }
+</style>
+</head>
+<body>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div>
+    <h1>WealthMarket — Property Owner Flow</h1>
+    <p>Wireframe Reference · Submit Application (Step 2) · Desktop Web</p>
+  </div>
+  <div style="display:flex;gap:10px;align-items:center;">
+    <span class="badge">Step 2 of 19</span>
+    <span class="badge-outline">Submit Application</span>
+    <span class="badge-outline">Wireframe v1.0</span>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- SCREEN A: APPLICATION ENTRY / DASHBOARD PROMPT             -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="section-label"><span class="step-pill">2.0</span> Application Entry Point — Dashboard CTA</div>
+<div class="screens-row">
+
+  <div class="screen-wrap" style="flex:2;">
+    <div class="screen-title"><span class="screen-num">A</span> Property Owner Dashboard — New Application Prompt</div>
+    <div class="browser">
+      <div class="browser-bar">
+        <div class="browser-dots"><span></span><span></span><span></span></div>
+        <div class="browser-url">app.wealthmarket.com/dashboard</div>
+      </div>
+      <div class="screen-content" style="background:var(--wire-bg);">
+        <div class="nav">
+          <div class="nav-logo">
+            <div class="nav-logo-icon"><span>W</span></div>
+            <div><div class="nav-logo-text">WealthMarket</div></div>
+          </div>
+          <div class="nav-right">
+            <div class="nav-notif">🔔<div class="notif-dot"></div></div>
+            <div class="nav-user">
+              <div class="nav-avatar">JA</div>
+              <div class="nav-username">John Adeola ▾</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="app-layout">
+          <!-- SIDEBAR -->
+          <div class="sidebar">
+            <div class="sidebar-section-label">Menu</div>
+            <div class="sidebar-item active"><span class="sidebar-icon">🏠</span> Dashboard</div>
+            <div class="sidebar-item"><span class="sidebar-icon">📄</span> My Applications <span class="sidebar-badge">0</span></div>
+            <div class="sidebar-item"><span class="sidebar-icon">📁</span> Documents</div>
+            <div class="sidebar-item"><span class="sidebar-icon">🏗️</span> My Projects</div>
+            <div class="sidebar-section-label">Account</div>
+            <div class="sidebar-item"><span class="sidebar-icon">👤</span> Profile</div>
+            <div class="sidebar-item"><span class="sidebar-icon">🔔</span> Notifications</div>
+            <div class="sidebar-item"><span class="sidebar-icon">⚙️</span> Settings</div>
+          </div>
+
+          <!-- MAIN CONTENT -->
+          <div class="main-content" style="padding:24px;">
+            <!-- WELCOME BANNER -->
+            <div style="background:var(--green-dark);border-radius:10px;padding:20px 24px;display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;position:relative;overflow:hidden;">
+              <div style="position:absolute;right:-20px;top:-20px;width:120px;height:120px;background:rgba(255,255,255,0.04);border-radius:50%;"></div>
+              <div>
+                <div style="font-size:11px;color:rgba(255,255,255,0.6);margin-bottom:4px;">Welcome back,</div>
+                <div style="font-family:'DM Serif Display',serif;font-size:20px;color:white;margin-bottom:6px;">John Adeola</div>
+                <div style="font-size:10px;color:rgba(255,255,255,0.55);line-height:1.5;">You haven't started an application yet. Complete your building<br>using WealthMarket's warrant financing — no cash loans needed.</div>
+              </div>
+              <div style="text-align:right;flex-shrink:0;">
+                <div style="background:var(--gold);color:var(--green-dark);font-size:11px;font-weight:700;padding:11px 20px;border-radius:7px;cursor:pointer;white-space:nowrap;">+ Start New Application</div>
+                <div style="font-size:9px;color:rgba(255,255,255,0.4);margin-top:6px;">Takes about 15 minutes</div>
+              </div>
+            </div>
+
+            <!-- QUICK STATS (empty state) -->
+            <div style="display:flex;gap:14px;margin-bottom:20px;">
+              <div style="flex:1;background:white;border:1px solid var(--wire-border);border-radius:8px;padding:14px 16px;">
+                <div style="font-size:9px;color:var(--wire-label);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:6px;">Applications</div>
+                <div style="font-size:22px;font-weight:700;color:var(--green-dark);font-family:'DM Serif Display',serif;">0</div>
+                <div style="font-size:9px;color:var(--wire-label);margin-top:2px;">No applications yet</div>
+              </div>
+              <div style="flex:1;background:white;border:1px solid var(--wire-border);border-radius:8px;padding:14px 16px;">
+                <div style="font-size:9px;color:var(--wire-label);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:6px;">Active Projects</div>
+                <div style="font-size:22px;font-weight:700;color:var(--wire-label);font-family:'DM Serif Display',serif;">—</div>
+                <div style="font-size:9px;color:var(--wire-label);margin-top:2px;">Start an application first</div>
+              </div>
+              <div style="flex:1;background:white;border:1px solid var(--wire-border);border-radius:8px;padding:14px 16px;">
+                <div style="font-size:9px;color:var(--wire-label);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:6px;">Warrants Issued</div>
+                <div style="font-size:22px;font-weight:700;color:var(--wire-label);font-family:'DM Serif Display',serif;">—</div>
+                <div style="font-size:9px;color:var(--wire-label);margin-top:2px;">Pending application</div>
+              </div>
+              <div style="flex:1;background:white;border:1px solid var(--wire-border);border-radius:8px;padding:14px 16px;">
+                <div style="font-size:9px;color:var(--wire-label);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:6px;">Recovery Status</div>
+                <div style="font-size:22px;font-weight:700;color:var(--wire-label);font-family:'DM Serif Display',serif;">—</div>
+                <div style="font-size:9px;color:var(--wire-label);margin-top:2px;">Not started</div>
+              </div>
+            </div>
+
+            <!-- ELIGIBILITY CHECKLIST TEASER -->
+            <div style="background:white;border:1px solid var(--wire-border);border-radius:8px;padding:16px 20px;">
+              <div style="font-size:11px;font-weight:700;color:var(--text);margin-bottom:12px;">Before you apply — quick checklist</div>
+              <div style="display:flex;gap:24px;">
+                <div style="flex:1;">
+                  <div class="checklist-item"><div class="check-icon done">✓</div> I own the land (with title document)</div>
+                  <div class="checklist-item"><div class="check-icon done">✓</div> Building is at least 50% complete</div>
+                  <div class="checklist-item"><div class="check-icon pending">○</div> I have architectural/building plans</div>
+                </div>
+                <div style="flex:1;">
+                  <div class="checklist-item"><div class="check-icon pending">○</div> Building permit is available</div>
+                  <div class="checklist-item"><div class="check-icon pending">○</div> No encumbrances on the property</div>
+                  <div class="checklist-item"><div class="check-icon pending">○</div> Structural integrity test done (or willing)</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="annotations">
+      <div class="annotation"><div class="annotation-num">A</div><strong>Dashboard CTA:</strong> Primary "Start New Application" button is the hero action for a first-time user. Colour and prominence make it unmissable.</div>
+      <div class="annotation"><div class="annotation-num">B</div><strong>Empty states:</strong> Stats show dashes until an application exists — prevents confusion and sets correct expectations.</div>
+      <div class="annotation"><div class="annotation-num">C</div><strong>Eligibility teaser:</strong> Soft checklist shown before the user enters the form — reduces drop-off mid-application.</div>
+    </div>
+  </div>
+
+  <!-- FLOW MAP -->
+  <div class="screen-wrap" style="flex:0.7;">
+    <div class="screen-title"><span class="screen-num">↗</span> Application Form Steps</div>
+    <div style="background:white;border-radius:10px;border:1px solid var(--wire-border);padding:18px 16px;font-size:10px;">
+      <div style="font-weight:700;color:var(--green-dark);font-size:11px;margin-bottom:14px;border-bottom:1px solid var(--wire-border);padding-bottom:8px;">5-Step Application Form</div>
+      <div style="display:flex;flex-direction:column;gap:3px;">
+        <div style="background:var(--green-light);border-left:3px solid var(--green-dark);padding:7px 10px;border-radius:0 5px 5px 0;">
+          <div style="font-weight:700;color:var(--green-dark);font-size:10px;">Step 1</div>
+          <div style="color:#555;font-size:9px;margin-top:1px;">Property Details</div>
+        </div>
+        <div style="padding-left:12px;color:var(--wire-label);">↓</div>
+        <div style="background:var(--wire-bg);border-left:3px solid var(--wire-border);padding:7px 10px;border-radius:0 5px 5px 0;">
+          <div style="font-weight:700;color:#555;font-size:10px;">Step 2</div>
+          <div style="color:#777;font-size:9px;margin-top:1px;">Ownership & Documents</div>
+        </div>
+        <div style="padding-left:12px;color:var(--wire-label);">↓</div>
+        <div style="background:var(--wire-bg);border-left:3px solid var(--wire-border);padding:7px 10px;border-radius:0 5px 5px 0;">
+          <div style="font-weight:700;color:#555;font-size:10px;">Step 3</div>
+          <div style="color:#777;font-size:9px;margin-top:1px;">Completion Status</div>
+        </div>
+        <div style="padding-left:12px;color:var(--wire-label);">↓</div>
+        <div style="background:var(--wire-bg);border-left:3px solid var(--wire-border);padding:7px 10px;border-radius:0 5px 5px 0;">
+          <div style="font-weight:700;color:#555;font-size:10px;">Step 4</div>
+          <div style="color:#777;font-size:9px;margin-top:1px;">Recovery Preference</div>
+        </div>
+        <div style="padding-left:12px;color:var(--wire-label);">↓</div>
+        <div style="background:var(--wire-bg);border-left:3px solid var(--wire-border);padding:7px 10px;border-radius:0 5px 5px 0;">
+          <div style="font-weight:700;color:#555;font-size:10px;">Step 5</div>
+          <div style="color:#777;font-size:9px;margin-top:1px;">Review & Submit</div>
+        </div>
+        <div style="padding-left:12px;color:var(--wire-label);">↓</div>
+        <div style="background:var(--gold-light);border-left:3px solid var(--gold);padding:7px 10px;border-radius:0 5px 5px 0;">
+          <div style="font-weight:700;color:#7D6608;font-size:10px;">Submitted ✓</div>
+          <div style="color:#9A7A20;font-size:9px;margin-top:1px;">App ID generated</div>
+        </div>
+      </div>
+
+      <div style="border-top:1px solid var(--wire-border);margin-top:14px;padding-top:10px;">
+        <div style="font-size:9px;color:var(--wire-label);font-weight:700;margin-bottom:6px;">FORM RULES</div>
+        <div style="font-size:9px;color:#666;line-height:1.8;">
+          • Auto-save on every step<br>
+          • Can navigate back freely<br>
+          • Cannot skip forward<br>
+          • Min 50% completion required<br>
+          • Draft saved if user exits
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- SCREEN B: STEP 1 — PROPERTY DETAILS                        -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="section-label"><span class="step-pill">2.1</span> Application Form — Step 1: Property Details</div>
+<div class="screens-row">
+  <div class="screen-wrap" style="flex:2.2;">
+    <div class="screen-title"><span class="screen-num">B</span> Step 1 — Property Details (Active)</div>
+    <div class="browser">
+      <div class="browser-bar">
+        <div class="browser-dots"><span></span><span></span><span></span></div>
+        <div class="browser-url">app.wealthmarket.com/apply/step-1</div>
+      </div>
+      <div style="background:white;">
+        <div class="nav">
+          <div class="nav-logo">
+            <div class="nav-logo-icon"><span>W</span></div>
+            <div><div class="nav-logo-text">WealthMarket</div></div>
+          </div>
+          <div class="nav-right">
+            <div class="save-status"><div class="save-dot"></div>Draft auto-saved</div>
+            <div class="nav-user"><div class="nav-avatar">JA</div><div class="nav-username">John Adeola</div></div>
+          </div>
+        </div>
+
+        <!-- BREADCRUMB -->
+        <div class="breadcrumb">
+          <a href="#">Dashboard</a> <span>›</span>
+          <a href="#">Applications</a> <span>›</span>
+          <span>New Application</span>
+        </div>
+
+        <!-- STEPPER -->
+        <div class="form-stepper">
+          <div class="stepper-item active">
+            <div class="stepper-dot active">1</div> Property Details
+          </div>
+          <div class="stepper-connector"></div>
+          <div class="stepper-item">
+            <div class="stepper-dot">2</div> Ownership & Docs
+          </div>
+          <div class="stepper-connector"></div>
+          <div class="stepper-item">
+            <div class="stepper-dot">3</div> Completion Status
+          </div>
+          <div class="stepper-connector"></div>
+          <div class="stepper-item">
+            <div class="stepper-dot">4</div> Recovery Preference
+          </div>
+          <div class="stepper-connector"></div>
+          <div class="stepper-item">
+            <div class="stepper-dot">5</div> Review & Submit
+          </div>
+        </div>
+
+        <div style="display:flex;">
+          <!-- FORM AREA -->
+          <div class="form-body" style="flex:1;">
+            <div class="form-section-title">Tell us about your property</div>
+            <div class="form-section-sub">We need basic details about the building you want to complete. All fields marked * are required.</div>
+
+            <!-- PROPERTY TYPE SELECTOR -->
+            <div class="form-group">
+              <div class="form-label">Property Type <span class="req">*</span></div>
+              <div class="type-cards">
+                <div class="type-card selected">
+                  <div class="type-card-icon">🏠</div>
+                  <div class="type-card-label">Residential</div>
+                  <div class="type-card-sub">Bungalow, duplex, flat</div>
+                </div>
+                <div class="type-card">
+                  <div class="type-card-icon">🏢</div>
+                  <div class="type-card-label">Commercial</div>
+                  <div class="type-card-sub">Office, retail, mixed</div>
+                </div>
+                <div class="type-card">
+                  <div class="type-card-icon">🏭</div>
+                  <div class="type-card-label">Industrial</div>
+                  <div class="type-card-sub">Warehouse, factory</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <div class="form-label">Building Sub-type <span class="req">*</span></div>
+                <div class="select-wrap">
+                  <select>
+                    <option>Bungalow (Single Storey)</option>
+                    <option>Duplex / 2-Storey</option>
+                    <option>Block of Flats</option>
+                    <option>Terrace House</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="form-label">Number of Bedrooms <span class="req">*</span></div>
+                <div class="select-wrap">
+                  <select>
+                    <option>— Select —</option>
+                    <option>1 Bedroom</option>
+                    <option selected>3 Bedrooms</option>
+                    <option>4 Bedrooms</option>
+                    <option>5+ Bedrooms</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="form-label">Property Address <span class="req">*</span></div>
+              <div class="form-input filled" style="margin-bottom:6px;"><span>No. 14, Olatunde Ayoola Street, Anthony Village</span></div>
+              <div class="form-row" style="margin-top:8px;">
+                <div class="form-group" style="margin-bottom:0;">
+                  <div class="select-wrap">
+                    <select>
+                      <option>Lagos State</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group" style="margin-bottom:0;">
+                  <div class="select-wrap">
+                    <select>
+                      <option>Lagos Mainland LGA</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="form-label">Pin on Map <span style="color:var(--wire-label);font-size:9px;font-weight:400;">(optional but recommended)</span></div>
+              <div class="address-map-placeholder">📍 Click to pin your property location on map</div>
+              <div class="input-hint">Helps our agent locate the property for inspection.</div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <div class="form-label">Land Size (sqm) <span class="req">*</span></div>
+                <div class="form-input filled"><span>450</span><span style="font-size:10px;color:var(--wire-label);">sqm</span></div>
+              </div>
+              <div class="form-group">
+                <div class="form-label">Building Footprint (sqm)</div>
+                <div class="form-input"><span style="color:var(--wire-label);">e.g. 250</span><span style="font-size:10px;color:var(--wire-label);">sqm</span></div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="form-label">Brief Description</div>
+              <textarea class="textarea-input" placeholder="Briefly describe the building, e.g. 3-bedroom bungalow, roofed and plastered, windows not yet installed..."></textarea>
+              <div class="input-hint">Max 300 characters</div>
+            </div>
+          </div>
+
+          <!-- RIGHT PANEL -->
+          <div class="right-panel">
+            <div class="app-id-card">
+              <div class="app-id-label">Application ID</div>
+              <div class="app-id-value">WM-2025-04821</div>
+              <div class="app-id-date">Started Dec 2, 2025 · 09:41 AM</div>
+            </div>
+
+            <div>
+              <div class="panel-section-title">Steps Checklist</div>
+              <div class="checklist-item"><div class="check-icon active">●</div> <strong>Step 1:</strong> Property Details</div>
+              <div class="checklist-item"><div class="check-icon pending">○</div> Step 2: Ownership & Docs</div>
+              <div class="checklist-item"><div class="check-icon pending">○</div> Step 3: Completion Status</div>
+              <div class="checklist-item"><div class="check-icon pending">○</div> Step 4: Recovery Preference</div>
+              <div class="checklist-item"><div class="check-icon pending">○</div> Step 5: Review & Submit</div>
+            </div>
+
+            <div>
+              <div class="panel-section-title">Need Help?</div>
+              <div style="font-size:10px;color:var(--wire-label);line-height:1.6;">
+                Call a WealthMarket agent:<br>
+                <strong style="color:var(--green-dark);">0800-WEALTH-1</strong><br><br>
+                Mon–Fri, 8am–6pm WAT
+              </div>
+            </div>
+
+            <div class="save-status">
+              <div class="save-dot"></div>
+              All changes saved
+            </div>
+          </div>
+        </div>
+
+        <!-- FOOTER ACTIONS -->
+        <div class="form-actions">
+          <button class="btn btn-ghost">✕ Save & Exit</button>
+          <div style="display:flex;gap:10px;align-items:center;">
+            <div style="font-size:10px;color:var(--wire-label);">Step 1 of 5</div>
+            <button class="btn btn-primary">Continue to Step 2 →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="annotations">
+      <div class="annotation"><div class="annotation-num">A</div><strong>Property type cards:</strong> Visual selector — clearer than a dropdown for a key classification field. Selected state uses brand green fill.</div>
+      <div class="annotation"><div class="annotation-num">B</div><strong>Application ID</strong> generated immediately on form start — gives the user a reference number they can track or quote when calling support.</div>
+      <div class="annotation"><div class="annotation-num">C</div><strong>Auto-save</strong> visible in header — reduces anxiety about losing progress. Save & Exit in footer preserves draft.</div>
+      <div class="annotation"><div class="annotation-num">D</div><strong>Map pin</strong> is optional but surfaces it prominently — helps agents locate the site without a site visit first.</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- SCREEN C: STEP 2 — OWNERSHIP & DOCUMENTS                   -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="section-label"><span class="step-pill">2.2</span> Application Form — Step 2: Ownership & Documents</div>
+<div class="screens-row">
+
+  <div class="screen-wrap" style="flex:1.4;">
+    <div class="screen-title"><span class="screen-num">C</span> Step 2 — Ownership & Document Upload</div>
+    <div class="browser">
+      <div class="browser-bar">
+        <div class="browser-dots"><span></span><span></span><span></span></div>
+        <div class="browser-url">app.wealthmarket.com/apply/step-2</div>
+      </div>
+      <div style="background:white;">
+        <div class="nav">
+          <div class="nav-logo"><div class="nav-logo-icon"><span>W</span></div><div><div class="nav-logo-text">WealthMarket</div></div></div>
+          <div class="nav-right"><div class="save-status"><div class="save-dot"></div>Draft saved</div><div class="nav-user"><div class="nav-avatar">JA</div><div class="nav-username">John Adeola</div></div></div>
+        </div>
+        <div class="breadcrumb">
+          <a href="#">Dashboard</a> <span>›</span> <a href="#">Applications</a> <span>›</span> <span>WM-2025-04821</span>
+        </div>
+        <div class="form-stepper">
+          <div class="stepper-item done"><div class="stepper-dot done">✓</div> Property Details</div>
+          <div class="stepper-connector done"></div>
+          <div class="stepper-item active"><div class="stepper-dot active">2</div> Ownership & Docs</div>
+          <div class="stepper-connector"></div>
+          <div class="stepper-item"><div class="stepper-dot">3</div> Completion Status</div>
+          <div class="stepper-connector"></div>
+          <div class="stepper-item"><div class="stepper-dot">4</div> Recovery Preference</div>
+          <div class="stepper-connector"></div>
+          <div class="stepper-item"><div class="stepper-dot">5</div> Review & Submit</div>
+        </div>
+
+        <div style="display:flex;">
+          <div class="form-body" style="flex:1;">
+            <div class="form-section-title">Ownership & Building Plans</div>
+            <div class="form-section-sub">Upload your land title and building plan documents. Files must be PDF, JPG, or PNG and under 50MB each.</div>
+
+            <div class="callout callout-info"><div class="callout-icon">ℹ️</div><span>All documents are encrypted and stored securely. They are only shared with assigned WealthMarket agents and assessors.</span></div>
+
+            <!-- TITLE DOCUMENT -->
+            <div class="form-group">
+              <div class="form-label">Land Title Document <span class="req">*</span></div>
+              <div style="border:1.5px dashed var(--green-mid);border-radius:8px;padding:16px;text-align:center;background:var(--green-light);margin-bottom:4px;cursor:pointer;">
+                <div style="font-size:20px;margin-bottom:6px;">📄</div>
+                <div style="font-size:11px;font-weight:600;color:var(--green-dark);margin-bottom:3px;">Certificate of Occupancy.pdf</div>
+                <div style="font-size:9px;color:var(--wire-label);">2.4 MB · Uploaded ✓ &nbsp;<span style="color:var(--red);cursor:pointer;">Remove</span></div>
+              </div>
+              <div class="input-hint">Accepted: C of O, Deed of Assignment, Governor's Consent, Survey Plan</div>
+            </div>
+
+            <!-- BUILDING PLANS -->
+            <div class="form-label" style="margin-bottom:10px;">Building Plans <span class="req">*</span> <span style="font-size:9px;color:var(--wire-label);font-weight:400;text-transform:none;">(at least one required)</span></div>
+
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;">
+              <!-- Architectural -->
+              <div>
+                <div style="font-size:9px;font-weight:600;color:#555;margin-bottom:5px;text-transform:uppercase;letter-spacing:0.05em;">Architectural Plan <span class="req">*</span></div>
+                <div style="border:1.5px dashed var(--green-mid);border-radius:7px;padding:12px;text-align:center;background:var(--green-light);">
+                  <div style="font-size:16px;margin-bottom:4px;">🏛️</div>
+                  <div style="font-size:10px;font-weight:600;color:var(--green-dark);">ArchPlan_v2.pdf</div>
+                  <div style="font-size:8px;color:var(--wire-label);">8.1 MB · ✓</div>
+                </div>
+              </div>
+              <!-- Mechanical -->
+              <div>
+                <div style="font-size:9px;font-weight:600;color:#555;margin-bottom:5px;text-transform:uppercase;letter-spacing:0.05em;">Mechanical Plan</div>
+                <div style="border:1.5px dashed var(--wire-border);border-radius:7px;padding:12px;text-align:center;background:var(--wire-bg);cursor:pointer;">
+                  <div style="font-size:16px;margin-bottom:4px;opacity:0.4;">⚙️</div>
+                  <div style="font-size:10px;color:var(--wire-label);">Click to upload</div>
+                  <div style="font-size:8px;color:var(--wire-label);">PDF, JPG, PNG · max 50MB</div>
+                </div>
+              </div>
+              <!-- Electrical -->
+              <div>
+                <div style="font-size:9px;font-weight:600;color:#555;margin-bottom:5px;text-transform:uppercase;letter-spacing:0.05em;">Electrical Plan</div>
+                <div style="border:1.5px dashed var(--wire-border);border-radius:7px;padding:12px;text-align:center;background:var(--wire-bg);cursor:pointer;">
+                  <div style="font-size:16px;margin-bottom:4px;opacity:0.4;">⚡</div>
+                  <div style="font-size:10px;color:var(--wire-label);">Click to upload</div>
+                  <div style="font-size:8px;color:var(--wire-label);">PDF, JPG, PNG · max 50MB</div>
+                </div>
+              </div>
+              <!-- Building Permit -->
+              <div>
+                <div style="font-size:9px;font-weight:600;color:#555;margin-bottom:5px;text-transform:uppercase;letter-spacing:0.05em;">Building Permit <span class="req">*</span></div>
+                <div style="border:1.5px dashed var(--wire-border);border-radius:7px;padding:12px;text-align:center;background:var(--wire-bg);cursor:pointer;">
+                  <div style="font-size:16px;margin-bottom:4px;opacity:0.4;">📋</div>
+                  <div style="font-size:10px;color:var(--wire-label);">Click to upload</div>
+                  <div style="font-size:8px;color:var(--wire-label);">PDF, JPG, PNG · max 50MB</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="callout callout-warning" style="margin-bottom:0;">
+              <div class="callout-icon">⚠️</div>
+              <span><strong>Building permit not available?</strong> You can still proceed. Our agent will guide you on obtaining it — this is required before final approval.</span>
+            </div>
+          </div>
+
+          <!-- RIGHT PANEL -->
+          <div class="right-panel">
+            <div class="app-id-card">
+              <div class="app-id-label">Application ID</div>
+              <div class="app-id-value">WM-2025-04821</div>
+              <div class="app-id-date">Step 2 of 5</div>
+            </div>
+            <div>
+              <div class="panel-section-title">Steps Checklist</div>
+              <div class="checklist-item"><div class="check-icon done">✓</div> Step 1: Property Details</div>
+              <div class="checklist-item"><div class="check-icon active">●</div> <strong>Step 2: Ownership & Docs</strong></div>
+              <div class="checklist-item"><div class="check-icon pending">○</div> Step 3: Completion Status</div>
+              <div class="checklist-item"><div class="check-icon pending">○</div> Step 4: Recovery Preference</div>
+              <div class="checklist-item"><div class="check-icon pending">○</div> Step 5: Review & Submit</div>
+            </div>
+            <div>
+              <div class="panel-section-title">Documents</div>
+              <div class="checklist-item"><div class="check-icon done">✓</div> Land Title</div>
+              <div class="checklist-item"><div class="check-icon done">✓</div> Architectural Plan</div>
+              <div class="checklist-item"><div class="check-icon pending">○</div> Mechanical Plan</div>
+              <div class="checklist-item"><div class="check-icon pending">○</div> Electrical Plan</div>
+              <div class="checklist-item"><div class="check-icon pending">○</div> Building Permit</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button class="btn btn-secondary">← Back</button>
+          <div style="display:flex;gap:10px;align-items:center;">
+            <div style="font-size:10px;color:var(--wire-label);">Step 2 of 5</div>
+            <button class="btn btn-primary">Continue to Step 3 →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ANNOTATIONS -->
+  <div class="screen-wrap" style="flex:0.7;">
+    <div class="screen-title"><span class="screen-num">↗</span> Upload Notes</div>
+    <div style="background:white;border-radius:10px;border:1px solid var(--wire-border);padding:18px 16px;">
+      <div class="annotations" style="padding:0;">
+        <div class="annotation"><div class="annotation-num">A</div><strong>Drag-and-drop zones</strong> for each document type. Uploaded files show name + size + remove option. Dashed border = upload zone.</div>
+        <div class="annotation"><div class="annotation-num">B</div><strong>Architectural plan is required</strong>. Mechanical, electrical, and building permit are required for final approval but can be added later — the warning callout communicates this gracefully.</div>
+        <div class="annotation"><div class="annotation-num">C</div><strong>Document tracker</strong> in the right panel gives a live visual of what's been uploaded — no need to scroll up to check.</div>
+        <div class="annotation"><div class="annotation-num">D</div><strong>50MB limit</strong> per file (per NFR-003). File types: PDF, JPG, PNG only. Validation shown inline on upload attempt.</div>
+        <div class="annotation"><div class="annotation-num">E</div><strong>Encryption notice</strong> in the info callout at top — builds trust for sensitive document uploads.</div>
+      </div>
+      <div style="border-top:1px solid var(--wire-border);margin-top:14px;padding-top:10px;">
+        <div style="font-size:9px;color:var(--wire-label);font-weight:700;margin-bottom:6px;">ACCEPTED TITLE DOCS</div>
+        <div style="font-size:9px;color:#666;line-height:1.8;">
+          • Certificate of Occupancy (C of O)<br>
+          • Deed of Assignment<br>
+          • Governor's Consent<br>
+          • Registered Survey Plan<br>
+          • Right of Occupancy (R of O)<br>
+          • Deed of Gift
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- SCREEN D: STEP 3 — COMPLETION STATUS                       -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="section-label"><span class="step-pill">2.3</span> Application Form — Step 3: Completion Status</div>
+<div class="screens-row">
+  <div class="screen-wrap" style="flex:2;">
+    <div class="screen-title"><span class="screen-num">D</span> Step 3 — Completion Level & Current Status</div>
+    <div class="browser">
+      <div class="browser-bar">
+        <div class="browser-dots"><span></span><span></span><span></span></div>
+        <div class="browser-url">app.wealthmarket.com/apply/step-3</div>
+      </div>
+      <div style="background:white;">
+        <div class="nav">
+          <div class="nav-logo"><div class="nav-logo-icon"><span>W</span></div><div><div class="nav-logo-text">WealthMarket</div></div></div>
+          <div class="nav-right"><div class="save-status"><div class="save-dot"></div>Saved</div><div class="nav-user"><div class="nav-avatar">JA</div><div class="nav-username">John Adeola</div></div></div>
+        </div>
+        <div class="form-stepper">
+          <div class="stepper-item done"><div class="stepper-dot done">✓</div> Property Details</div>
+          <div class="stepper-connector done"></div>
+          <div class="stepper-item done"><div class="stepper-dot done">✓</div> Ownership & Docs</div>
+          <div class="stepper-connector done"></div>
+          <div class="stepper-item active"><div class="stepper-dot active">3</div> Completion Status</div>
+          <div class="stepper-connector"></div>
+          <div class="stepper-item"><div class="stepper-dot">4</div> Recovery Preference</div>
+          <div class="stepper-connector"></div>
+          <div class="stepper-item"><div class="stepper-dot">5</div> Review & Submit</div>
+        </div>
+
+        <div style="display:flex;">
+          <div class="form-body" style="flex:1;">
+            <div class="form-section-title">How far along is your building?</div>
+            <div class="form-section-sub">Your completion level determines eligibility. A minimum of 50% is required for this program.</div>
+
+            <!-- COMPLETION SLIDER -->
+            <div class="form-group">
+              <div class="form-label">Estimated Completion Level <span class="req">*</span></div>
+              <div class="completion-slider">
+                <div style="display:flex;justify-content:space-between;align-items:flex-end;">
+                  <div>
+                    <div class="slider-value">65%</div>
+                    <div class="slider-sublabel">Estimated completion</div>
+                  </div>
+                  <div style="text-align:right;">
+                    <div style="font-size:10px;color:var(--green-mid);font-weight:600;">✓ Eligible</div>
+                    <div style="font-size:9px;color:var(--wire-label);">Min. 50% required</div>
+                  </div>
+                </div>
+                <div class="slider-track">
+                  <div class="slider-fill"></div>
+                  <div class="slider-thumb"></div>
+                </div>
+                <div class="slider-labels">
+                  <span>0%</span><span>25%</span><span style="color:var(--gold);font-weight:600;">50% min</span><span>75%</span><span>100%</span>
+                </div>
+              </div>
+              <div class="input-hint">Drag the slider or type a value. This will be verified by a WealthMarket agent during the site assessment.</div>
+            </div>
+
+            <!-- STAGE CHECKLIST -->
+            <div class="form-group">
+              <div class="form-label">Work Completed So Far <span class="req">*</span></div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+                <div class="radio-item selected" style="border-radius:6px;">
+                  <div class="checkbox-box checked" style="width:14px;height:14px;border-radius:3px;background:var(--green-dark);border-color:var(--green-dark);flex-shrink:0;"></div>
+                  <div><div style="font-size:10px;font-weight:600;color:var(--green-dark);">Foundation ✓</div></div>
+                </div>
+                <div class="radio-item selected" style="border-radius:6px;">
+                  <div class="checkbox-box checked" style="width:14px;height:14px;border-radius:3px;background:var(--green-dark);border-color:var(--green-dark);flex-shrink:0;"></div>
+                  <div><div style="font-size:10px;font-weight:600;color:var(--green-dark);">Block Walls ✓</div></div>
+                </div>
+                <div class="radio-item selected" style="border-radius:6px;">
+                  <div class="checkbox-box checked" style="width:14px;height:14px;border-radius:3px;background:var(--green-dark);border-color:var(--green-dark);flex-shrink:0;"></div>
+                  <div><div style="font-size:10px;font-weight:600;color:var(--green-dark);">Roofing ✓</div></div>
+                </div>
+                <div class="radio-item selected" style="border-radius:6px;">
+                  <div class="checkbox-box checked" style="width:14px;height:14px;border-radius:3px;background:var(--green-dark);border-color:var(--green-dark);flex-shrink:0;"></div>
+                  <div><div style="font-size:10px;font-weight:600;color:var(--green-dark);">Plastering ✓</div></div>
+                </div>
+                <div class="radio-item" style="border-radius:6px;">
+                  <div class="checkbox-box" style="width:14px;height:14px;border-radius:3px;flex-shrink:0;"></div>
+                  <div><div style="font-size:10px;color:#777;">Windows & Doors</div></div>
+                </div>
+                <div class="radio-item" style="border-radius:6px;">
+                  <div class="checkbox-box" style="width:14px;height:14px;border-radius:3px;flex-shrink:0;"></div>
+                  <div><div style="font-size:10px;color:#777;">Electrical Rough-in</div></div>
+                </div>
+                <div class="radio-item" style="border-radius:6px;">
+                  <div class="checkbox-box" style="width:14px;height:14px;border-radius:3px;flex-shrink:0;"></div>
+                  <div><div style="font-size:10px;color:#777;">Plumbing</div></div>
+                </div>
+                <div class="radio-item" style="border-radius:6px;">
+                  <div class="checkbox-box" style="width:14px;height:14px;border-radius:3px;flex-shrink:0;"></div>
+                  <div><div style="font-size:10px;color:#777;">Tiling & Finishes</div></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <div class="form-label">Year Construction Started <span class="req">*</span></div>
+                <div class="select-wrap">
+                  <select>
+                    <option>2019</option>
+                    <option>2020</option>
+                    <option selected>2021</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="form-label">Year Construction Stalled</div>
+                <div class="select-wrap">
+                  <select>
+                    <option selected>2022</option>
+                    <option>2023</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="form-label">Why did construction stop? <span style="font-size:9px;color:var(--wire-label);font-weight:400;text-transform:none;">(optional)</span></div>
+              <textarea class="textarea-input" placeholder="e.g. Ran out of funds, material costs increased, personal financial difficulty..."></textarea>
+            </div>
+          </div>
+
+          <!-- RIGHT PANEL -->
+          <div class="right-panel">
+            <div class="app-id-card">
+              <div class="app-id-label">Application ID</div>
+              <div class="app-id-value">WM-2025-04821</div>
+              <div class="app-id-date">Step 3 of 5</div>
+            </div>
+            <div>
+              <div class="panel-section-title">Eligibility Check</div>
+              <div style="background:var(--green-light);border-radius:7px;padding:10px 12px;text-align:center;">
+                <div style="font-size:22px;font-weight:700;color:var(--green-dark);font-family:'DM Serif Display',serif;">65%</div>
+                <div style="font-size:10px;color:var(--green-dark);font-weight:600;margin-top:2px;">✓ Meets minimum</div>
+                <div style="font-size:9px;color:var(--wire-label);margin-top:4px;">50% required · You qualify</div>
+              </div>
+            </div>
+            <div>
+              <div class="panel-section-title">What Happens Next</div>
+              <div style="font-size:10px;color:#666;line-height:1.7;">
+                After submission, a WealthMarket agent will:<br><br>
+                1. Call you within <strong>48hrs</strong><br>
+                2. Schedule a site visit<br>
+                3. Verify your completion level
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button class="btn btn-secondary">← Back</button>
+          <div style="display:flex;gap:10px;align-items:center;">
+            <div style="font-size:10px;color:var(--wire-label);">Step 3 of 5</div>
+            <button class="btn btn-primary">Continue to Step 4 →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="annotations">
+      <div class="annotation"><div class="annotation-num">A</div><strong>Completion slider</strong> with a 50% minimum gate. Below 50% turns the slider indicator red and blocks form progression with a clear explanation.</div>
+      <div class="annotation"><div class="annotation-num">B</div><strong>Stage checklist</strong> helps users self-report completed work — data feeds into the QS cost estimation workflow downstream.</div>
+      <div class="annotation"><div class="annotation-num">C</div>Live <strong>eligibility indicator</strong> in the right panel updates as the slider moves — instant feedback.</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- SCREEN E: STEP 4 — RECOVERY PREFERENCE                     -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="section-label"><span class="step-pill">2.4</span> Application Form — Step 4: Recovery Preference</div>
+<div class="screens-row">
+  <div class="screen-wrap" style="flex:2;">
+    <div class="screen-title"><span class="screen-num">E</span> Step 4 — Choose Warrant Recovery Method</div>
+    <div class="browser">
+      <div class="browser-bar">
+        <div class="browser-dots"><span></span><span></span><span></span></div>
+        <div class="browser-url">app.wealthmarket.com/apply/step-4</div>
+      </div>
+      <div style="background:white;">
+        <div class="nav">
+          <div class="nav-logo"><div class="nav-logo-icon"><span>W</span></div><div><div class="nav-logo-text">WealthMarket</div></div></div>
+          <div class="nav-right"><div class="save-status"><div class="save-dot"></div>Saved</div><div class="nav-user"><div class="nav-avatar">JA</div><div class="nav-username">John Adeola</div></div></div>
+        </div>
+        <div class="form-stepper">
+          <div class="stepper-item done"><div class="stepper-dot done">✓</div> Property Details</div>
+          <div class="stepper-connector done"></div>
+          <div class="stepper-item done"><div class="stepper-dot done">✓</div> Ownership & Docs</div>
+          <div class="stepper-connector done"></div>
+          <div class="stepper-item done"><div class="stepper-dot done">✓</div> Completion Status</div>
+          <div class="stepper-connector done"></div>
+          <div class="stepper-item active"><div class="stepper-dot active">4</div> Recovery Preference</div>
+          <div class="stepper-connector"></div>
+          <div class="stepper-item"><div class="stepper-dot">5</div> Review & Submit</div>
+        </div>
+
+        <div style="display:flex;">
+          <div class="form-body" style="flex:1;">
+            <div class="form-section-title">How would you like to repay?</div>
+            <div class="form-section-sub">Select your preferred method for retiring the market warrants used to complete your building. You can discuss this further with your assigned agent.</div>
+
+            <div class="callout callout-info"><div class="callout-icon">ℹ️</div><span>Your selection here is a <strong>preference</strong>, not a binding agreement. Final terms will be agreed upon with your WealthMarket agent after the property assessment.</span></div>
+
+            <!-- RECOVERY OPTION CARDS -->
+            <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:16px;">
+
+              <!-- OPTION 1: RENTAL -->
+              <div style="border:2px solid var(--green-dark);border-radius:10px;overflow:hidden;background:var(--green-light);">
+                <div style="padding:14px 16px;display:flex;align-items:flex-start;gap:12px;">
+                  <div style="width:36px;height:36px;background:var(--green-dark);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;">🏘️</div>
+                  <div style="flex:1;">
+                    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px;">
+                      <div style="font-size:12px;font-weight:700;color:var(--green-dark);">Option A — Rental Recovery</div>
+                      <div style="background:var(--green-dark);color:white;font-size:8px;font-weight:700;padding:2px 7px;border-radius:10px;">SELECTED</div>
+                    </div>
+                    <div style="font-size:10px;color:#444;line-height:1.6;margin-bottom:8px;">WealthMarket puts your building up for rent. All rental income goes to us until the full warrant amount plus interest is recovered. You regain full income rights after recovery.</div>
+                    <div style="display:flex;gap:16px;">
+                      <div style="font-size:9px;color:var(--green-dark);"><strong>Best for:</strong> Owners who want passive recovery</div>
+                      <div style="font-size:9px;color:var(--green-dark);"><strong>Timeline:</strong> Typically 3–7 years</div>
+                    </div>
+                  </div>
+                  <div style="width:18px;height:18px;border-radius:50%;background:var(--green-dark);border:2px solid var(--green-dark);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;"><div style="width:8px;height:8px;background:white;border-radius:50%;"></div></div>
+                </div>
+              </div>
+
+              <!-- OPTION 2: PARTITION -->
+              <div style="border:1.5px solid var(--wire-border);border-radius:10px;overflow:hidden;background:white;">
+                <div style="padding:14px 16px;display:flex;align-items:flex-start;gap:12px;">
+                  <div style="width:36px;height:36px;background:var(--wire-fill);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;">✂️</div>
+                  <div style="flex:1;">
+                    <div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:4px;">Option B — Property Partition</div>
+                    <div style="font-size:10px;color:#666;line-height:1.6;margin-bottom:8px;">Your building is divided into two units. You keep one unit entirely — WealthMarket sells the other unit to recover the warrants. Split ratio is determined by the valuer.</div>
+                    <div style="display:flex;gap:16px;">
+                      <div style="font-size:9px;color:var(--wire-label);"><strong>Best for:</strong> Multi-unit buildings</div>
+                      <div style="font-size:9px;color:var(--wire-label);"><strong>Timeline:</strong> Recovery on sale</div>
+                    </div>
+                  </div>
+                  <div style="width:18px;height:18px;border-radius:50%;border:2px solid var(--wire-border);flex-shrink:0;margin-top:2px;"></div>
+                </div>
+              </div>
+
+              <!-- OPTION 3: MORTGAGE -->
+              <div style="border:1.5px solid var(--wire-border);border-radius:10px;overflow:hidden;background:white;">
+                <div style="padding:14px 16px;display:flex;align-items:flex-start;gap:12px;">
+                  <div style="width:36px;height:36px;background:var(--wire-fill);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;">🏦</div>
+                  <div style="flex:1;">
+                    <div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:4px;">Option C — Mortgage Onlending</div>
+                    <div style="font-size:10px;color:#666;line-height:1.6;margin-bottom:8px;">A WealthMarket mortgage onlender pays for your building completion. You repay them directly with interest. You retain full ownership from day one. Onlenders receive special 10× reflation terms.</div>
+                    <div style="display:flex;gap:16px;">
+                      <div style="font-size:9px;color:var(--wire-label);"><strong>Best for:</strong> Owners wanting full title retention</div>
+                      <div style="font-size:9px;color:var(--wire-label);"><strong>Timeline:</strong> Depends on mortgage term</div>
+                    </div>
+                  </div>
+                  <div style="width:18px;height:18px;border-radius:50%;border:2px solid var(--wire-border);flex-shrink:0;margin-top:2px;"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="callout callout-warning" style="margin-bottom:0;">
+              <div class="callout-icon">⚠️</div>
+              <span>Not sure which to pick? Leave it as your best guess for now — your assigned WealthMarket agent will walk you through the implications before you sign any agreement.</span>
+            </div>
+          </div>
+
+          <!-- RIGHT PANEL -->
+          <div class="right-panel">
+            <div class="app-id-card">
+              <div class="app-id-label">Application ID</div>
+              <div class="app-id-value">WM-2025-04821</div>
+              <div class="app-id-date">Step 4 of 5 · Almost done</div>
+            </div>
+            <div>
+              <div class="panel-section-title">Selected Option</div>
+              <div style="background:var(--green-light);border-left:3px solid var(--green-dark);padding:10px 10px;border-radius:0 6px 6px 0;">
+                <div style="font-size:10px;font-weight:700;color:var(--green-dark);">Option A</div>
+                <div style="font-size:10px;color:#444;margin-top:2px;">Rental Recovery</div>
+              </div>
+            </div>
+            <div>
+              <div class="panel-section-title">Steps Checklist</div>
+              <div class="checklist-item"><div class="check-icon done">✓</div> Step 1: Property Details</div>
+              <div class="checklist-item"><div class="check-icon done">✓</div> Step 2: Ownership & Docs</div>
+              <div class="checklist-item"><div class="check-icon done">✓</div> Step 3: Completion Status</div>
+              <div class="checklist-item"><div class="check-icon active">●</div> <strong>Step 4: Recovery</strong></div>
+              <div class="checklist-item"><div class="check-icon pending">○</div> Step 5: Review & Submit</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button class="btn btn-secondary">← Back</button>
+          <div style="display:flex;gap:10px;align-items:center;">
+            <div style="font-size:10px;color:var(--wire-label);">Step 4 of 5</div>
+            <button class="btn btn-primary">Review & Submit →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="annotations">
+      <div class="annotation"><div class="annotation-num">A</div><strong>Recovery cards</strong> display all three options visually with clear descriptions, best-for context, and estimated timelines. Not just a dropdown.</div>
+      <div class="annotation"><div class="annotation-num">B</div>Selected option highlighted with brand green border + "SELECTED" badge. Right panel reflects the live selection.</div>
+      <div class="annotation"><div class="annotation-num">C</div><strong>Non-binding language</strong> is explicit — reduces drop-off from users who are nervous about committing before talking to an agent.</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- SCREEN F: STEP 5 — REVIEW & SUBMIT                         -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="section-label"><span class="step-pill">2.5</span> Application Form — Step 5: Review & Submit</div>
+<div class="screens-row">
+  <div class="screen-wrap" style="flex:1.5;">
+    <div class="screen-title"><span class="screen-num">F</span> Step 5 — Review Summary Before Submission</div>
+    <div class="browser">
+      <div class="browser-bar">
+        <div class="browser-dots"><span></span><span></span><span></span></div>
+        <div class="browser-url">app.wealthmarket.com/apply/review</div>
+      </div>
+      <div style="background:white;">
+        <div class="nav">
+          <div class="nav-logo"><div class="nav-logo-icon"><span>W</span></div><div><div class="nav-logo-text">WealthMarket</div></div></div>
+          <div class="nav-right"><div class="nav-user"><div class="nav-avatar">JA</div><div class="nav-username">John Adeola</div></div></div>
+        </div>
+        <div class="form-stepper">
+          <div class="stepper-item done"><div class="stepper-dot done">✓</div> Property Details</div>
+          <div class="stepper-connector done"></div>
+          <div class="stepper-item done"><div class="stepper-dot done">✓</div> Ownership & Docs</div>
+          <div class="stepper-connector done"></div>
+          <div class="stepper-item done"><div class="stepper-dot done">✓</div> Completion Status</div>
+          <div class="stepper-connector done"></div>
+          <div class="stepper-item done"><div class="stepper-dot done">✓</div> Recovery Preference</div>
+          <div class="stepper-connector done"></div>
+          <div class="stepper-item active"><div class="stepper-dot active">5</div> Review & Submit</div>
+        </div>
+
+        <div class="form-body">
+          <div class="form-section-title">Review your application</div>
+          <div class="form-section-sub">Please check all details carefully. You can edit any section before submitting.</div>
+
+          <!-- SUMMARY SECTIONS -->
+          <div class="summary-section">
+            <div class="summary-section-header">
+              <div class="summary-section-title">📍 Property Details</div>
+              <div class="edit-link">Edit ✏️</div>
+            </div>
+            <div class="summary-row"><div class="summary-key">Property Type</div><div class="summary-val">Residential — Bungalow (Single Storey)</div></div>
+            <div class="summary-row"><div class="summary-key">Bedrooms</div><div class="summary-val">3 Bedrooms</div></div>
+            <div class="summary-row"><div class="summary-key">Address</div><div class="summary-val">14 Olatunde Ayoola St, Anthony Village, Lagos Mainland, Lagos</div></div>
+            <div class="summary-row"><div class="summary-key">Land Size</div><div class="summary-val">450 sqm</div></div>
+          </div>
+
+          <div class="summary-section">
+            <div class="summary-section-header">
+              <div class="summary-section-title">📁 Ownership & Documents</div>
+              <div class="edit-link">Edit ✏️</div>
+            </div>
+            <div class="summary-row"><div class="summary-key">Land Title</div><div class="summary-val">Certificate of Occupancy.pdf ✓</div></div>
+            <div class="summary-row"><div class="summary-key">Architectural Plan</div><div class="summary-val">ArchPlan_v2.pdf ✓</div></div>
+            <div class="summary-row"><div class="summary-key">Mechanical Plan</div><div class="summary-val" style="color:var(--gold);">Not uploaded — to be submitted later</div></div>
+            <div class="summary-row"><div class="summary-key">Electrical Plan</div><div class="summary-val" style="color:var(--gold);">Not uploaded — to be submitted later</div></div>
+            <div class="summary-row"><div class="summary-key">Building Permit</div><div class="summary-val" style="color:var(--gold);">Not available — agent will assist</div></div>
+          </div>
+
+          <div class="summary-section">
+            <div class="summary-section-header">
+              <div class="summary-section-title">🏗️ Completion Status</div>
+              <div class="edit-link">Edit ✏️</div>
+            </div>
+            <div class="summary-row"><div class="summary-key">Completion Level</div><div class="summary-val" style="color:var(--green-dark);font-weight:700;">65% — Eligible ✓</div></div>
+            <div class="summary-row"><div class="summary-key">Construction Started</div><div class="summary-val">2021</div></div>
+            <div class="summary-row"><div class="summary-key">Construction Stalled</div><div class="summary-val">2022</div></div>
+            <div class="summary-row"><div class="summary-key">Completed Stages</div><div class="summary-val">Foundation, Block Walls, Roofing, Plastering</div></div>
+          </div>
+
+          <div class="summary-section">
+            <div class="summary-section-header">
+              <div class="summary-section-title">💳 Recovery Preference</div>
+              <div class="edit-link">Edit ✏️</div>
+            </div>
+            <div class="summary-row"><div class="summary-key">Selected Method</div><div class="summary-val" style="color:var(--green-dark);font-weight:700;">Option A — Rental Recovery</div></div>
+            <div class="summary-row"><div class="summary-key">Note</div><div class="summary-val" style="color:var(--wire-label);">Final terms to be agreed with assigned agent</div></div>
+          </div>
+
+          <!-- DECLARATION -->
+          <div style="background:var(--gold-light);border:1.5px solid var(--gold);border-radius:8px;padding:14px 16px;margin-bottom:16px;">
+            <div style="font-size:10px;font-weight:700;color:#7D6608;margin-bottom:8px;">Declaration</div>
+            <div style="font-size:10px;color:#5C4A10;line-height:1.7;margin-bottom:10px;">I confirm that all information provided in this application is accurate and truthful. I understand that providing false information may result in immediate disqualification and legal consequences. I consent to WealthMarket agents conducting a site visit to verify the details above.</div>
+            <div style="display:flex;align-items:flex-start;gap:8px;">
+              <div class="checkbox-box checked" style="flex-shrink:0;width:14px;height:14px;border-radius:3px;background:var(--green-dark);border-color:var(--green-dark);margin-top:1px;"></div>
+              <div style="font-size:10px;color:#5C4A10;font-weight:600;">I agree to the above declaration and WealthMarket's <a href="#" style="color:var(--green-dark);">Terms & Conditions</a></div>
+            </div>
+          </div>
+
+          <div style="display:flex;gap:12px;">
+            <button class="btn btn-secondary" style="flex:0.4;">← Back</button>
+            <button class="btn btn-primary" style="flex:1;justify-content:center;font-size:12px;padding:13px 20px;">Submit Application →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="annotations">
+      <div class="annotation"><div class="annotation-num">A</div><strong>Edit links</strong> on each section let the user jump back to any step without losing data — reduces submission errors significantly.</div>
+      <div class="annotation"><div class="annotation-num">B</div><strong>Missing docs</strong> shown in amber — not blocking submission but flagged clearly so user knows they're outstanding.</div>
+      <div class="annotation"><div class="annotation-num">C</div><strong>Declaration checkbox</strong> with explicit consent language — legally necessary and clearly visible before submit button.</div>
+    </div>
+  </div>
+
+  <!-- SCREEN G: SUBMISSION SUCCESS -->
+  <div class="screen-wrap" style="flex:1;">
+    <div class="screen-title"><span class="screen-num">G</span> Application Submitted — Success State</div>
+    <div class="browser">
+      <div class="browser-bar">
+        <div class="browser-dots"><span></span><span></span><span></span></div>
+        <div class="browser-url">app.wealthmarket.com/apply/success</div>
+      </div>
+      <div style="background:var(--wire-bg);padding:28px 24px;">
+        <div class="success-card">
+          <div class="success-icon">✓</div>
+          <div class="success-title">Application Submitted!</div>
+          <div class="success-sub">Your application WM-2025-04821 has been received. A WealthMarket agent will contact you within 48 hours to confirm next steps.</div>
+
+          <!-- TIMELINE STRIP -->
+          <div class="timeline-strip">
+            <div class="timeline-node">
+              <div class="timeline-dot done">✓</div>
+              <div class="timeline-label active">Application<br>Submitted</div>
+            </div>
+            <div class="timeline-node">
+              <div class="timeline-dot next">2</div>
+              <div class="timeline-label">Document<br>Verification</div>
+            </div>
+            <div class="timeline-node">
+              <div class="timeline-dot future">3</div>
+              <div class="timeline-label">Site<br>Assessment</div>
+            </div>
+            <div class="timeline-node">
+              <div class="timeline-dot future">4</div>
+              <div class="timeline-label">Pre-Qual<br>Review</div>
+            </div>
+            <div class="timeline-node">
+              <div class="timeline-dot future">5</div>
+              <div class="timeline-label">Approval &<br>Warrants</div>
+            </div>
+          </div>
+
+          <div style="background:var(--green-dark);border-radius:8px;padding:14px;margin-bottom:20px;text-align:left;">
+            <div style="font-size:9px;color:rgba(255,255,255,0.5);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:4px;">Your Application Reference</div>
+            <div style="font-size:20px;font-weight:700;color:var(--gold);font-family:'DM Serif Display',serif;letter-spacing:0.05em;">WM-2025-04821</div>
+            <div style="font-size:9px;color:rgba(255,255,255,0.4);margin-top:4px;">Keep this ID safe — use it for all future correspondence</div>
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:8px;width:100%;">
+            <button class="btn btn-primary" style="justify-content:center;">Go to My Dashboard →</button>
+            <button class="btn btn-secondary" style="justify-content:center;font-size:11px;">Download Confirmation PDF</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="annotations">
+      <div class="annotation"><div class="annotation-num">A</div><strong>Progress timeline</strong> shows where the user sits in the overall journey — what's done, what's next, what's coming.</div>
+      <div class="annotation"><div class="annotation-num">B</div><strong>Application ID</strong> is prominently displayed in a distinctive card with explicit instruction to keep it safe.</div>
+      <div class="annotation"><div class="annotation-num">C</div><strong>PDF download</strong> option lets users print or save their confirmation — important for lower-tech users.</div>
+    </div>
+  </div>
+</div>
+
+
+<div style="background:var(--green-dark);color:rgba(255,255,255,0.4);text-align:center;padding:16px;font-size:10px;margin-top:16px;">
+  WealthMarket Uncompleted Buildings Program · Property Owner Flow · Step 2: Submit Application · Wireframe v1.0 · Figma Reference
+</div>
+
+</body>
+</html>
