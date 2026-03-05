@@ -223,7 +223,30 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // -------------------------------------------------------------------------
-    // SCREEN B: Property Details Interactions
+    // SCREEN A: Dashboard Interactions
+    // -------------------------------------------------------------------------
+    const dashboardChecklist = document.getElementById('dashboard-checklist');
+    if (dashboardChecklist) {
+        dashboardChecklist.addEventListener('click', (e) => {
+            const checkItem = e.target.closest('.check-item');
+            if (!checkItem) return;
+
+            const checkIcon = checkItem.querySelector('.check-icon');
+            if (checkIcon) {
+                if (checkIcon.classList.contains('pending')) {
+                    checkIcon.classList.remove('pending');
+                    checkIcon.classList.add('done');
+                    checkIcon.textContent = '✓';
+                } else {
+                    checkIcon.classList.remove('done');
+                    checkIcon.classList.add('pending');
+                    checkIcon.textContent = '';
+                }
+                triggerSave(); // Trigger the save notification
+            }
+        });
+    }
+
     // -------------------------------------------------------------------------
     const propCards = document.querySelectorAll('#property-type-selector .select-card');
     propCards.forEach(card => {

@@ -545,7 +545,7 @@ h3 {
 }
 
 .text-primary {
-  color: var(--brand-green);
+  color: var(--n-900);
 }
 
 .checklist-teaser {
@@ -588,8 +588,8 @@ h3 {
 }
 
 .check-icon.done {
-  background: var(--brand-green-light);
-  color: var(--brand-green);
+  background: var(--primary-50);
+  color: var(--primary-base);
 }
 
 .check-icon.pending {
@@ -1063,9 +1063,9 @@ select.form-input {
 }
 
 .upload-zone.uploaded {
-  border-color: var(--brand-green);
+  border-color: var(--primary-base);
   border-style: solid;
-  background: var(--brand-green-light);
+  background: var(--primary-50);
 }
 
 .upload-zone.mini {
@@ -1137,7 +1137,7 @@ select.form-input {
   display: block;
   font-size: 48px;
   font-weight: 700;
-  color: var(--brand-green);
+  color: var(--primary-base);
   line-height: 1;
   letter-spacing: -0.02em;
 }
@@ -1158,8 +1158,8 @@ select.form-input {
 }
 
 .slider-status.eligible {
-  background: var(--brand-green-light);
-  color: var(--brand-green);
+  background: var(--primary-50);
+  color: var(--primary-base);
 }
 
 .slider-status.ineligible {
@@ -1197,7 +1197,7 @@ select.form-input {
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  background: var(--brand-green);
+  background: var(--primary-base);
   cursor: pointer;
   box-shadow: var(--shadow-md);
   border: 2px solid var(--white);
@@ -1260,14 +1260,14 @@ select.form-input {
 }
 
 .stage-check.active {
-  border-color: var(--brand-green);
-  background: var(--brand-green-light);
+  border-color: var(--primary-base);
+  background: var(--primary-50);
 }
 
 .stage-check input[type="checkbox"] {
   width: 18px;
   height: 18px;
-  accent-color: var(--brand-green);
+  accent-color: var(--primary-base);
   cursor: pointer;
 }
 
@@ -1301,9 +1301,9 @@ select.form-input {
 }
 
 .recovery-card.active {
-  border-color: var(--brand-green);
-  background: var(--brand-green-light);
-  box-shadow: 0 0 0 1px var(--brand-green);
+  border-color: var(--primary-base);
+  background: var(--primary-50);
+  box-shadow: 0 0 0 1px var(--primary-base);
 }
 
 .recovery-icon {
@@ -1355,7 +1355,7 @@ select.form-input {
 }
 
 .badge-selected {
-  background: var(--brand-green);
+  background: var(--primary-base);
   color: var(--white);
 }
 
@@ -1394,22 +1394,22 @@ select.form-input {
 }
 
 .radio-circle.active {
-  border-color: var(--brand-green);
+  border-color: var(--primary-base);
 }
 
 .radio-dot {
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: var(--brand-green);
+  background: var(--primary-base);
 }
 
 /* Sidebar Additions */
 .eligibility-card {
-  background: var(--brand-green-light);
+  background: var(--primary-50);
   padding: var(--sp-lg);
   border-radius: 8px;
-  border: 1px solid var(--brand-green);
+  border: 1px solid var(--primary-base);
   display: flex;
   flex-direction: column;
 }
@@ -1422,7 +1422,7 @@ select.form-input {
 .elig-val {
   font-size: 24px;
   font-weight: 700;
-  color: var(--brand-green);
+  color: var(--primary-base);
   line-height: 1;
   margin-bottom: 4px;
 }
@@ -1434,7 +1434,7 @@ select.form-input {
 .elig-status {
   font-size: 14px;
   font-weight: 600;
-  color: var(--brand-green);
+  color: var(--primary-base);
 }
 
 .not-eligible .elig-status {
@@ -1464,7 +1464,7 @@ select.form-input {
 .opt-title {
   font-size: 14px;
   font-weight: 600;
-  color: var(--brand-green);
+  color: var(--primary-base);
 }
 
 /* =========================================================================
@@ -1578,7 +1578,7 @@ select.form-input {
 
 .decl-check input {
   margin-top: 3px;
-  accent-color: var(--brand-green);
+  accent-color: var(--primary-base);
 }
 
 .decl-check a {
@@ -1609,7 +1609,7 @@ select.form-input {
   justify-content: center;
   min-height: calc(100vh - var(--header-h));
   padding: var(--sp-3xl);
-  background: var(--brand-green-light);
+  background: var(--primary-50);
 }
 
 .success-card {
@@ -1626,8 +1626,8 @@ select.form-input {
 .success-icon-large {
   width: 80px;
   height: 80px;
-  background: var(--brand-green);
-  color: var(--white);
+  background: var(--primary-base);
+  color: var(--n-900);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -1635,7 +1635,7 @@ select.form-input {
   font-size: 40px;
   font-weight: 700;
   margin: 0 auto var(--sp-2xl);
-  box-shadow: 0 0 0 12px rgba(26, 92, 56, 0.1);
+  box-shadow: 0 0 0 12px rgba(255, 190, 0, 0.2);
 }
 
 .success-title {
@@ -1698,9 +1698,9 @@ select.form-input {
 }
 
 .tl-dot.done {
-  background: var(--brand-green);
-  border-color: var(--brand-green);
-  color: var(--white);
+  background: var(--primary-base);
+  border-color: var(--primary-base);
+  color: var(--n-900);
 }
 
 .tl-dot.next {
@@ -1720,7 +1720,7 @@ select.form-input {
 }
 
 .tl-label.active {
-  color: var(--brand-green);
+  color: var(--primary-base);
   font-weight: 700;
 }
 

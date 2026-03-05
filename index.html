@@ -214,7 +214,7 @@
 
                     <div class="checklist-teaser">
                         <h3 class="teaser-title">Before you apply — quick checklist</h3>
-                        <div class="teaser-grid">
+                        <div class="teaser-grid" id="dashboard-checklist">
                             <div class="teaser-col">
                                 <div class="check-item"><span class="check-icon done">✓</span> I own the land (with
                                     title document)</div>
@@ -296,18 +296,13 @@
 
                             <div class="form-group">
                                 <label>Property Address <span class="req">*</span></label>
-                                <input type="text" class="form-input filled"
-                                    value="No. 14, Olatunde Ayoola Street, Anthony Village" readonly>
-                                <div class="form-row mt-3">
-                                    <div class="select-wrapper flex-1">
-                                        <select class="form-input">
-                                            <option>Lagos State</option>
-                                        </select>
+                                <input type="text" class="form-input" value="" placeholder="Street Address">
+                                <div class="form-row" style="margin-top: 12px;">
+                                    <div class="flex-1">
+                                        <input type="text" class="form-input" value="" placeholder="State/Province">
                                     </div>
-                                    <div class="select-wrapper flex-1">
-                                        <select class="form-input">
-                                            <option>Lagos Mainland LGA</option>
-                                        </select>
+                                    <div class="flex-1">
+                                        <input type="text" class="form-input" value="" placeholder="City/LGA">
                                     </div>
                                 </div>
                             </div>
@@ -324,7 +319,7 @@
                                 <div class="form-group flex-1">
                                     <label>Land Size <span class="req">*</span></label>
                                     <div class="input-with-suffix">
-                                        <input type="text" class="form-input filled" value="450" readonly>
+                                        <input type="text" class="form-input" value="" placeholder="e.g. 450">
                                         <span class="suffix">sqm</span>
                                     </div>
                                 </div>
