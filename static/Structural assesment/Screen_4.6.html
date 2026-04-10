@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review Complete - WealthMarket</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        .completion-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background: #16A34A;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            margin: 0 auto 24px auto;
+            box-shadow: 0 8px 16px rgba(22, 163, 74, 0.2);
+        }
+
+        .completion-header h2 {
+            font-size: 32px;
+            color: var(--n-900);
+            margin: 0 0 12px 0;
+            font-weight: 700;
+        }
+
+        .completion-header p {
+            font-size: 16px;
+            color: var(--n-600);
+            margin: 0;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.5;
+        }
+
+        .card {
+            background: var(--white);
+            border: 1px solid var(--wire-border);
+            border-radius: 12px;
+            padding: 32px;
+            margin-bottom: 24px;
+        }
+
+        .section-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--n-500);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin: 0 0 24px 0;
+            text-align: center;
+        }
+
+        /* Milestone Tracker */
+        .milestone-tracker {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .milestone-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px 20px;
+            border-radius: 12px;
+            border: 1px solid transparent;
+        }
+
+        .milestone-item.done {
+            background: var(--n-50);
+            border-color: var(--n-200);
+        }
+
+        .milestone-item.done-highlight {
+            background: #F0FDF4;
+            border-color: #BBF7D0;
+        }
+
+        .milestone-item.active {
+            background: #EFF6FF;
+            border-color: #BFDBFE;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .milestone-item.active::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: #2563EB;
+        }
+
+        .milestone-item.pending {
+            background: var(--white);
+            border-color: var(--wire-border);
+            opacity: 0.5;
+        }
+
+        .m-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        .done .m-icon, .done-highlight .m-icon {
+            background: var(--success-base);
+            color: white;
+        }
+
+        .active .m-icon {
+            background: #2563EB;
+            color: white;
+        }
+
+        .pending .m-icon {
+            background: var(--n-100);
+            color: var(--n-500);
+        }
+
+        .m-content {
+            flex: 1;
+        }
+
+        .m-title {
+            font-weight: 600;
+            font-size: 16px;
+            color: var(--n-900);
+            margin: 0 0 4px 0;
+        }
+
+        .m-status {
+            font-size: 13px;
+            color: var(--n-600);
+        }
+
+        .done .m-status { color: var(--n-600); }
+        .done-highlight .m-status { color: #166534; font-weight: 500; }
+        .active .m-status { color: #1E40AF; font-weight: 500; }
+
+        .m-badge {
+            background: #DBEAFE;
+            color: #1D4ED8;
+            font-size: 12px;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 100px;
+        }
+
+        .blue-box {
+            background: #EFF6FF;
+            border: 1px solid #BFDBFE;
+            padding: 24px;
+            border-radius: 12px;
+            margin-bottom: 32px;
+        }
+
+        .blue-box h4 {
+            color: #1E40AF;
+            margin: 0 0 16px 0;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .info-list {
+            margin: 0;
+            padding-left: 20px;
+            color: #1E3A8A;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        .info-list li {
+            margin-bottom: 8px;
+        }
+
+        .btn {
+            padding: 16px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.2s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: #2563EB;
+            color: white;
+            border: 1px solid #2563EB;
+            width: 100%;
+        }
+
+        .btn-primary:hover {
+            background: #1D4ED8;
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--n-700);
+            border: 1px solid var(--n-200);
+        }
+
+        .btn-secondary:hover {
+            background: var(--n-50);
+        }
+
+        .action-container {
+            display: flex;
+            gap: 16px;
+            margin-top: 32px;
+            padding-top: 24px;
+            border-top: 1px solid var(--wire-border);
+        }
+
+    </style>
+</head>
+<body>
+    <header class="app-header">
+        <div class="header-content">
+            <div class="header-actions">
+                <div class="user-profile">
+                    <div class="user-avatar" style="background: var(--primary-base);">JA</div>
+                    <div class="user-name">John Adeola</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="app-layout">
+        <aside class="app-sidebar">
+            <div class="sidebar-logo-area">
+                <img src="../Design System/Logo image.png" alt="Logo" class="brand-logo" onerror="this.src='https://via.placeholder.com/32'" />
+                <div class="logo-text">WealthMarket</div>
+            </div>
+            <div class="sidebar-top-branding">
+                <div class="module-dropdown">
+                    <img src="../Design System/Logo image.png" alt="Icon" class="mod-icon" onerror="this.src='https://via.placeholder.com/20'">
+                    <select class="mod-select"><option>Property Owner</option></select>
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="#" class="sidebar-item">
+                    <span class="icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                    </span>
+                    <span>Dashboard</span>
+                </a>
+
+                <div class="nav-group expanded">
+                    <div class="nav-group-header">
+                        <span class="icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                        </span>
+                        <span>Application</span>
+                        <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </div>
+                    <div class="nav-group-items">
+                        <a href="#" class="sidebar-subitem">Submit & Verify</a>
+                        <a href="#" class="sidebar-subitem active">Site Assessment</a>
+                    </div>
+                </div>
+
+                <div class="nav-group">
+                    <div class="nav-group-header">
+                        <span class="icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"></rect><circle cx="12" cy="12" r="2"></circle><path d="M6 12h.01M18 12h.01"></path></svg>
+                        </span>
+                        <span>Approval & Funding</span>
+                        <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </div>
+                    <div class="nav-group-items" style="display: none;">
+                        <a href="#" class="sidebar-subitem">Cost Estimate</a>
+                        <a href="#" class="sidebar-subitem">Project Plan</a>
+                        <a href="#" class="sidebar-subitem">Warrants</a>
+                        <a href="#" class="sidebar-subitem">Recovery Terms</a>
+                    </div>
+                </div>
+
+                <div class="nav-group">
+                    <div class="nav-group-header">
+                        <span class="icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
+                        </span>
+                        <span>Construction</span>
+                        <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </div>
+                    <div class="nav-group-items" style="display: none;">
+                        <a href="#" class="sidebar-subitem">Progress</a>
+                        <a href="#" class="sidebar-subitem">Quality & Changes</a>
+                    </div>
+                </div>
+
+                <div class="nav-group">
+                    <div class="nav-group-header">
+                        <span class="icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                        </span>
+                        <span>Completion</span>
+                        <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </div>
+                    <div class="nav-group-items" style="display: none;">
+                        <a href="#" class="sidebar-subitem">Final Inspection</a>
+                        <a href="#" class="sidebar-subitem">Property Transfer</a>
+                    </div>
+                </div>
+
+                <div class="nav-group">
+                    <div class="nav-group-header">
+                        <span class="icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path><path d="M3 3v5h5"></path></svg>
+                        </span>
+                        <span>Recovery</span>
+                        <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </div>
+                    <div class="nav-group-items" style="display: none;">
+                        <a href="#" class="sidebar-subitem">Payment Tracking</a>
+                    </div>
+                </div>
+
+                <a href="#" class="sidebar-item mt-custom">
+                    <span class="icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                    </span>
+                    <span>Documents</span>
+                </a>
+
+                <a href="#" class="sidebar-item">
+                    <span class="icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                    </span>
+                    <span>Settings</span>
+                </a>
+            </nav>
+        </aside>
+
+        <main class="app-main">
+            <div class="views-wrapper" style="padding: 40px; max-width: 800px; margin: 0 auto;">
+                
+                <div class="completion-header">
+                    <div class="success-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    </div>
+                    <h2>Assessment Phase Complete</h2>
+                    <p>Your property has successfully passed structural assessment. You're ready for the next phase.</p>
+                </div>
+
+                <div class="card">
+                    <h3 class="section-title">APPLICATION PROGRESS</h3>
+                    
+                    <div class="milestone-tracker">
+                        <div class="milestone-item done">
+                            <div class="m-icon">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            </div>
+                            <div class="m-content">
+                                <h4 class="m-title">Pre-Qualification</h4>
+                                <div class="m-status">Completed</div>
+                            </div>
+                        </div>
+
+                        <div class="milestone-item done-highlight">
+                            <div class="m-icon">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            </div>
+                            <div class="m-content">
+                                <h4 class="m-title">Structural Assessment</h4>
+                                <div class="m-status" style="display: flex; align-items: center; gap: 4px;">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                    Completed — Passed
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="milestone-item active">
+                            <div class="m-icon">5</div>
+                            <div class="m-content">
+                                <h4 class="m-title">Cost Estimate & QS</h4>
+                                <div class="m-status" style="display: flex; align-items: center; gap: 4px;">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                                    Ready to Start
+                                </div>
+                            </div>
+                            <div class="m-badge">Action Required</div>
+                        </div>
+
+                        <div class="milestone-item pending">
+                            <div class="m-icon">6</div>
+                            <div class="m-content">
+                                <h4 class="m-title">Project Plan & Approval</h4>
+                                <div class="m-status">Pending</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="blue-box">
+                    <h4 style="display: flex; align-items: center; gap: 8px;">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                        WHAT'S NEXT
+                    </h4>
+                    <ul class="info-list">
+                        <li><strong>Quantity Surveyor Review:</strong> Our QS will review your property and create detailed cost breakdown</li>
+                        <li><strong>Timeline:</strong> 5-7 business days for completion</li>
+                        <li><strong>You'll receive:</strong> Materials cost, labor cost, timeline estimate, total completion budget</li>
+                    </ul>
+                </div>
+
+                <div class="action-container">
+                    <a href="Screen_4.5.html" class="btn btn-secondary">← Back to Dashboard</a>
+                    <a href="#" class="btn btn-primary" style="flex: 2;">Continue to Cost Estimate →</a>
+                </div>
+
+            </div>
+        </main>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const navGroups = document.querySelectorAll('.nav-group');
+            
+            navGroups.forEach(group => {
+                const header = group.querySelector('.nav-group-header');
+                const items = group.querySelector('.nav-group-items');
+                const chevron = group.querySelector('.chevron');
+                
+                if (header) {
+                    header.style.cursor = 'pointer';
+                    
+                    // Initial chevron state
+                    if (chevron) {
+                        chevron.style.transition = 'transform 0.3s ease';
+                        if (group.classList.contains('expanded')) {
+                            chevron.style.transform = 'rotate(180deg)';
+                        }
+                    }
+
+                    header.addEventListener('click', () => {
+                        const isExpanded = group.classList.contains('expanded');
+                        
+                        // Close other groups
+                        navGroups.forEach(g => {
+                            if (g !== group) {
+                                g.classList.remove('expanded');
+                                const gItems = g.querySelector('.nav-group-items');
+                                const gChevron = g.querySelector('.chevron');
+                                if (gItems) gItems.style.display = 'none';
+                                if (gChevron) gChevron.style.transform = 'rotate(0deg)';
+                            }
+                        });
+                        
+                        // Toggle current group
+                        if (!isExpanded) {
+                            group.classList.add('expanded');
+                            if (items) items.style.display = 'block';
+                            if (chevron) chevron.style.transform = 'rotate(180deg)';
+                        } else {
+                            group.classList.remove('expanded');
+                            if (items) items.style.display = 'none';
+                            if (chevron) chevron.style.transform = 'rotate(0deg)';
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
