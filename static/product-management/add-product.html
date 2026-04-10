@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Product - Product Management System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Shared Assets -->
+    <link rel="stylesheet" href="global-styles.css">
+    <link rel="stylesheet" href="management-ui.css">
+    <style>
+        /* Page-specific form layout extensions */
+        .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+        .form-group { margin-bottom: 20px; display: flex; flex-direction: column; gap: 8px; }
+        .form-group.full-width { grid-column: 1 / -1; }
+        label { display: block; font-size: 14px; font-weight: 600; color: var(--blue-gray-800); }
+        .label-required::after { content: '*'; color: var(--error-base); margin-left: 4px; }
+        input, select, textarea { width: 100%; padding: 12px 16px; border: 1px solid var(--n-200); border-radius: 8px; font-family: 'Inter', sans-serif; font-size: 14px; color: var(--blue-gray-800); }
+        .upc-display { display: flex; align-items: center; gap: 16px; padding: 16px; background: var(--n-25); border-radius: 8px; border: 1px solid var(--wire-border); }
+        .upc-code { font-family: 'Courier New', monospace; font-size: 20px; font-weight: 600; color: var(--n-900); }
+        .form-actions { display: flex; gap: 16px; justify-content: flex-end; padding-top: 24px; border-top: 1px solid var(--wire-border); margin-top: 32px; }
+        .info-banner { background: var(--secondary-50); border: 1px solid #99B3FF; padding: 12px 16px; border-radius: 8px; display: flex; gap: 12px; margin-bottom: 24px; color: var(--secondary-base); }
+        .info-banner svg { color: var(--secondary-base); width: 20px; height: 20px; flex-shrink: 0; margin-top: 2px; }
+        .info-banner-text { font-size: 14px; }
+    </style>
+</head>
+<body>
+    <header class="app-header">
+        <div class="header-content">
+            <div class="header-logo">
+                <img class="brand-logo" src="Logo image.png" alt="Wealth Market Logo">
+                <div class="logo-text">Product Management</div>
+            </div>
+            <div class="header-actions">
+                <div class="user-profile">
+                    <div class="user-avatar">J</div>
+                    <div class="user-name">John Seller</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <nav class="tabs">
+        <div class="tabs-content">
+            <a href="index.html" class="tab">All Products</a>
+            <a href="pending.html" class="tab">Pending Approval</a>
+            <a href="approved.html" class="tab">Approved</a>
+            <a href="archived.html" class="tab">Archived</a>
+            <a href="add-product.html" class="tab active">Add Product</a>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="card">
+            <div class="card-header">
+                <h2>Add New Product</h2>
+                <p>Fill in the product details below. Fields marked with (*) are mandatory.</p>
+            </div>
+            <div class="card-body">
+                <div class="info-banner">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    <div class="info-banner-text">Fields marked with (*) are mandatory fields.</div>
+                </div>
+
+                <form id="newProductForm">
+                    <!-- Categories Section -->
+                    <div class="collapsible-section" id="categoriesSection">
+                        <div class="collapsible-header" onclick="toggleSection('categoriesSection')">
+                            <h3>Categories</h3>
+                            <svg class="collapsible-icon" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </div>
+                        <div class="collapsible-body">
+                            <div class="form-group">
+                                <label class="label-required">Choose Default Category</label>
+                                <select required>
+                                    <option value="">Select category</option>
+                                    <option value="phones">Phones & Tablets >> Mobile Phones >> Android Phones</option>
+                                    <option value="electronics">Electronics</option>
+                                    <option value="fashion">Fashion</option>
+                                    <option value="home">Home & Living</option>
+                                    <option value="beauty">Beauty & Health</option>
+                                    <option value="sports">Sports & Outdoors</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Information Section -->
+                    <div class="collapsible-section" id="informationSection">
+                        <div class="collapsible-header" onclick="toggleSection('informationSection')">
+                            <h3>Information</h3>
+                            <svg class="collapsible-icon" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </div>
+                        <div class="collapsible-body">
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label class="label-required">Name</label>
+                                    <input type="text" placeholder="e.g., Redmi Note 15G" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="label-required">Reference Code (SKU)</label>
+                                    <input type="text" placeholder="e.g., 630286943933" required>
+                                </div>
+
+                                <div class="form-group full-width">
+                                    <label class="label-required">Product Code (UPC/EAN/ISBN)</label>
+                                    <div class="upc-display">
+                                        <div style="flex: 1;">
+                                            <div class="upc-label">Auto-Generated UPC</div>
+                                            <div class="upc-code" id="upcCode">763028694393</div>
+                                        </div>
+                                        <button type="button" class="btn btn-secondary" onclick="generateUPC()">
+                                            <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+                                            </svg>
+                                            Regenerate UPC
+                                        </button>
+                                    </div>
+                                    <span class="helper-text" style="color: var(--info); margin-top: 0.5rem;">
+                                        <strong>Click here to find the Product UPC</strong> | Can't find the UPC? <a href="#" style="color: var(--primary);">Get a temporary UPC from us</a>
+                                    </span>
+                                </div>
+
+                                <div class="form-group full-width">
+                                    <label class="label-required">Manufacturer</label>
+                                    <div style="display: flex; gap: 0.75rem;">
+                                        <select style="flex: 1;" required>
+                                            <option value="">Select manufacturer</option>
+                                            <option value="redblue">Red & Blue Telecom</option>
+                                            <option value="samsung">Samsung</option>
+                                            <option value="apple">Apple</option>
+                                            <option value="nike">Nike</option>
+                                        </select>
+                                        <button type="button" class="btn btn-primary">
+                                            <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                                            </svg>
+                                            Add New Manufacturer
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="form-group full-width">
+                                    <label>Short Description</label>
+                                    <textarea placeholder="Brief product overview..." style="min-height: 80px;"></textarea>
+                                </div>
+
+                                <div class="form-group full-width">
+                                    <label>Description</label>
+                                    <textarea placeholder="Detailed product description..." style="min-height: 150px;"></textarea>
+                                </div>
+
+                                <div class="form-group full-width">
+                                    <label>Tags</label>
+                                    <input type="text" placeholder="Separate tags with commas">
+                                    <span class="helper-text">Each tag has to be followed by a comma. Forbidden characters: !<>;?=+#"°{}_$%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Prices Section -->
+                    <div class="collapsible-section" id="pricesSection">
+                        <div class="collapsible-header" onclick="toggleSection('pricesSection')">
+                            <h3>Prices</h3>
+                            <svg class="collapsible-icon" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </div>
+                        <div class="collapsible-body">
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label>Wholesale Price</label>
+                                    <input type="number" placeholder="300000" step="0.01">
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="label-required">Retail Price (Tax Excl.)</label>
+                                    <input type="number" placeholder="300000" step="0.01" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Retail Price (Tax incl.)</label>
+                                    <input type="number" placeholder="300000.00" step="0.01">
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="label-required">Tax</label>
+                                    <select required>
+                                        <option value="">Select tax</option>
+                                        <option value="no-tax">No Tax</option>
+                                        <option value="vat-5">VAT 5%</option>
+                                        <option value="vat-10">VAT 10%</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group full-width">
+                                    <label>Unit Price Per Quantity</label>
+                                    <div style="display: flex; gap: 0.75rem;">
+                                        <input type="number" placeholder="0" step="0.01" style="flex: 1;">
+                                        <input type="text" placeholder="per kilo, per ltr" style="flex: 1;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Images Section -->
+                    <div class="collapsible-section" id="imagesSection">
+                        <div class="collapsible-header" onclick="toggleSection('imagesSection')">
+                            <h3>Images</h3>
+                            <svg class="collapsible-icon" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </div>
+                        <div class="collapsible-body">
+                            <p style="background: #fff9e6; padding: 0.75rem; border-radius: 0.5rem; font-size: 0.875rem; margin-bottom: 1rem;">
+                                ⚠️ You can upload image of maximum size: 8 MB
+                            </p>
+
+                            <div class="form-group">
+                                <label>New Image Caption</label>
+                                <input type="text" placeholder="Enter image caption">
+                            </div>
+
+                            <div class="image-upload-area" onclick="document.getElementById('imageInput').click()">
+                                <input type="file" id="imageInput" class="hidden-input" multiple accept="image/*" onchange="handleImageSelect(event)">
+                                <svg class="upload-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                </svg>
+                                <p style="font-weight: 500; margin-bottom: 0.25rem;">Add new Image to this product</p>
+                                <button type="button" class="btn btn-primary" style="margin-top: 1rem;">
+                                    <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                                    </svg>
+                                    Add Image
+                                </button>
+                            </div>
+                            <div class="image-preview-grid" id="imagePreviewGrid"></div>
+                        </div>
+                    </div>
+
+                    <!-- Quantities Section -->
+                    <div class="collapsible-section" id="quantitiesSection">
+                        <div class="collapsible-header" onclick="toggleSection('quantitiesSection')">
+                            <h3>Quantities</h3>
+                            <svg class="collapsible-icon" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </div>
+                        <div class="collapsible-body">
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label class="label-required">Quantity</label>
+                                    <input type="number" placeholder="8" min="0" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Out of Stock</label>
+                                    <select>
+                                        <option value="deny">Default: Deny orders</option>
+                                        <option value="allow">Allow orders</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="label-required">Minimum Quantity</label>
+                                    <input type="number" placeholder="1" min="1" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Available Date</label>
+                                    <input type="date" value="0000-00-00">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Displayed text when in-stock</label>
+                                    <input type="text" placeholder="In Stock">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Displayed text when backordering is allowed</label>
+                                    <input type="text" placeholder="Available for backorder">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Form Actions -->
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary" onclick="switchTab('all-products')">Cancel</button>
+                        <button type="button" class="btn btn-ghost">Save as Draft</button>
+                        <button type="submit" class="btn btn-primary">Submit for Approval</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+    <script src="management.js"></script>
+</body>
+</html>

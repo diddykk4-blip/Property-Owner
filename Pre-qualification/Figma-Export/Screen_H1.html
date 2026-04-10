@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agent Dashboard - WealthMarket</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Specific Styles for Agent View & Modals */
+        .agent-badge {
+            background: #E8F5EE;
+            color: #1A5C38;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .checklist-container {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .check-item-agent {
+            background: var(--white);
+            border: 1px solid var(--wire-border);
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            transition: all 0.2s;
+            box-shadow: var(--shadow-xs);
+        }
+
+        .check-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .check-item-title {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .check-number {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--n-50);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            color: var(--n-700);
+            font-weight: 600;
+        }
+
+        /* Status Variants */
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            border-radius: 100px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .status-verified {
+            background: var(--success-light);
+            color: var(--success-base);
+        }
+
+        .status-processing {
+            background: var(--secondary-50);
+            color: var(--secondary-base);
+        }
+
+        .status-flagged {
+            background: var(--warning-light);
+            color: #B47805;
+        }
+
+        .status-pending {
+            background: var(--n-50);
+            color: var(--n-600);
+        }
+
+        /* Flagged Item Details */
+        .check-item-agent.flagged {
+            border: 2px solid var(--warning-base);
+            box-shadow: 0 0 0 4px rgba(243, 162, 24, 0.1);
+        }
+
+        .flagged-details {
+            background: var(--warning-light);
+            padding: 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            color: #8A5B02;
+            margin-top: 8px;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 8px;
+        }
+
+        .btn-warning-outline {
+            background: transparent;
+            color: #B47805;
+            border: 1px solid #B47805;
+        }
+
+        .btn-warning-outline:hover {
+            background: var(--warning-light);
+        }
+
+        /* Modal Base Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(16, 24, 40, 0.6);
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .modal-content {
+            background: var(--white);
+            border-radius: 16px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: translateY(0);
+        }
+
+        .modal-header {
+            padding: 24px;
+            border-bottom: 1px solid var(--wire-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h3 {
+            font-size: 20px;
+            margin: 0;
+        }
+
+        .modal-close {
+            background: transparent;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--n-500);
+            line-height: 1;
+        }
+
+        .modal-body {
+            padding: 24px;
+        }
+
+        .modal-footer {
+            padding: 24px;
+            border-top: 1px solid var(--wire-border);
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+            background: var(--bg-subtle);
+            border-radius: 0 0 16px 16px;
+        }
+
+        /* Timeline Styles (H1) */
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            position: relative;
+            padding-left: 20px;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 5px;
+            top: 5px;
+            bottom: 5px;
+            width: 2px;
+            background: var(--n-100);
+        }
+        .timeline-item {
+            position: relative;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -20px;
+            top: 6px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--n-300);
+            border: 2px solid var(--white);
+        }
+        .timeline-item.rejected::before { background: var(--error-base); }
+        .timeline-item.reminder::before { background: var(--secondary-base); }
+        
+        .timeline-date {
+            font-size: 12px;
+            color: var(--n-500);
+            margin-bottom: 4px;
+        }
+        .timeline-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--n-900);
+        }
+        .timeline-desc {
+            font-size: 13px;
+            color: var(--n-700);
+            margin-top: 4px;
+            background: var(--n-50);
+            padding: 8px 12px;
+            border-radius: 6px;
+            border-left: 3px solid var(--error-base);
+        }
+
+        /* Alert Warning Override (H3) */
+        .override-warning {
+            background: var(--error-light);
+            border: 1px solid rgba(212, 38, 32, 0.3);
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 24px;
+        }
+        .override-warning h4 {
+            color: var(--error-base);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+        .override-warning p {
+            color: #921E17;
+            font-size: 14px;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- App Shell: Header -->
+    <header class="app-header">
+        <div class="header-content">
+            <div class="header-actions">
+                <div class="save-status" id="global-save-status">
+                    <span class="save-dot"></span>
+                    <span class="save-text">Live System</span>
+                </div>
+                <div class="user-profile">
+                    <div class="user-avatar" style="background: #1A5C38; color: white;">AS</div>
+                    <div class="user-name">Agent Sarah</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="app-layout">
+        <!-- App Shell: Sidebar -->
+        <aside class="app-sidebar">
+            <div class="sidebar-logo-area">
+                <img src="../../Design System/Logo image.png" alt="WealthMarket Logo" class="brand-logo" onerror="this.src='https://via.placeholder.com/32'" />
+                <div class="logo-text">WealthMarket</div>
+            </div>
+            <div class="sidebar-top-branding">
+                <div class="module-dropdown">
+                    <div class="mod-icon" style="background: #1A5C38;"></div>
+                    <select class="mod-select">
+                        <option>Agent Portal</option>
+                    </select>
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="#" class="sidebar-item active">
+                    <span class="icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 20V10M18 20V4M6 20v-4" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </span>
+                    <span>Assessments</span>
+                </a>
+                <a href="#" class="sidebar-item">
+                    <span class="icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+                        </svg>
+                    </span>
+                    <span>My Portfolio</span>
+                </a>
+                <a href="#" class="sidebar-item mt-custom">
+                    <span class="icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="3"></circle>
+                            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33h.09a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                        </svg>
+                    </span>
+                    <span>Settings</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main View Container -->
+        <main class="app-main">
+            <div class="views-wrapper" style="padding: 40px;">
+                
+                <div class="section-header">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-end;">
+                        <div>
+                            <span style="color: var(--blue-gray-500); font-weight: 600; font-size: 14px; display: block; margin-bottom: 8px;">ASSESSMENT #WM-2025-04821</span>
+                            <h2 style="margin: 0; font-size: 32px;">Pre-Qualification Checks</h2>
+                            <p style="margin-top: 8px; color: var(--blue-gray-500);">Review automated system checks before scheduling structural assessment.</p>
+                        </div>
+                        <div style="text-align: right;">
+                            <div class="agent-badge">Agent Dashboard</div>
+                            <div style="margin-top: 12px; font-size: 14px; font-weight: 600;">Status: <span style="color: #B47805;">Action Required</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="checklist-container mt-4">
+                    
+                    <!-- Item 1: Auto -->
+                    <div class="check-item-agent">
+                        <div class="check-item-header">
+                            <div class="check-item-title">
+                                <div class="check-number">1</div>
+                                <span>Identity Verification (KYC)</span>
+                            </div>
+                            <div class="status-badge status-verified">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Verified (Auto)
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 2: Auto -->
+                    <div class="check-item-agent">
+                        <div class="check-item-header">
+                            <div class="check-item-title">
+                                <div class="check-number">2</div>
+                                <span>Property Location & Zoning</span>
+                            </div>
+                            <div class="status-badge status-verified">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Verified (Auto)
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 3: FLAGGED -->
+                    <div class="check-item-agent flagged">
+                        <div class="check-item-header">
+                            <div class="check-item-title">
+                                <div class="check-number" style="background: var(--warning-light); color: #B47805;">3</div>
+                                <span>Land Title Authenticity</span>
+                            </div>
+                            <div class="status-badge status-flagged">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                                Flagged
+                            </div>
+                        </div>
+                        <div class="flagged-details">
+                            <strong>System Note:</strong> Owner has uploaded document 3 times. OCR validation failed all attempts due to poor image quality or mismatched names.
+                        </div>
+                        <div class="action-buttons">
+                            <button class="btn btn-secondary" onclick="openModal('modal-h1')">View Submission History</button>
+                            <button class="btn btn-primary" onclick="openModal('modal-h2')">Contact Owner</button>
+                            <button class="btn btn-warning-outline" onclick="openModal('modal-h3')">Override & Approve</button>
+                        </div>
+                    </div>
+
+                    <!-- Item 4: Processing -->
+                    <div class="check-item-agent">
+                        <div class="check-item-header">
+                            <div class="check-item-title">
+                                <div class="check-number">4</div>
+                                <span>Architectural Plan Validation</span>
+                            </div>
+                            <div class="status-badge status-processing">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
+                                Auto-processing
+                            </div>
+                        </div>
+                        <p style="margin: 0 0 0 48px; font-size: 13px; color: var(--blue-gray-500);">System is currently running AI cross-check on submitted plans.</p>
+                    </div>
+
+                    <!-- Item 5: Auto -->
+                    <div class="check-item-agent">
+                        <div class="check-item-header">
+                            <div class="check-item-title">
+                                <div class="check-number">5</div>
+                                <span>Completion Status (>= 50%)</span>
+                            </div>
+                            <div class="status-badge status-verified">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Verified (Auto)
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 6: Auto -->
+                    <div class="check-item-agent">
+                        <div class="check-item-header">
+                            <div class="check-item-title">
+                                <div class="check-number">6</div>
+                                <span>No Encumbrances Search</span>
+                            </div>
+                            <div class="status-badge status-verified">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Verified (Auto)
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 7: Pending -->
+                    <div class="check-item-agent" style="opacity: 0.7;">
+                        <div class="check-item-header">
+                            <div class="check-item-title">
+                                <div class="check-number">7</div>
+                                <span>Final Risk Assessment Score</span>
+                            </div>
+                            <div class="status-badge status-pending">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                                Pending
+                            </div>
+                        </div>
+                        <p style="margin: 0 0 0 48px; font-size: 13px; color: var(--blue-gray-500);">Awaits completion of checks 3 and 4.</p>
+                    </div>
+
+                </div>
+                
+                <div style="margin-top: 40px; display: flex; justify-content: flex-end; gap: 16px; max-width: 900px; margin-left: auto; margin-right: auto;">
+                    <button class="btn btn-primary" onclick="window.location.href='Screen_K.html'" disabled id="btn-signoff" title="Complete all checks first">Proceed to Sign-Off</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- MODAL H1: View Submission History -->
+    <div class="modal-overlay active" id="modal-h1">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Submission History</h3>
+                <button class="modal-close" onclick="closeModal('modal-h1')">×</button>
+            </div>
+            <div class="modal-body">
+                <p style="color: var(--blue-gray-500); margin-bottom: 24px; font-size: 14px;">Review the owner's attempts to provide Land Title documentation.</p>
+                
+                <div class="timeline">
+                    <div class="timeline-item rejected">
+                        <div class="timeline-date">Today, 09:15 AM</div>
+                        <div class="timeline-title">Upload Attempt #3</div>
+                        <div class="timeline-desc"><strong>System rejection:</strong> OCR failed. Document is too blurry to extract owner name.</div>
+                    </div>
+                    <div class="timeline-item reminder">
+                        <div class="timeline-date">Yesterday, 14:00 PM</div>
+                        <div class="timeline-title">Auto-Reminder Sent</div>
+                        <div style="font-size: 13px; color: var(--n-700); margin-top: 4px;">System sent email: "Please re-upload a clear copy of your C of O."</div>
+                    </div>
+                    <div class="timeline-item rejected">
+                        <div class="timeline-date">Yesterday, 08:30 AM</div>
+                        <div class="timeline-title">Upload Attempt #2</div>
+                        <div class="timeline-desc"><strong>System rejection:</strong> Name on document "John A. Adeola" does not exactly match profile "John Adeola". Requires manual agent override or new document.</div>
+                    </div>
+                    <div class="timeline-item rejected">
+                        <div class="timeline-date">Oct 12, 11:45 AM</div>
+                        <div class="timeline-title">Upload Attempt #1</div>
+                        <div class="timeline-desc"><strong>System rejection:</strong> File is entirely blank or corrupted.</div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('modal-h1')">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL H2: Contact Owner -->
+    <div class="modal-overlay" id="modal-h2">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Contact Owner</h3>
+                <button class="modal-close" onclick="closeModal('modal-h2')">×</button>
+            </div>
+            <div class="modal-body">
+                <div style="display: flex; gap: 16px; margin-bottom: 24px;">
+                    <button class="btn btn-secondary" style="flex: 1; justify-content: center;">
+                        Call 0801-234-5678
+                    </button>
+                    <button class="btn btn-secondary" style="flex: 1; justify-content: center;">
+                        Email owner@email.com
+                    </button>
+                </div>
+                
+                <div class="form-group">
+                    <label>Suggested Message (SMS/Email)</label>
+                    <textarea class="form-textarea" style="min-height: 80px;" readonly>Hello John, this is Agent Sarah from WealthMarket. We noticed an issue with your Land Title upload (blurriness & name mismatch). Please contact us or re-upload a clearer image.</textarea>
+                </div>
+
+                <div class="form-group" style="margin-top: 24px;">
+                    <label>Log Conversation Action</label>
+                    <textarea class="form-textarea" placeholder="Enter notes from your call..."></textarea>
+                </div>
+                
+                <p style="font-size: 12px; color: var(--n-500);"><strong style="color:var(--n-800);">History:</strong> 1 Auto-Email sent, 0 Calls made.</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('modal-h2')">Cancel</button>
+                <button class="btn btn-primary" onclick="closeModal('modal-h2')">Save Log</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL H3: Override & Approve -->
+    <div class="modal-overlay" id="modal-h3">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Override System Rejection</h3>
+                <button class="modal-close" onclick="closeModal('modal-h3')">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="override-warning">
+                    <h4>Caution</h4>
+                    <p>Overriding a system rejection bypasses automated KYC and Title Authenticity checks. You accept responsibility for this verification.</p>
+                </div>
+                
+                <div class="form-group">
+                    <label>Override Reason <span class="req">*</span></label>
+                    <div class="select-wrapper">
+                        <select class="form-input">
+                            <option>-- Select Reason --</option>
+                            <option>Visual Inspection Verified (Name Mismatch minor)</option>
+                            <option>Alternative Proof Provided via Email</option>
+                            <option>System Error / False Negative</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group mt-4">
+                    <label>Detailed Explanation <span class="req">*</span></label>
+                    <textarea class="form-textarea" placeholder="Explain why this document is valid despite system rejection..."></textarea>
+                </div>
+                
+                <div class="form-group mt-4" style="background: var(--n-25); padding: 16px; border-radius: 8px;">
+                    <label>Digital Signature <span class="req">*</span></label>
+                    <p style="font-size: 12px; color: var(--n-500); margin-bottom: 8px;">Enter your agent password to confirm this override action.</p>
+                    <input type="password" class="form-input" placeholder="Password">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('modal-h3')">Cancel</button>
+                <button class="btn btn-primary" style="background: var(--error-base); color: white;" onclick="approveCheck3()">Confirm Override</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
+

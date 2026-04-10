@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review Product - Product Management System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Shared Assets -->
+    <link rel="stylesheet" href="global-styles.css">
+    <link rel="stylesheet" href="management-ui.css">
+    <style>
+        /* Specific Detail View Styles */
+        .detail-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px; margin-bottom: 48px; }
+        .detail-item { display: flex; flex-direction: column; gap: 8px; }
+        .detail-label { font-size: 12px; color: var(--blue-gray-500); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; }
+        .detail-value { font-size: 16px; color: var(--n-900); }
+        .user-badge { display: inline-flex; align-items: center; gap: 12px; padding: 12px 20px; background: var(--n-25); border-radius: 12px; border: 1px solid var(--wire-border); }
+        .product-images { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 16px; margin-top: 24px; }
+        .product-images img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 12px; border: 1px solid var(--wire-border); }
+        .timeline { position: relative; padding-left: 32px; margin-top: 24px; }
+        .timeline::before { content: ''; position: absolute; left: 8px; top: 0; bottom: 0; width: 2px; background: var(--wire-border); }
+        .timeline-item { position: relative; margin-bottom: 32px; }
+        .timeline-dot { position: absolute; left: -28px; top: 4px; width: 12px; height: 12px; border-radius: 50%; background: var(--white); border: 2px solid var(--primary-base); }
+        .timeline-content { padding: 20px; background: var(--n-25); border-radius: 12px; border: 1px solid var(--wire-border); }
+        .footer-actions { padding: 24px 32px; border-top: 1px solid var(--wire-border); display: flex; gap: 16px; justify-content: flex-end; background: var(--n-25); position: sticky; bottom: 0; }
+    </style>
+</head>
+<body>
+    <header class="app-header">
+        <div class="header-content">
+            <div class="header-logo">
+                <a href="index.html" style="text-decoration: none; display: flex; align-items: center; gap: 12px;">
+                    <img class="brand-logo" src="Logo image.png" alt="Wealth Market Logo">
+                    <div class="logo-text">Product Management</div>
+                </a>
+            </div>
+            <div class="header-actions">
+                <div class="user-profile">
+                    <div class="user-avatar">A</div>
+                    <div class="user-name">Admin User</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container" style="max-width: 1000px; padding: 48px 32px;">
+        <div class="card" style="overflow: hidden;">
+            <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
+                <h2 style="font-size: 24px;">Review Product Submission</h2>
+                <span class="badge badge-pending">Pending Review</span>
+            </div>
+            <div class="card-body" style="padding: 32px;">
+                <!-- Submitted By -->
+                <div style="margin-bottom: 1.5rem;">
+                    <div class="detail-label" style="margin-bottom: 0.5rem;">Submitted By</div>
+                    <div class="user-badge">
+                        <div class="user-avatar">U</div>
+                        <div class="user-info">
+                            <h4>John Seller</h4>
+                            <div class="user-id">USER_67890</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Details -->
+                <div class="detail-grid" style="margin-bottom: 1.5rem;">
+                    <div class="detail-item">
+                        <div class="detail-label">Product Name</div>
+                        <div class="detail-value detail-value-large">Nike Air Max 270</div>
+                    </div>
+
+                    <div class="detail-item">
+                        <div class="detail-label">UPC Code</div>
+                        <div class="detail-value" style="font-family: 'Courier New', monospace; font-weight: 600;">590286943933</div>
+                    </div>
+
+                    <div class="detail-item">
+                        <div class="detail-label">SKU</div>
+                        <div class="detail-value">NIKE270</div>
+                    </div>
+
+                    <div class="detail-item">
+                        <div class="detail-label">Category</div>
+                        <div class="detail-value">Fashion > Shoes > Running</div>
+                    </div>
+
+                    <div class="detail-item">
+                        <div class="detail-label">Manufacturer</div>
+                        <div class="detail-value">Nike</div>
+                    </div>
+
+                    <div class="detail-item">
+                        <div class="detail-label">Stock Quantity</div>
+                        <div class="detail-value">120 units</div>
+                    </div>
+
+                    <div class="detail-item">
+                        <div class="detail-label">Minimum Quantity</div>
+                        <div class="detail-value">1</div>
+                    </div>
+
+                    <div class="detail-item">
+                        <div class="detail-label">Date Submitted</div>
+                        <div class="detail-value">March 28, 2026</div>
+                    </div>
+                </div>
+
+                <!-- Description -->
+                <div style="margin-bottom: 1.5rem;">
+                    <div class="detail-label" style="margin-bottom: 0.5rem;">Description</div>
+                    <div class="detail-value" style="line-height: 1.6;">
+                        Comfortable running shoes with Air Max cushioning technology. Perfect for daily runs and athletic activities. Features breathable mesh upper and durable rubber outsole.
+                    </div>
+                </div>
+
+                <!-- Product Images -->
+                <div style="margin-bottom: 1.5rem;">
+                    <div class="detail-label" style="margin-bottom: 0.5rem;">Product Images</div>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 1rem;">
+                        <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=200&h=200&fit=crop" alt="Product" style="width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 0.5rem; border: 1px solid var(--border);">
+                        <img src="https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=200&h=200&fit=crop" alt="Product" style="width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 0.5rem; border: 1px solid var(--border);">
+                        <img src="https://images.unsplash.com/photo-1605348532760-6753d2c43329?w=200&h=200&fit=crop" alt="Product" style="width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 0.5rem; border: 1px solid var(--border);">
+                    </div>
+                </div>
+
+                <!-- Timeline -->
+                <div>
+                    <div class="detail-label" style="margin-bottom: 1rem;">Activity Timeline</div>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <div class="timeline-header">
+                                    <div class="timeline-title">Product Submitted</div>
+                                    <div class="timeline-date">Mar 28, 2026 - 2:30 PM</div>
+                                </div>
+                                <div class="timeline-description">Product submitted by USER_67890 for approval</div>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <div class="timeline-header">
+                                    <div class="timeline-title">Pending Review</div>
+                                    <div class="timeline-date">Mar 28, 2026 - 2:30 PM</div>
+                                </div>
+                                <div class="timeline-description">Awaiting admin approval</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-actions">
+                <a href="pending.html" class="btn btn-secondary">Back to List</a>
+                <button class="btn btn-error" onclick="alert('Submission rejected.')">
+                    <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                    Reject
+                </button>
+                <button class="btn btn-success" onclick="approveProduct()">
+                    <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                    Approve & Sync to PrestaShop
+                </button>
+            </div>
+        </div>
+    </main>
+    <script src="management.js"></script>
+</body>
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Product Upload</title>
+    <!-- Google Fonts for Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Link to the main Wealth Market design system -->
+    <link rel="stylesheet" href="../styles.css">
+    <!-- Component-specific styles -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- App Header -->
+    <header class="app-header">
+        <div class="header-content">
+            <div class="header-logo" style="margin-right: auto;">
+                <div class="logo-icon">W</div>
+                <div class="logo-text">WealthMarket Admin</div>
+            </div>
+            <div class="header-actions">
+                <div class="user-profile">
+                    <div class="user-avatar">A</div>
+                    <div class="user-name">Admin User</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="app-main">
+        <div class="form-layout">
+            <div class="form-main" style="max-width: 900px; margin: 0 auto;">
+                
+                <div class="section-header" style="display: flex; justify-content: space-between; align-items: flex-start;">
+                    <div>
+                        <h2>Admin Product Upload</h2>
+                        <p>Add a new product to the marketplace database. Fill in the required details below.</p>
+                    </div>
+                    <button type="button" class="btn btn-secondary">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" style="margin-right: 8px;"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path></svg>
+                        Bulk Upload CSV
+                    </button>
+                </div>
+
+                <div class="card">
+                    
+                    <form id="productUploadForm">
+                        <!-- Section 2: Basic Product Info -->
+                        <div class="form-section">
+                            <div class="form-section-header">
+                                <h3>Add New Product</h3>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Product Name <span class="req">*</span></label>
+                                <input type="text" id="productName" class="form-input" placeholder="e.g., Samsung Galaxy S24 Ultra" required>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group flex-1">
+                                    <label>Category <span class="req">*</span></label>
+                                    <div class="select-wrapper">
+                                        <select id="productCategory" class="form-input" required>
+                                            <option value="">Select category</option>
+                                            <option value="electronics">Electronics</option>
+                                            <option value="fashion">Fashion</option>
+                                            <option value="home">Home & Living</option>
+                                            <option value="beauty">Beauty & Health</option>
+                                            <option value="sports">Sports & Outdoors</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group flex-1">
+                                    <label>Brand <span class="req">*</span></label>
+                                    <input type="text" id="productBrand" class="form-input" placeholder="e.g., Samsung" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Product Description <span class="req">*</span></label>
+                                <textarea id="productDesc" class="form-textarea" placeholder="Detailed product description..." required></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Section 3: Product Identification -->
+                        <div class="form-section">
+                            <div class="form-section-header">
+                                <h3>Product Identification</h3>
+                            </div>
+                            
+                            <div class="form-row" style="align-items: flex-end;">
+                                <div class="form-group flex-1" style="margin-bottom: 0;">
+                                    <label>UPC Code <span class="optional">(Auto-generated)</span></label>
+                                    <input type="text" id="upcCode" class="form-input upc-input" readonly value="823945012377">
+                                </div>
+                                <button type="button" class="btn btn-secondary" id="btnRegenerateUpc" style="margin-bottom: 0;">
+                                    <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+                                    Regenerate
+                                </button>
+                            </div>
+
+
+                        </div>
+
+                        <!-- Section 4: Pricing & Inventory -->
+                        <div class="form-section">
+                            <div class="form-section-header">
+                                <h3>Pricing & Inventory</h3>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group flex-1">
+                                    <label>Price (₦) <span class="req">*</span></label>
+                                    <div class="input-with-icon">
+                                        <span class="currency-symbol">₦</span>
+                                        <input type="number" class="form-input has-prefix" placeholder="0.00" step="0.01" required>
+                                    </div>
+                                </div>
+                                <div class="form-group flex-1">
+                                    <label>Stock Quantity <span class="req">*</span></label>
+                                    <input type="number" class="form-input" placeholder="0" min="0" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Section 5: Product Images -->
+                        <div class="form-section">
+                            <div class="form-section-header">
+                                <h3>Product Images</h3>
+                            </div>
+                            
+                            <div class="image-upload-area" id="imageUploadArea">
+                                <input type="file" id="imageInput" class="hidden-input" multiple accept="image/*">
+                                <div class="upload-content">
+                                    <div class="upload-icon-circle">
+                                        <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path></svg>
+                                    </div>
+                                    <p class="upload-title"><span class="link-text">Click to upload</span> or drag and drop</p>
+                                    <p class="upload-hint">PNG, JPG or GIF (max. 10MB)</p>
+                                </div>
+                            </div>
+                            <div class="image-preview-grid" id="imagePreviewGrid"></div>
+                        </div>
+
+                        <!-- Section 6: Actions -->
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-secondary">Cancel</button>
+                            <button type="submit" class="btn btn-primary">Submit for Approval</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

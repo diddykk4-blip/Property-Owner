@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign-Off Success - Agent</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .agent-badge {
+            background: #E8F5EE;
+            color: #1A5C38;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .success-hero {
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--success-light);
+            color: var(--success-base);
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            margin-bottom: 24px;
+        }
+
+        .info-card {
+            background: var(--white);
+            border: 1px solid var(--wire-border);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .info-card h4 {
+            font-size: 16px;
+            color: var(--n-900);
+            margin-bottom: 4px;
+        }
+
+        .info-card p {
+            font-size: 14px;
+            color: var(--n-600);
+            margin: 0;
+        }
+
+        .milestone-timeline {
+            margin-top: 32px;
+            padding-left: 16px;
+            border-left: 2px dashed var(--n-200);
+        }
+
+        .milestone-item {
+            position: relative;
+            padding-bottom: 32px;
+        }
+
+        .milestone-item::before {
+            content: '';
+            position: absolute;
+            left: -25px;
+            top: 0;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--n-200);
+            border: 4px solid var(--white);
+        }
+
+        .milestone-item.active::before {
+            background: var(--primary-base);
+            box-shadow: 0 0 0 4px rgba(255, 190, 0, 0.2);
+        }
+
+        .milestone-item.done::before {
+            background: var(--success-base);
+            content: '✓';
+            color: white;
+            font-size: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .milestone-title {
+            font-weight: 600;
+            font-size: 15px;
+            color: var(--n-900);
+            margin-bottom: 4px;
+        }
+
+        .milestone-date {
+            font-size: 13px;
+            color: var(--n-500);
+        }
+    </style>
+</head>
+<body>
+    <header class="app-header">
+        <div class="header-content">
+            <div class="header-actions">
+                <div class="user-profile">
+                    <div class="user-avatar" style="background: #1A5C38; color: white;">AS</div>
+                    <div class="user-name">Agent Sarah</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="app-layout">
+        <aside class="app-sidebar">
+            <div class="sidebar-logo-area">
+                <img src="../Design System/Logo image.png" alt="Logo" class="brand-logo" onerror="this.src='https://via.placeholder.com/32'" />
+                <div class="logo-text">WealthMarket</div>
+            </div>
+            <div class="sidebar-top-branding">
+                <div class="module-dropdown">
+                    <div class="mod-icon" style="background: #1A5C38;"></div>
+                    <select class="mod-select"><option>Agent Portal</option></select>
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="Screen_H.html" class="sidebar-item active">
+                    <span class="icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 20V10M18 20V4M6 20v-4" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </span>
+                    <span>Assessments</span>
+                </a>
+            </nav>
+        </aside>
+
+        <main class="app-main">
+            <div class="views-wrapper" style="padding: 40px; max-width: 700px; margin: 0 auto;">
+                
+                <div class="success-hero">
+                    <div class="success-icon">✓</div>
+                    <h2 style="font-size: 32px; margin-bottom: 12px;">Sign-Off Complete</h2>
+                    <p style="font-size: 16px; color: var(--n-600); max-width: 500px; margin: 0 auto;">You have successfully signed off on application WM-2025-04821. The property is now queued for independent structural assessment.</p>
+                </div>
+
+                <div class="info-card" style="border-left: 4px solid var(--secondary-base);">
+                    <div>
+                        <h4>Owner Notification Sent</h4>
+                        <p>John Adeola has been notified via Email & SMS regarding next steps.</p>
+                    </div>
+                    <button class="btn btn-secondary">Resend Notice</button>
+                </div>
+
+                <div style="background: var(--white); padding: 32px; border-radius: 12px; border: 1px solid var(--wire-border);">
+                    <h3 style="font-size: 20px; border-bottom: 1px solid var(--wire-border); padding-bottom: 16px; margin-bottom: 24px;">What Happens Next</h3>
+                    
+                    <div class="milestone-timeline">
+                        <div class="milestone-item done">
+                            <div class="milestone-title">Pre-qualification Verification</div>
+                            <div class="milestone-date">Completed Today by Agent Sarah</div>
+                        </div>
+                        <div class="milestone-item active">
+                            <div class="milestone-title">Schedule Structural Assessment</div>
+                            <div class="milestone-date">Pending: Engineering Team assignment in 48 hrs</div>
+                        </div>
+                        <div class="milestone-item">
+                            <div class="milestone-title">Site Visit & Core Testing</div>
+                            <div class="milestone-date">Requires Owner Presence</div>
+                        </div>
+                        <div class="milestone-item" style="padding-bottom: 0;">
+                            <div class="milestone-title">Final Warrant Financing Offer</div>
+                            <div class="milestone-date">Expected 7 days after Site Visit</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 32px; text-align: center;">
+                    <a href="Screen_H.html" class="btn btn-primary">Return to Dashboard</a>
+                </div>
+
+            </div>
+        </main>
+    </div>
+</body>
+</html>

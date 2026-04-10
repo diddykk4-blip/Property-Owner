@@ -1,0 +1,425 @@
+﻿
+
+    Directory: C:\Users\USER\Downloads\Property owner 1
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+-a----         3/31/2026   4:54 AM          67240 all_files.txt                                                        
+-a----         3/31/2026   4:56 AM              0 all_files_utf8.txt                                                   
+-a----         3/10/2026   6:45 AM          18393 app.js                                                               
+-a----          3/3/2026   7:37 AM           1448 design_system_preview.html                                           
+-a----         2/20/2026  12:07 PM        1558537 FLOWCHART.jpg                                                        
+-a----          3/5/2026   2:54 PM          58723 index.html                                                           
+-a----         2/24/2026  11:06 PM          88629 Property Owner Wire.html                                             
+-a----         2/25/2026  12:04 AM        2175722 screencapture-file-C-Users-USER-Downloads-wireframe-submit-applicatio
+                                                  n-1-html-2026-02-25-00_04_43.png                                     
+-a----         3/23/2026   3:08 AM           7048 Sidebar structure.docx                                               
+-a----          3/5/2026   2:51 PM          33210 styles.css                                                           
+-a----         3/10/2026   6:27 AM           1458 test.js                                                              
+
+
+    Directory: C:\Users\USER\Downloads\Property owner 1\.vscode
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+-a----          3/4/2026   1:53 AM            498 launch.json                                                          
+
+
+    Directory: C:\Users\USER\Downloads\Property owner 1\A - G
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+-a----          3/3/2026   7:14 AM          87773 A.jpg                                                                
+-a----          3/3/2026   7:15 AM         159773 B.jpg                                                                
+-a----          3/3/2026   7:17 AM          94006 C.jpg                                                                
+-a----          3/3/2026   7:19 AM         150381 D.jpg                                                                
+-a----          3/3/2026   7:20 AM         140234 E.jpg                                                                
+-a----          3/3/2026   7:23 AM         110884 F.jpg                                                                
+-a----          3/3/2026   7:23 AM          28146 G.jpg                                                                
+
+
+    Directory: C:\Users\USER\Downloads\Property owner 1\Admin Product Upload
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+-a----         3/24/2026  12:59 PM           4456 app.js                                                               
+-a----         3/24/2026   5:31 PM           6740 bulk-upload.html                                                     
+-a----         3/24/2026   2:25 PM           9134 index.html                                                           
+-a----         3/24/2026   2:27 PM           9088 styles.css                                                           
+
+
+    Directory: C:\Users\USER\Downloads\Property owner 1\Design System
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+-a----          3/3/2026   8:51 AM           1259 Logo image.png                                                       
+-a----         2/10/2026   2:23 PM         949475 Spacing.jpg                                                          
+
+
+    Directory: C:\Users\USER\Downloads\Property owner 1\Design System\Colors
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+-a----         2/10/2026   2:20 PM         359921 Neutrals.jpg                                                         
+-a----         2/10/2026   2:20 PM         236119 Primary.jpg                                                          
+-a----         2/10/2026   2:20 PM         246420 Secondary.jpg                                                        
+-a----         2/10/2026   2:20 PM         516676 Semantics.jpg                                                        
+
+
+    Directory: C:\Users\USER\Downloads\Property owner 1\Design System\Headers
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+-a----         2/10/2026   2:26 PM          88453 Dropdown.jpg                                                         
+-a----         2/10/2026   2:26 PM          39736 Header navigation-1.jpg                                              
+-a----         2/10/2026   2:26 PM        1065617 Header navigation.jpg                                                
+-a----         2/10/2026   2:26 PM          40957 Header.jpg                                                           
+-a----         2/10/2026   2:26 PM          62380 Menu-1.jpg                                                           
+-a----         2/10/2026   2:26 PM          62380 Menu.jpg                                                             
+
+
+    Directory: C:\Users\USER\Downloads\Property owner 1\Design System\Icons
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+-a----         2/10/2026   2:28 PM        4336379 Icons.jpg                                                            
+-a----         2/10/2026   2:28 PM        2393065 Notes and documentation.jpg                                          
+
+
+    Directory: C:\Users\USER\Downloads\Property owner 1\Design System\Loading & Progress Indicators
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+-a----         2/10/2026   2:30 PM         747314 Documentation-1.jpg                                                  
+-a----         2/10/2026   2:30 PM         533422 Documentation.jpg                                                    
+-a----         2/10/2026   2:30 PM          26116 Loading indicator.jpg                                                
+-a----         2/10/2026   2:30 PM         594426 Progress indicators.jpg                                              
+-a----         2/10/2026   2:30 PM         166795 Tooltips.jpg                                                         
+
+
+    Directory: C:\Users\USER\Downloads\Property owner 1\Design System\Misc. Icons
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+-a----         2/10/2026   2:32 PM         137449 Check icon.jpg                                                       
+-a----         2/10/2026   2:32 PM         713064 Check item text.jpg                                                  
+-a----         2/10/2026   2:32 PM          72986 Country Icons.jpg                                                    
+-a----         2/10/2026   2:32 PM          24849 Emoji.jpg                                                            
+-a----         2/10/2026   2:32 PM          84340 Featured icon outline.jpg                                            
+-a----         2/10/2026   2:32 PM         346778 Featured icon.jpg                                                    
+-a----         2/10/2026   2:32 PM          74253 Featured Icons.jpg                                                   
+-a----         2/10/2026   2:32 PM         391981 File type icon.jpg                                                   
+-a----         2/10/2026   2:32 PM          80286 Integration Icons.jpg                                                
+-a----         2/10/2026   2:32 PM          90129 Miscellaneous Icons.jpg                                              
+-a----         2/10/2026   2:32 PM         331188 Payment method icon.jpg                                              
+-a----         2/10/2026   2:32 PM          94543 Payment Method Icons.jpg                                             
+-a----         2/10/2026   2:32 PM         112427 Social icon.jpg                                                      
+-a----         2/10/2026   2:32 PM          69182 Social Icons.jpg                                                     
+-a----         2/10/2026   2:32 PM          31733 Star icon.jpg                                                        
+-a----         2/10/2026   2:32 PM           9078 _Dot.jpg                                                             
+
+
+    Directory: C:\Users\USER\Downloads\Property owner 1\Design System\Misc. Icons\Integration icons
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+-a----         2/10/2026   2:32 PM          26464 Browsers.jpg                                                         
+-a----         2/10/2026   2:32 PM         136621 Coding.jpg                                                           
+-a----         2/10/2026   2:32 PM          43355 Design.jpg                                                           
+-a----         2/10/2026   2:32 PM          45255 Finance.jpg                                                          
+-a----         2/10/2026   2:32 PM          40667 Messengers.jpg                                                       
+-a----         2/10/2026   2:32 PM          25205 Music.jpg                                                            
+-a----         2/10/2026   2:32 PM          31476 OS.jpg                                                               
+-a----         2/10/2026   2:32 PM          55105 Other.jpg                                                            
+-a----         2/10/2026   2:32 PM         107838 Productivity.jpg                                                     
+-a----         2/10/2026   2:32 PM          54360 Social networks.jpg                                                  
+-a----         2/10/2026   2:32 PM          20889 Video.jpg                                                            
+
+
+    Directory: C:\Users\USER\Downloads\Property owner 1\Design System\Misc. Icons\Wealth Market
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+-a----         2/10/2026   2:32 PM           5386 Icons.jpg                                                            
+
+
+    Directory: C:\Users\USER\Downloads\Property owner 1\Design System\Shadows and Blurs
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+-a----         2/10/2026   2:36 PM         989290 Blur.jpg                                                             
+-a----         2/10/2026   2:36 PM         134918 Shadows.jpg                                                          
+
+
+    Directory: C:\Users\USER\Downloads\Property owner 1\Design System\Sidebars
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+-a----         2/10/2026   2:34 PM        1410970 Sidebar navigation.jpg                                               
+-a----         2/10/2026   2:34 PM         175157 Sidebar.jpg                                                          
+
+
+    Directory: C:\Users\USER\Downloads\Property owner 1\Design System\Typography
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+-a----         2/10/2026   2:39 PM        1011990 Notes and documentation.jpg                                          
+-a----         2/10/2026   2:39 PM         923323 Typography.jpg                                                       
+
+
+    Directory: C:\Users\USER\Downloads\Property owner 1\html-to-design
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+-a----         3/10/2026   6:15 AM          58735 A.html                                                               
+-a----         3/10/2026   6:15 AM          58735 B.html                                                               
+-a----         3/10/2026   6:15 AM          58735 C.html                                                               
+-a----         3/10/2026   6:15 AM          58735 D.html                                                               
+-a----         3/10/2026   6:15 AM          58735 E.html                                                               
+-a----         3/10/2026   6:15 AM          58735 F.html                                                               
+-a----         3/10/2026   6:15 AM          58735 G.html                                                               
+
+
+    Directory: C:\Users\USER\Downloads\Property owner 1\Pre-qualification
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+-a----         3/23/2026   4:46 AM           3991 app.js                                                               
+-a----         3/23/2026   3:52 AM          41180 PRE-QUAL-COMPLETE-FINAL(H-H3).html                                   
+-a----         3/11/2026   9:57 PM          50989 pre-qualification-checklist (1).html                                 
+-a----         3/23/2026   4:58 AM          26774 Screen_H.html                                                        
+-a----         3/23/2026   4:42 AM           9518 Screen_J.html                                                        
+-a----         3/23/2026   4:42 AM           8224 Screen_K.html                                                        
+-a----         3/23/2026   4:42 AM           7244 Screen_L.html                                                        
+-a----         3/23/2026   4:42 AM          10593 Screen_M.html                                                        
+-a----          3/5/2026   2:51 PM          33210 styles.css                                                           
+
+
+    Directory: C:\Users\USER\Downloads\Property owner 1\Pre-qualification\Figma-Export
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+-a----         3/23/2026   6:02 AM          27375 Screen_H.html                                                        
+-a----         3/23/2026   6:02 AM          27384 Screen_H1.html                                                       
+-a----         3/23/2026   6:02 AM          27384 Screen_H2.html                                                       
+-a----         3/23/2026   6:02 AM          27384 Screen_H3.html                                                       
+-a----          3/5/2026   2:51 PM          33210 styles.css                                                           
+
+
+    Directory: C:\Users\USER\Downloads\Property owner 1\Pre-qualification\H-M
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+-a----         3/23/2026   4:09 AM         215555 Screen_H.jpg                                                         
+-a----         3/23/2026   4:09 AM         150799 Screen_H1.jpg                                                        
+-a----         3/23/2026   4:09 AM         131024 Screen_H2.jpg                                                        
+-a----         3/23/2026   4:09 AM         126532 Screen_H3.jpg                                                        
+-a----         3/23/2026   4:09 AM         156551 Screen_J.jpg                                                         
+-a----         3/23/2026   4:09 AM         195788 Screen_K.jpg                                                         
+-a----         3/23/2026   4:09 AM         169920 Screen_L.jpg                                                         
+-a----         3/23/2026   4:09 AM         124038 Screen_M.jpg                                                         
+
+
+    Directory: C:\Users\USER\Downloads\Property owner 1\static
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+-a----         3/10/2026   7:22 AM          16684 app.js                                                               
+-a----         3/10/2026   7:13 AM          13252 index.html                                                           
+-a----         3/10/2026   7:13 AM          18830 step-1.html                                                          
+-a----         3/10/2026   7:13 AM          17420 step-2.html                                                          
+-a----         3/10/2026   7:13 AM          18458 step-3.html                                                          
+-a----         3/10/2026   7:13 AM          18169 step-4.html                                                          
+-a----         3/10/2026   7:13 AM          17028 step-5.html                                                          
+-a----          3/5/2026   2:51 PM          33210 styles.css                                                           
+-a----         3/10/2026   7:13 AM          12614 success.html                                                         
+
+
+    Directory: C:\Users\USER\Downloads\Property owner 1\static\Design System
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+-a----          3/3/2026   8:51 AM           1259 Logo image.png                                                       
+-a----         2/10/2026   2:23 PM         949475 Spacing.jpg                                                          
+
+
+    Directory: C:\Users\USER\Downloads\Property owner 1\static\Design System\Colors
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+-a----         2/10/2026   2:20 PM         359921 Neutrals.jpg                                                         
+-a----         2/10/2026   2:20 PM         236119 Primary.jpg                                                          
+-a----         2/10/2026   2:20 PM         246420 Secondary.jpg                                                        
+-a----         2/10/2026   2:20 PM         516676 Semantics.jpg                                                        
+
+
+    Directory: C:\Users\USER\Downloads\Property owner 1\static\Design System\Headers
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+-a----         2/10/2026   2:26 PM          88453 Dropdown.jpg                                                         
+-a----         2/10/2026   2:26 PM          39736 Header navigation-1.jpg                                              
+-a----         2/10/2026   2:26 PM        1065617 Header navigation.jpg                                                
+-a----         2/10/2026   2:26 PM          40957 Header.jpg                                                           
+-a----         2/10/2026   2:26 PM          62380 Menu-1.jpg                                                           
+-a----         2/10/2026   2:26 PM          62380 Menu.jpg                                                             
+
+
+    Directory: C:\Users\USER\Downloads\Property owner 1\static\Design System\Icons
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+-a----         2/10/2026   2:28 PM        4336379 Icons.jpg                                                            
+-a----         2/10/2026   2:28 PM        2393065 Notes and documentation.jpg                                          
+
+
+    Directory: C:\Users\USER\Downloads\Property owner 1\static\Design System\Loading & Progress Indicators
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+-a----         2/10/2026   2:30 PM         747314 Documentation-1.jpg                                                  
+-a----         2/10/2026   2:30 PM         533422 Documentation.jpg                                                    
+-a----         2/10/2026   2:30 PM          26116 Loading indicator.jpg                                                
+-a----         2/10/2026   2:30 PM         594426 Progress indicators.jpg                                              
+-a----         2/10/2026   2:30 PM         166795 Tooltips.jpg                                                         
+
+
+    Directory: C:\Users\USER\Downloads\Property owner 1\static\Design System\Misc. Icons
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+-a----         2/10/2026   2:32 PM         137449 Check icon.jpg                                                       
+-a----         2/10/2026   2:32 PM         713064 Check item text.jpg                                                  
+-a----         2/10/2026   2:32 PM          72986 Country Icons.jpg                                                    
+-a----         2/10/2026   2:32 PM          24849 Emoji.jpg                                                            
+-a----         2/10/2026   2:32 PM          84340 Featured icon outline.jpg                                            
+-a----         2/10/2026   2:32 PM         346778 Featured icon.jpg                                                    
+-a----         2/10/2026   2:32 PM          74253 Featured Icons.jpg                                                   
+-a----         2/10/2026   2:32 PM         391981 File type icon.jpg                                                   
+-a----         2/10/2026   2:32 PM          80286 Integration Icons.jpg                                                
+-a----         2/10/2026   2:32 PM          90129 Miscellaneous Icons.jpg                                              
+-a----         2/10/2026   2:32 PM         331188 Payment method icon.jpg                                              
+-a----         2/10/2026   2:32 PM          94543 Payment Method Icons.jpg                                             
+-a----         2/10/2026   2:32 PM         112427 Social icon.jpg                                                      
+-a----         2/10/2026   2:32 PM          69182 Social Icons.jpg                                                     
+-a----         2/10/2026   2:32 PM          31733 Star icon.jpg                                                        
+-a----         2/10/2026   2:32 PM           9078 _Dot.jpg                                                             
+
+
+    Directory: C:\Users\USER\Downloads\Property owner 1\static\Design System\Misc. Icons\Integration icons
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+-a----         2/10/2026   2:32 PM          26464 Browsers.jpg                                                         
+-a----         2/10/2026   2:32 PM         136621 Coding.jpg                                                           
+-a----         2/10/2026   2:32 PM          43355 Design.jpg                                                           
+-a----         2/10/2026   2:32 PM          45255 Finance.jpg                                                          
+-a----         2/10/2026   2:32 PM          40667 Messengers.jpg                                                       
+-a----         2/10/2026   2:32 PM          25205 Music.jpg                                                            
+-a----         2/10/2026   2:32 PM          31476 OS.jpg                                                               
+-a----         2/10/2026   2:32 PM          55105 Other.jpg                                                            
+-a----         2/10/2026   2:32 PM         107838 Productivity.jpg                                                     
+-a----         2/10/2026   2:32 PM          54360 Social networks.jpg                                                  
+-a----         2/10/2026   2:32 PM          20889 Video.jpg                                                            
+
+
+    Directory: C:\Users\USER\Downloads\Property owner 1\static\Design System\Misc. Icons\Wealth Market
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+-a----         2/10/2026   2:32 PM           5386 Icons.jpg                                                            
+
+
+    Directory: C:\Users\USER\Downloads\Property owner 1\static\Design System\Shadows and Blurs
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+-a----         2/10/2026   2:36 PM         989290 Blur.jpg                                                             
+-a----         2/10/2026   2:36 PM         134918 Shadows.jpg                                                          
+
+
+    Directory: C:\Users\USER\Downloads\Property owner 1\static\Design System\Sidebars
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+-a----         2/10/2026   2:34 PM        1410970 Sidebar navigation.jpg                                               
+-a----         2/10/2026   2:34 PM         175157 Sidebar.jpg                                                          
+
+
+    Directory: C:\Users\USER\Downloads\Property owner 1\static\Design System\Typography
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+-a----         2/10/2026   2:39 PM        1011990 Notes and documentation.jpg                                          
+-a----         2/10/2026   2:39 PM         923323 Typography.jpg                                                       
+
+
+    Directory: C:\Users\USER\Downloads\Property owner 1\static-bulk-upload
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+-a----         3/24/2026  12:59 PM           4456 app.js                                                               
+-a----          3/5/2026   2:51 PM          33210 global-styles.css                                                    
+-a----         3/24/2026   5:31 PM           6813 index.html                                                           
+-a----         3/24/2026   2:27 PM           9088 local-styles.css                                                     
+-a----          3/3/2026   8:51 AM           1259 Logo image.png                                                       
+
+
+    Directory: C:\Users\USER\Downloads\Property owner 1\Structural assesment
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+-a----         3/31/2026   4:15 AM          22193 Screen_4.1.html                                                      
+-a----         3/31/2026   4:16 AM          12020 Screen_4.2.html                                                      
+-a----         3/31/2026   4:17 AM           9312 Screen_4.3.html                                                      
+-a----         3/31/2026   4:17 AM           9915 Screen_4.4.html                                                      
+-a----         3/31/2026   4:18 AM          15656 Screen_4.5.html                                                      
+-a----         3/31/2026   4:18 AM          11600 Screen_4.6.html                                                      
+
+
+    Directory: C:\Users\USER\Downloads\Property owner 1\Structural assesment\Complete Assessment Flow
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+-a----         3/30/2026   3:08 PM         184302 Screen_4.1.jpg                                                       
+-a----         3/30/2026   3:08 PM         182410 Screen_4.2.jpg                                                       
+-a----         3/30/2026   3:08 PM         179004 Screen_4.3.jpg                                                       
+-a----         3/30/2026   3:08 PM         176282 Screen_4.4.jpg                                                       
+-a----         3/30/2026   3:08 PM         231744 Screen_4.5.jpg                                                       
+-a----         3/30/2026   3:08 PM         194420 Screen_4.6.jpg                                                       
+
+

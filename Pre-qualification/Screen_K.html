@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agent Sign-Off - WealthMarket</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .agent-badge {
+            background: #E8F5EE;
+            color: #1A5C38;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-bottom: 32px;
+        }
+
+        .summary-card {
+            background: var(--white);
+            border: 1px solid var(--wire-border);
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        .summary-card h3 {
+            font-size: 14px;
+            color: var(--n-600);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 16px;
+        }
+
+        .check-wrap {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+            font-size: 14px;
+            color: var(--n-900);
+            font-weight: 500;
+        }
+
+        .check-icon {
+            color: var(--success-base);
+            font-weight: bold;
+        }
+
+        .sign-off-box {
+            background: var(--primary-50);
+            border: 1px solid var(--primary-200);
+            padding: 32px;
+            border-radius: 12px;
+            margin-top: 32px;
+        }
+
+        .confirmation-check {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 24px;
+            background: var(--white);
+            padding: 16px;
+            border-radius: 8px;
+            border: 1px solid var(--wire-border);
+        }
+
+        .confirmation-check input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin-top: 2px;
+        }
+
+        .confirmation-check label {
+            font-size: 15px;
+            line-height: 1.5;
+            color: var(--n-900);
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+    </style>
+</head>
+<body>
+    <header class="app-header">
+        <div class="header-content">
+            <div class="header-actions">
+                <div class="save-status" id="global-save-status">
+                    <span class="save-dot"></span>
+                    <span class="save-text">Live System</span>
+                </div>
+                <div class="user-profile">
+                    <div class="user-avatar" style="background: #1A5C38; color: white;">AS</div>
+                    <div class="user-name">Agent Sarah</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="app-layout">
+        <aside class="app-sidebar">
+            <div class="sidebar-logo-area">
+                <img src="../Design System/Logo image.png" alt="Logo" class="brand-logo" onerror="this.src='https://via.placeholder.com/32'" />
+                <div class="logo-text">WealthMarket</div>
+            </div>
+            <div class="sidebar-top-branding">
+                <div class="module-dropdown">
+                    <div class="mod-icon" style="background: #1A5C38;"></div>
+                    <select class="mod-select"><option>Agent Portal</option></select>
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="Screen_H.html" class="sidebar-item active">
+                    <span class="icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 20V10M18 20V4M6 20v-4" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </span>
+                    <span>Assessments</span>
+                </a>
+            </nav>
+        </aside>
+
+        <main class="app-main">
+            <div class="views-wrapper" style="padding: 40px; max-width: 800px; margin: 0 auto;">
+                
+                <div class="section-header" style="text-align: center; margin-bottom: 40px;">
+                    <span class="agent-badge" style="display: inline-block; margin-bottom: 16px;">Step 2: Agent Sign-Off</span>
+                    <h2 style="font-size: 32px; margin-bottom: 8px;">Final Approval: WM-2025-04821</h2>
+                    <p style="color: var(--blue-gray-500);">All 7 preliminary checks have cleared successfully.</p>
+                </div>
+
+                <div class="summary-grid">
+                    <div class="summary-card">
+                        <h3>Identity & Title</h3>
+                        <div class="check-wrap"><span class="check-icon">✓</span> KYC Verified</div>
+                        <div class="check-wrap"><span class="check-icon">✓</span> Property & Zoning Match</div>
+                        <div class="check-wrap"><span class="check-icon">✓</span> Land Title Authentic <span style="font-size:12px; color:var(--n-500);">(Agent Override)</span></div>
+                    </div>
+                    <div class="summary-card">
+                        <h3>Building & Risk</h3>
+                        <div class="check-wrap"><span class="check-icon">✓</span> Architecture Validated</div>
+                        <div class="check-wrap"><span class="check-icon">✓</span> Completion Level Verified (65%)</div>
+                        <div class="check-wrap"><span class="check-icon">✓</span> No Encumbrances Found</div>
+                        <div class="check-wrap"><span class="check-icon">✓</span> Risk Score Acceptable (85/100)</div>
+                    </div>
+                </div>
+
+                <div class="sign-off-box">
+                    <h3 style="font-size: 20px; margin-bottom: 8px;">Agent Declaration</h3>
+                    <p style="font-size: 14px; color: var(--n-700); margin-bottom: 24px;">By signing off, you approve this property to move forward to the physical structural assessment phase.</p>
+
+                    <div class="confirmation-check">
+                        <input type="checkbox" id="site-check" onchange="toggleSignoff(this)">
+                        <label for="site-check">I confirm that I have reviewed the gathered documentation, completed the physical site overview, and verified that the property aligns with WealthMarket's financing criteria.</label>
+                    </div>
+
+                    <div class="form-group" style="margin-bottom: 0;">
+                        <label>Digital Signature</label>
+                        <div style="display: flex; gap: 16px;">
+                            <input type="password" class="form-input" placeholder="Enter Agent Password" style="flex: 1;" id="agent-pass">
+                            <button class="btn btn-primary" id="btn-submit" disabled onclick="window.location.href='Screen_L.html'">Sign-Off & Submit</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function toggleSignoff(cb) {
+            const btn = document.getElementById('btn-submit');
+            const pass = document.getElementById('agent-pass');
+            if(cb.checked) {
+                btn.removeAttribute('disabled');
+            } else {
+                btn.setAttribute('disabled', 'true');
+            }
+        }
+        
+        // Basic requirement for password to be non-empty before actual submit could be done via event listener
+        document.getElementById('agent-pass').addEventListener('input', function(e) {
+            const btn = document.getElementById('btn-submit');
+            const cb = document.getElementById('site-check');
+            if (e.target.value.length > 0 && cb.checked) {
+                btn.removeAttribute('disabled');
+            } else {
+                btn.setAttribute('disabled', 'true');
+            }
+        });
+    </script>
+</body>
+</html>

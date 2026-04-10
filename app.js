@@ -101,13 +101,13 @@ document.addEventListener('DOMContentLoaded', () => {
         if (navApplications) navApplications.classList.add('active');
         navigateTo('screen-b');
     }));
-    btnBacks.forEach(btn => btn.addEventListener('click', (e) => navigateTo(e.target.dataset.back)));
-    btnJumps.forEach(btn => btn.addEventListener('click', (e) => navigateTo(e.target.dataset.target)));
+    btnBacks.forEach(btn => btn.addEventListener('click', () => navigateTo(btn.dataset.back)));
+    btnJumps.forEach(btn => btn.addEventListener('click', () => navigateTo(btn.dataset.target)));
 
     // Form verification for Next buttons (Mock validation)
     btnNexts.forEach(btn => {
         btn.addEventListener('click', (e) => {
-            const target = e.target.dataset.next;
+            const target = btn.dataset.next;
 
             // Add specific logic for Step 3 (Screen D) Eligibility
             if (btn.id === 'btn-to-step-4') {

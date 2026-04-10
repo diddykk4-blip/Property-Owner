@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Bulk Product Upload</title>
+    <!-- Google Fonts for Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Link to the main Wealth Market design system -->
+    <link rel="stylesheet" href="../styles.css">
+    <!-- Component-specific styles -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- App Header -->
+    <header class="app-header">
+        <div class="header-content">
+            <div class="header-logo" style="margin-right: auto; display: flex; align-items: center; gap: 8px;">
+                <img src="../Design System/Logo image.png" alt="WealthMarket Logo" style="height: 32px; width: auto;" />
+                <div class="logo-text">WealthMarket Admin</div>
+            </div>
+            <div class="header-actions">
+                <div class="user-profile">
+                    <div class="user-avatar">A</div>
+                    <div class="user-name">Admin User</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="app-main">
+        <div class="form-layout" style="align-items: center; justify-content: center;">
+            <div class="form-main" style="max-width: 600px; margin: 2rem auto; width: 100%;">
+
+                <div class="upload-widget">
+                    <!-- Widget Header -->
+                    <div class="widget-header">
+                        <div class="widget-icon">
+                            <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path>
+                            </svg>
+                        </div>
+                        <div class="widget-title-area">
+                            <h3>Upload files</h3>
+                            <p>Select and upload the files of your choice</p>
+                        </div>
+                        <button class="widget-close">&times;</button>
+                    </div>
+
+                    <!-- File Type Selector -->
+                    <div class="file-type-selector">
+                        <label>Bulk Upload</label>
+                        <select class="form-input custom-select">
+                            <option value="csv">CSV Document (.csv)</option>
+                            <option value="xlsx">Excel Spreadsheet (.xlsx)</option>
+                            <option value="docx">Word Document (.docx)</option>
+                            <option value="pdf">PDF Document (.pdf)</option>
+                        </select>
+                    </div>
+
+                    <!-- Drag & Drop Zone -->
+                    <div class="widget-dropzone">
+                        <svg class="dropzone-icon" width="24" height="24" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path>
+                        </svg>
+                        <h4>Choose a file or drag & drop it here.</h4>
+                        <p>CSV, XLSX, DOCX, and PDF formats, up to 50 MB.</p>
+                        <button class="btn btn-secondary browse-btn">Browse File</button>
+                    </div>
+
+                    <!-- Uploading Files List -->
+                    <div class="file-list">
+                        <!-- Uploading Item -->
+                        <div class="file-item">
+                            <div class="file-item-icon csv-icon">CSV</div>
+                            <div class="file-item-details">
+                                <div class="file-item-row">
+                                    <span class="file-name">products_bulk_upload.csv</span>
+                                    <button class="file-close">&times;</button>
+                                </div>
+                                <div class="file-item-status">
+                                    <span>60 KB of 120 KB</span>
+                                    <span class="status-dots">
+                                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83">
+                                            </path>
+                                        </svg>
+                                        Uploading...
+                                    </span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 50%;"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Completed Item -->
+                        <div class="file-item">
+                            <div class="file-item-icon xlsx-icon">XLSX</div>
+                            <div class="file-item-details">
+                                <div class="file-item-row">
+                                    <span class="file-name">inventory_update.xlsx</span>
+                                    <button class="file-delete">
+                                        <svg width="16" height="16" fill="none" stroke="currentColor"
+                                            viewBox="0 0 24 24" stroke-width="2">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16">
+                                            </path>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div class="file-item-status">
+                                    <span>94 KB of 94 KB</span>
+                                    <span class="status-success">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="3">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7">
+                                            </path>
+                                        </svg>
+                                        Completed
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

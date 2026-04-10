@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Approved Products - Product Management System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Shared Assets -->
+    <link rel="stylesheet" href="global-styles.css">
+    <link rel="stylesheet" href="management-ui.css">
+</head>
+<body>
+    <header class="app-header">
+        <div class="header-content">
+            <div class="header-logo">
+                <img class="brand-logo" src="Logo image.png" alt="Wealth Market Logo">
+                <div class="logo-text">Product Management</div>
+            </div>
+            <div class="header-actions">
+                <div class="user-profile">
+                    <div class="user-avatar">J</div>
+                    <div class="user-name">John Seller</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <nav class="tabs">
+        <div class="tabs-content">
+            <a href="index.html" class="tab">All Products</a>
+            <a href="pending.html" class="tab">Pending Approval</a>
+            <a href="approved.html" class="tab active">Approved</a>
+            <a href="archived.html" class="tab">Archived</a>
+            <a href="add-product.html" class="tab">Add Product</a>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="card">
+            <div class="card-header">
+                <h2>Approved Products</h2>
+                <p>Products that have been approved and synced successfully</p>
+            </div>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Category</th>
+                            <th>Status</th>
+                            <th>Date Approved</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="product-info">
+                                    <img src="https://images.unsplash.com/photo-1592286927505-2fd7fe7c2021?w=100&h=100&fit=crop" class="product-image">
+                                    <div class="product-details">
+                                        <h4>Samsung Galaxy S24 Ultra</h4>
+                                        <div class="product-sku">UPC: 763028694393</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>Electronics</td>
+                            <td><span class="badge badge-approved"><span class="status-dot approved"></span> Approved</span></td>
+                            <td>Mar 25, 2026</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+    <script src="management.js"></script>
+</body>
+</html>

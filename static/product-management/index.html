@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Products - Product Management System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Shared Assets -->
+    <link rel="stylesheet" href="global-styles.css">
+    <link rel="stylesheet" href="management-ui.css">
+</head>
+<body>
+    <header class="app-header">
+        <div class="header-content">
+            <div class="header-logo">
+                <img class="brand-logo" src="Logo image.png" alt="Wealth Market Logo">
+                <div class="logo-text">Product Management</div>
+            </div>
+            <div class="header-actions">
+                <div class="notification-bell">
+                    <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
+                    </svg>
+                    <span class="notification-badge">3</span>
+                </div>
+                <div class="user-profile">
+                    <div class="user-avatar">J</div>
+                    <div class="user-name">John Seller</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <nav class="tabs">
+        <div class="tabs-content">
+            <a href="index.html" class="tab active">All Products</a>
+            <a href="pending.html" class="tab">Pending Approval</a>
+            <a href="approved.html" class="tab">Approved</a>
+            <a href="archived.html" class="tab">Archived</a>
+            <a href="add-product.html" class="tab">Add Product</a>
+        </div>
+    </nav>
+
+    <main class="container">
+        <!-- Dashboard Stats -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-label">Total Products</div>
+                <div class="stat-value">1,247</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Pending Approval</div>
+                <div class="stat-value" style="color: var(--warning-base);">43</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Approved Products</div>
+                <div class="stat-value" style="color: var(--success-base);">1,189</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Archived</div>
+                <div class="stat-value">15</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-body">
+                <div style="display: flex; gap: 16px; margin-bottom: 24px; flex-wrap: wrap;">
+                    <div style="flex: 1; min-width: 300px; position: relative;">
+                        <svg style="position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--blue-gray-500); width: 16px; height: 16px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                        </svg>
+                        <input type="text" style="width: 100%; padding: 10px 14px 10px 40px; font-family: 'Inter', sans-serif; border: 1px solid var(--n-200); border-radius: 8px;" placeholder="Search products...">
+                    </div>
+                    <select style="padding: 10px 14px; border: 1px solid var(--n-200); border-radius: 8px; font-family: 'Inter', sans-serif; background: var(--white);">
+                        <option value="">All Status</option>
+                        <option value="pending">Pending</option>
+                        <option value="approved">Approved</option>
+                    </select>
+                    <select style="padding: 10px 14px; border: 1px solid var(--n-200); border-radius: 8px; font-family: 'Inter', sans-serif; background: var(--white);">
+                        <option value="">All Categories</option>
+                        <option value="electronics">Electronics</option>
+                        <option value="fashion">Fashion</option>
+                    </select>
+                </div>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Category</th>
+                                <th>Stock</th>
+                                <th>Status</th>
+                                <th>Sync Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="product-info">
+                                        <img src="https://images.unsplash.com/photo-1592286927505-2fd7fe7c2021?w=100&h=100&fit=crop" class="product-image">
+                                        <div class="product-details">
+                                            <h4>Samsung Galaxy S24 Ultra</h4>
+                                            <div class="product-sku">UPC: 763028694393</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>Electronics</td>
+                                <td>45</td>
+                                <td><span class="badge badge-approved"><span class="status-dot approved"></span> Approved</span></td>
+                                <td><span class="badge badge-synced"><span class="status-dot approved"></span> Synced</span></td>
+                                <td><a href="review-product.html" class="btn btn-sm btn-secondary">View</a></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="product-info">
+                                        <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=100&h=100&fit=crop" class="product-image">
+                                        <div class="product-details">
+                                            <h4>Nike Air Max 270</h4>
+                                            <div class="product-sku">UPC: 590286943933</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>Fashion</td>
+                                <td>120</td>
+                                <td><span class="badge badge-pending"><span class="status-dot pending"></span> Pending</span></td>
+                                <td><span class="badge badge-syncing"><span class="status-dot syncing"></span> Syncing</span></td>
+                                <td><a href="review-product.html" class="btn btn-sm btn-primary">Review</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- Shared Logic -->
+    <script src="management.js"></script>
+</body>
+</html>

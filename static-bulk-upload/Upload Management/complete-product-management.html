@@ -1,0 +1,1298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Management System - Complete</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="global-styles.css">
+    <style>
+        body { font-family: 'Inter', sans-serif !important; background: var(--n-50) !important; color: var(--blue-gray-800) !important; }
+        .header { display: none; }
+        .app-header { height: 72px; background: var(--white); padding: 0 32px; display: flex; align-items: center; position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--wire-border); }
+        .header-content { width: 100%; max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .header-logo { display: flex; align-items: center; gap: 8px; }
+        .logo-icon { width: 32px; height: 32px; background: var(--primary-base); color: var(--n-900); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 18px; }
+        .logo-text { font-size: 20px; font-weight: 700; letter-spacing: -0.02em; color: var(--n-900); }
+        .header-actions { display: flex; align-items: center; gap: 20px; }
+        .user-profile { display: flex; align-items: center; gap: 8px; cursor: pointer; }
+        .user-avatar { width: 36px; height: 36px; background: var(--primary-base); color: var(--blue-gray-800); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; }
+        .user-name { font-size: 14px; font-weight: 500; color: var(--blue-gray-800); }
+        .tabs { background: var(--white); border-bottom: 1px solid var(--wire-border); padding: 0 32px; }
+        .tabs-content { max-width: 1400px; margin: 0 auto; display: flex; gap: 32px; }
+        .tab { padding: 16px 0; cursor: pointer; color: var(--blue-gray-500); font-weight: 600; font-size: 14px; position: relative; transition: all 0.2s; border-bottom: 2px solid transparent; }
+        .tab:hover { color: var(--n-900); }
+        .tab.active { color: var(--primary-base); border-bottom-color: var(--primary-base); }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; animation: wm-fadeIn 0.3s ease-out; }
+        @keyframes wm-fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+        .container { max-width: 1400px; margin: 0 auto; padding: 32px; }
+        .card { background: var(--white); border-radius: 12px; border: 1px solid var(--wire-border); margin-bottom: 24px; box-shadow: var(--shadow-sm); }
+        .card-header { padding: 24px; border-bottom: 1px solid var(--wire-border); }
+        .card-header h2 { font-size: 20px; font-weight: 600; margin-bottom: 4px; color: var(--n-900); }
+        .card-header p { color: var(--blue-gray-500); font-size: 14px; }
+        .card-body { padding: 24px; }
+        .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+        .form-group { margin-bottom: 20px; display: flex; flex-direction: column; gap: 8px; }
+        .form-group.full-width { grid-column: 1 / -1; }
+        label { display: block; font-size: 14px; font-weight: 600; color: var(--blue-gray-800); }
+        .label-required::after { content: '*'; color: var(--error-base); margin-left: 4px; }
+        input[type="text"], input[type="number"], input[type="date"], select, textarea { width: 100%; padding: 12px 16px; border: 1px solid var(--n-200); border-radius: 8px; font-family: 'Inter', sans-serif; font-size: 14px; color: var(--blue-gray-800); background: var(--white); transition: all 0.2s; }
+        input:focus, select:focus, textarea:focus { outline: none; border-color: var(--primary-base); box-shadow: 0 0 0 3px rgba(255, 190, 0, 0.2); }
+        textarea { resize: vertical; min-height: 100px; }
+        .helper-text { font-size: 12px; color: var(--blue-gray-500); }
+        .btn { padding: 10px 20px; border-radius: 8px; font-weight: 600; font-size: 14px; cursor: pointer; border: none; display: inline-flex; align-items: center; gap: 8px; transition: all 0.2s; font-family: 'Inter', sans-serif; }
+        .btn-primary { background: var(--primary-base); color: var(--n-900); border: 1px solid transparent; }
+        .btn-primary:hover { background: var(--primary-200); box-shadow: var(--shadow-sm); transform: translateY(-1px); }
+        .btn-secondary { background: var(--white); color: var(--blue-gray-800); border: 1px solid var(--wire-border); }
+        .btn-secondary:hover { background: var(--n-25); }
+        .btn-ghost { background: transparent; color: var(--blue-gray-500); box-shadow: none; }
+        .btn-ghost:hover { background: var(--n-50); color: var(--blue-gray-800); }
+        .btn-sm { padding: 6px 12px; font-size: 13px; }
+        .btn-success { background: var(--success-base); color: white; }
+        .btn-success:hover { background: #0c7c32; }
+        .btn-error { background: var(--error-base); color: white; }
+        .btn-error:hover { background: #b01f1a; }
+        .collapsible-section { border: 1px solid var(--wire-border); border-radius: 8px; margin-bottom: 20px; overflow: hidden; background: var(--white); }
+        .collapsible-header { background: var(--n-25); padding: 16px 24px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; user-select: none; border-bottom: 1px solid var(--wire-border); }
+        .collapsible-header:hover { background: #e5e9ed; }
+        .collapsible-header h3 { font-size: 16px; font-weight: 600; color: var(--n-900); margin: 0; }
+        .collapsible-icon { transition: transform 0.2s; color: var(--n-600); }
+        .collapsible-section.collapsed .collapsible-icon { transform: rotate(-90deg); }
+        .collapsible-body { padding: 24px; display: block; }
+        .collapsible-section.collapsed .collapsible-body { display: none; }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px; margin-bottom: 32px; }
+        .stat-card { background: var(--white); border-radius: 12px; padding: 24px; border: 1px solid var(--wire-border); box-shadow: var(--shadow-xs); }
+        .stat-label { font-size: 12px; color: var(--blue-gray-500); text-transform: uppercase; font-weight: 600; letter-spacing: 0.05em; margin-bottom: 8px; }
+        .stat-value { font-size: 40px; font-weight: 700; color: var(--n-900); letter-spacing: -0.02em; line-height: 1; }
+        .search-bar { display: flex; gap: 16px; margin-bottom: 24px; flex-wrap: wrap; }
+        .search-input-wrapper { flex: 1; min-width: 300px; position: relative; }
+        .search-input { width: 100%; padding: 10px 14px 10px 40px !important; font-family: 'Inter', sans-serif; }
+        .search-icon { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--blue-gray-500); width: 16px; height: 16px; }
+        .table-container { overflow-x: auto; border-radius: 8px; border: 1px solid var(--wire-border); background: var(--white); }
+        table { width: 100%; border-collapse: collapse; }
+        thead { background: var(--n-25); }
+        th { padding: 12px 16px; text-align: left; font-weight: 600; font-size: 12px; color: var(--blue-gray-500); border-bottom: 1px solid var(--wire-border); text-transform: uppercase; letter-spacing: 0.05em; }
+        td { padding: 16px; border-bottom: 1px solid var(--wire-border); font-size: 14px; color: var(--blue-gray-800); }
+        tbody tr:hover { background: var(--n-25); }
+        tbody tr:last-child td { border-bottom: none; }
+        .product-info { display: flex; align-items: center; gap: 12px; }
+        .product-image { width: 48px; height: 48px; border-radius: 8px; object-fit: cover; border: 1px solid var(--wire-border); }
+        .product-details h4 { font-weight: 500; font-size: 14px; margin-bottom: 2px; color: var(--n-900); }
+        .product-sku { font-size: 12px; color: var(--blue-gray-500); }
+        .action-buttons { display: flex; gap: 8px; }
+        .info-banner { background: var(--secondary-50); border: 1px solid #99B3FF; padding: 12px 16px; border-radius: 8px; display: flex; gap: 12px; margin-bottom: 24px; color: var(--secondary-base); }
+        .info-banner svg { color: var(--secondary-base); width: 20px; height: 20px; flex-shrink: 0; margin-top: 2px; }
+        .info-banner-text { font-size: 14px; }
+        .badge { display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px; border-radius: 16px; font-size: 12px; font-weight: 600; }
+        .badge-pending { background: var(--warning-light); color: #B0740E; }
+        .badge-approved { background: var(--success-light); color: var(--success-base); }
+        .badge-rejected, .badge-failed { background: var(--error-light); color: var(--error-base); }
+        .badge-archived { background: var(--n-100); color: var(--n-700); }
+        .badge-synced { background: var(--success-light); color: var(--success-base); }
+        .badge-syncing { background: var(--secondary-50); color: var(--secondary-base); }
+        .status-dot { width: 6px; height: 6px; border-radius: 50%; }
+        .status-dot.approved { background: var(--success-base); }
+        .status-dot.pending { background: #F3A218; }
+        .status-dot.syncing { background: var(--secondary-base); animation: wmPulse 2s infinite; }
+        .status-dot.rejected { background: var(--error-base); }
+        @keyframes wmPulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+        .upc-display { display: flex; align-items: center; gap: 16px; padding: 16px; background: var(--n-25); border-radius: 8px; border: 1px solid var(--wire-border); }
+        .upc-code { font-family: 'Courier New', monospace; font-size: 20px; font-weight: 600; color: var(--n-900); }
+        .upc-label { font-size: 12px; color: var(--blue-gray-500); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+        .image-upload-area { border: 2px dashed var(--wire-border); border-radius: 12px; padding: 32px; text-align: center; cursor: pointer; transition: all 0.2s; }
+        .image-upload-area:hover { border-color: var(--primary-base); background: var(--n-25); }
+        .upload-icon { width: 48px; height: 48px; margin: 0 auto 16px; color: var(--blue-gray-500); }
+        .image-preview-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 16px; margin-top: 16px; }
+        .image-preview { position: relative; aspect-ratio: 1; border-radius: 8px; overflow: hidden; border: 1px solid var(--wire-border); }
+        .image-preview img { width: 100%; height: 100%; object-fit: cover; }
+        .image-preview-remove { position: absolute; top: 8px; right: 8px; background: rgba(0,0,0,0.7); color: white; border: none; border-radius: 50%; width: 24px; height: 24px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+        .modal-overlay { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.5); display: flex; align-items: center; justify-content: center; z-index: 1000; opacity: 0; pointer-events: none; transition: opacity 0.2s; padding: 16px; }
+        .modal-overlay.active { opacity: 1; pointer-events: all; }
+        .modal { background: var(--white); border-radius: 12px; box-shadow: var(--shadow-lg); max-width: 600px; width: 100%; max-height: 90vh; overflow: hidden; display: flex; flex-direction: column; transform: scale(0.95); transition: transform 0.2s; }
+        .modal-large { max-width: 900px; }
+        .modal-overlay.active .modal { transform: scale(1); }
+        .modal-header { padding: 24px; border-bottom: 1px solid var(--wire-border); display: flex; justify-content: space-between; align-items: center; }
+        .modal-header h3 { font-size: 20px; font-weight: 600; color: var(--n-900); margin: 0; }
+        .modal-close { background: none; border: none; cursor: pointer; color: var(--blue-gray-500); padding: 8px; border-radius: 6px; }
+        .modal-close:hover { background: var(--n-50); }
+        .modal-body { padding: 24px; overflow-y: auto; flex: 1; }
+        .modal-footer { padding: 24px; border-top: 1px solid var(--wire-border); display: flex; gap: 12px; justify-content: flex-end; background: var(--n-25); }
+        .detail-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px; }
+        .detail-item { display: flex; flex-direction: column; gap: 4px; }
+        .detail-label { font-size: 12px; color: var(--blue-gray-500); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; }
+        .detail-value { font-size: 14px; color: var(--n-900); }
+        .detail-value-large { font-size: 18px; font-weight: 600; }
+        .user-badge { display: inline-flex; align-items: center; gap: 12px; padding: 8px 16px; background: var(--n-25); border-radius: 8px; border: 1px solid var(--wire-border); }
+        .user-info h4 { font-size: 14px; font-weight: 600; color: var(--n-900); margin: 0; }
+        .user-id { font-size: 12px; color: var(--blue-gray-500); }
+        .timeline { position: relative; padding-left: 32px; }
+        .timeline::before { content: ''; position: absolute; left: 8px; top: 0; bottom: 0; width: 2px; background: var(--wire-border); }
+        .timeline-item { position: relative; margin-bottom: 24px; }
+        .timeline-dot { position: absolute; left: -28px; top: 4px; width: 12px; height: 12px; border-radius: 50%; background: var(--white); border: 2px solid var(--primary-base); }
+        .timeline-content { padding: 16px; background: var(--n-25); border-radius: 8px; border: 1px solid var(--wire-border); }
+        .timeline-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+        .timeline-title { font-weight: 600; font-size: 14px; color: var(--n-900); }
+        .timeline-date { font-size: 12px; color: var(--blue-gray-500); }
+        .timeline-description { font-size: 14px; color: var(--blue-gray-500); }
+        .notification-bell { position: relative; padding: 8px; border-radius: 8px; cursor: pointer; transition: background 0.2s; color: var(--n-800); }
+        .notification-bell:hover { background: var(--n-50); }
+        .notification-badge { position: absolute; top: 4px; right: 4px; background: var(--error-base); color: white; font-size: 10px; padding: 2px 6px; border-radius: 999px; font-weight: 600; }
+        .notification-dropdown { position: absolute; top: 100%; right: 0; margin-top: 8px; width: 400px; background: var(--white); border-radius: 12px; box-shadow: var(--shadow-lg); border: 1px solid var(--wire-border); display: none; z-index: 200; }
+        .notification-dropdown.active { display: block; }
+        .notification-header { padding: 16px 24px; border-bottom: 1px solid var(--wire-border); display: flex; justify-content: space-between; align-items: center; }
+        .notification-list { max-height: 400px; overflow-y: auto; }
+        .notification-item { padding: 16px 24px; border-bottom: 1px solid var(--wire-border); cursor: pointer; transition: background 0.2s; }
+        .notification-item:hover { background: var(--n-25); }
+        .notification-item.unread { background: rgba(0, 65, 255, 0.04); }
+        .notification-content { display: flex; gap: 16px; }
+        .notification-icon { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .notification-icon.success { background: var(--success-light); color: var(--success-base); }
+        .notification-icon.error { background: var(--error-light); color: var(--error-base); }
+        .notification-icon.info { background: var(--secondary-50); color: var(--secondary-base); }
+        .notification-text h4 { font-size: 14px; font-weight: 600; margin: 0 0 4px 0; color: var(--n-900); }
+        .notification-text p { font-size: 13px; color: var(--blue-gray-500); margin: 0; line-height: 1.4; }
+        .notification-time { font-size: 12px; color: var(--blue-gray-500); margin-top: 8px; }
+        .form-actions { display: flex; gap: 16px; justify-content: flex-end; padding-top: 24px; border-top: 1px solid var(--wire-border); margin-top: 32px; }
+        .hidden-input { display: none; }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+        <header class="app-header" style="border-bottom: 1px solid var(--wire-border);">
+        <div class="header-content">
+            <div class="header-logo" style="margin-right: auto; gap: 12px;">
+                <img class="brand-logo" src="Logo image.png" alt="Wealth Market Logo" style="height: 36px; width: auto;">
+                <div class="logo-text" style="font-size: 18px; font-weight: 700; color: var(--n-900); letter-spacing: -0.02em;">Product Management</div>
+            </div>
+            <div class="header-actions">
+                <div class="notification-bell" onclick="toggleNotifications()">
+                    <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
+                    </svg>
+                    <span class="notification-badge">3</span>
+                    <div class="notification-dropdown" id="notificationDropdown">
+                        <div class="notification-header">
+                            <h3 style="font-size: 1rem; font-weight: 600; margin:0;">Notifications</h3>
+                            <button class="btn-ghost" style="padding: 0.25rem; font-size: 0.75rem; border:none; cursor:pointer;" onclick="event.stopPropagation()">Mark all as read</button>
+                        </div>
+                        <div class="notification-list">
+                            <div class="notification-item unread">
+                                <div class="notification-content">
+                                    <div class="notification-icon success">
+                                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                        </svg>
+                                    </div>
+                                    <div class="notification-text">
+                                        <h4>Product Approved</h4>
+                                        <p>Samsung Galaxy S24 Ultra has been approved and synced to PrestaShop</p>
+                                        <div class="notification-time">5 minutes ago</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="notification-item unread">
+                                <div class="notification-content">
+                                    <div class="notification-icon error">
+                                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                        </svg>
+                                    </div>
+                                    <div class="notification-text">
+                                        <h4>Product Rejected</h4>
+                                        <p>Nike Air Max 270 - Missing product images</p>
+                                        <div class="notification-time">1 hour ago</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="notification-item">
+                                <div class="notification-content">
+                                    <div class="notification-icon info">
+                                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                        </svg>
+                                    </div>
+                                    <div class="notification-text">
+                                        <h4>Product Pending Review</h4>
+                                        <p>Sony WH-1000XM5 Headphones is awaiting approval</p>
+                                        <div class="notification-time">2 hours ago</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Settings icon -->
+                <button style="background: none; border: none; cursor: pointer; padding: 8px; border-radius: 8px; color: var(--blue-gray-500); display: flex; align-items: center; transition: all 0.2s;" onmouseover="this.style.background='var(--n-50)';this.style.color='var(--n-900)'" onmouseout="this.style.background='none';this.style.color='var(--blue-gray-500)'" title="Settings">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    </svg>
+                </button>
+
+                <div class="user-profile" style="margin-left: 0.5rem; border-left: 1px solid var(--wire-border); padding-left: 1rem;">
+                    <div class="user-avatar">J</div>
+                    <div class="user-name">John Seller</div>
+                    <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="color: var(--blue-gray-500); margin-left: 2px;">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Tabs -->
+    <nav class="tabs">
+        <div class="tabs-content">
+            <div class="tab active" onclick="switchTab('all-products')">All Products</div>
+            <div class="tab" onclick="switchTab('pending')">Pending Approval</div>
+            <div class="tab" onclick="switchTab('approved')">Approved</div>
+            <div class="tab" onclick="switchTab('archived')">Archived</div>
+            <div class="tab" onclick="switchTab('add-product')">Add Product</div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- All Products Tab -->
+        <div class="tab-content active" id="all-products">
+            <!-- Stats -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px;">
+                        <div class="stat-label">Total Products</div>
+                        <div style="width: 40px; height: 40px; background: var(--n-50); border: 1px solid var(--wire-border); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--blue-gray-500); flex-shrink: 0;">
+                            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="stat-value">1,247</div>
+                </div>
+                <div class="stat-card">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px;">
+                        <div class="stat-label">Pending Approval</div>
+                        <div style="width: 40px; height: 40px; background: var(--warning-light); border: 1px solid #F3A21820; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--warning-base); flex-shrink: 0;">
+                            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="stat-value" style="color: var(--warning-base);">43</div>
+                </div>
+                <div class="stat-card">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px;">
+                        <div class="stat-label">Approved Products</div>
+                        <div style="width: 40px; height: 40px; background: var(--success-light); border: 1px solid #0F973D20; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--success-base); flex-shrink: 0;">
+                            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="stat-value" style="color: var(--success-base);">1,189</div>
+                </div>
+                <div class="stat-card">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px;">
+                        <div class="stat-label">Archived</div>
+                        <div style="width: 40px; height: 40px; background: var(--n-50); border: 1px solid var(--wire-border); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--blue-gray-500); flex-shrink: 0;">
+                            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="stat-value">15</div>
+                </div>
+            </div>
+
+            <!-- Search and Filters -->
+            <div class="card">
+                <div class="card-body">
+                    <div class="search-bar">
+                        <div class="search-input-wrapper">
+                            <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                            </svg>
+                            <input type="text" class="search-input" placeholder="Search products by name, SKU, or UPC..." id="searchInput" onkeyup="filterProducts()">
+                        </div>
+                        <select id="statusFilter" onchange="filterProducts()">
+                            <option value="">All Status</option>
+                            <option value="pending">Pending</option>
+                            <option value="approved">Approved</option>
+                            <option value="rejected">Rejected</option>
+                            <option value="archived">Archived</option>
+                        </select>
+                        <select id="categoryFilter" onchange="filterProducts()">
+                            <option value="">All Categories</option>
+                            <option value="electronics">Electronics</option>
+                            <option value="fashion">Fashion</option>
+                            <option value="home">Home & Living</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Products Table -->
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Category</th>
+                                <th>Stock</th>
+                                <th>Status</th>
+                                <th>Sync Status</th>
+                                <th>Submitted By</th>
+                                <th>Date Added</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="productsTableBody">
+                            <tr data-status="approved" data-category="electronics">
+                                <td>
+                                    <div class="product-info">
+                                        <img src="https://images.unsplash.com/photo-1592286927505-2fd7fe7c2021?w=100&h=100&fit=crop" alt="Product" class="product-image">
+                                        <div class="product-details">
+                                            <h4>Samsung Galaxy S24 Ultra</h4>
+                                            <div class="product-sku">UPC: 763028694393</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>Electronics</td>
+                                <td>45</td>
+                                <td>
+                                    <span class="badge badge-approved">
+                                        <span class="status-dot approved"></span>
+                                        Approved
+                                    </span>
+                                </td>
+                                <td>
+                                    <span class="badge badge-synced">
+                                        <span class="status-dot approved"></span>
+                                        Synced
+                                    </span>
+                                </td>
+                                <td>USER_12345</td>
+                                <td>Mar 25, 2026</td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="btn btn-sm btn-secondary" onclick="viewProductDetails(1)">View</button>
+                                        <button class="btn btn-sm btn-ghost" onclick="archiveProduct(1)">Archive</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr data-status="pending" data-category="fashion">
+                                <td>
+                                    <div class="product-info">
+                                        <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=100&h=100&fit=crop" alt="Product" class="product-image">
+                                        <div class="product-details">
+                                            <h4>Nike Air Max 270</h4>
+                                            <div class="product-sku">UPC: 590286943933</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>Fashion</td>
+                                <td>120</td>
+                                <td>
+                                    <span class="badge badge-pending">
+                                        <span class="status-dot pending"></span>
+                                        Pending
+                                    </span>
+                                </td>
+                                <td>
+                                    <span class="badge badge-syncing">
+                                        <span class="status-dot syncing"></span>
+                                        Not Synced
+                                    </span>
+                                </td>
+                                <td>USER_67890</td>
+                                <td>Mar 28, 2026</td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="btn btn-sm btn-primary" onclick="reviewProduct(2)">Review</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr data-status="approved" data-category="home">
+                                <td>
+                                    <div class="product-info">
+                                        <img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?w=100&h=100&fit=crop" alt="Product" class="product-image">
+                                        <div class="product-details">
+                                            <h4>Philips Air Fryer XXL</h4>
+                                            <div class="product-sku">UPC: 112233445566</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>Home & Living</td>
+                                <td>28</td>
+                                <td>
+                                    <span class="badge badge-approved">
+                                        <span class="status-dot approved"></span>
+                                        Approved
+                                    </span>
+                                </td>
+                                <td>
+                                    <span class="badge badge-synced">
+                                        <span class="status-dot approved"></span>
+                                        Synced
+                                    </span>
+                                </td>
+                                <td>USER_54321</td>
+                                <td>Mar 26, 2026</td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="btn btn-sm btn-secondary" onclick="viewProductDetails(3)">View</button>
+                                        <button class="btn btn-sm btn-ghost" onclick="archiveProduct(3)">Archive</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pending Approval Tab -->
+        <div class="tab-content" id="pending">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Pending Approval</h2>
+                    <p>Review and approve products submitted by sellers</p>
+                </div>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Category</th>
+                                <th>Submitted By</th>
+                                <th>Date Submitted</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="product-info">
+                                        <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=100&h=100&fit=crop" alt="Product" class="product-image">
+                                        <div class="product-details">
+                                            <h4>Nike Air Max 270</h4>
+                                            <div class="product-sku">UPC: 590286943933</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>Fashion</td>
+                                <td>USER_67890</td>
+                                <td>Mar 28, 2026</td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="btn btn-sm btn-primary" onclick="reviewProduct(2)">Review</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="product-info">
+                                        <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=100&h=100&fit=crop" alt="Product" class="product-image">
+                                        <div class="product-details">
+                                            <h4>Sony WH-1000XM5 Headphones</h4>
+                                            <div class="product-sku">UPC: 776655443322</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>Electronics</td>
+                                <td>USER_11111</td>
+                                <td>Mar 29, 2026</td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="btn btn-sm btn-primary" onclick="reviewProduct(4)">Review</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Approved Tab -->
+        <div class="tab-content" id="approved">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Approved Products</h2>
+                    <p>Products synced to PrestaShop</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Archived Tab -->
+        <div class="tab-content" id="archived">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Archived Products</h2>
+                    <p>Soft-deleted products. Can be restored within 30 days.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add Product Tab -->
+        <div class="tab-content" id="add-product">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Add New Product</h2>
+                    <p>Fill in the product details below. Fields marked with (*) are mandatory.</p>
+                </div>
+                <div class="card-body">
+                    <div class="info-banner">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        <div class="info-banner-text">Fields marked with (*) are mandatory fields.</div>
+                    </div>
+
+                    <form id="newProductForm">
+                        <!-- Categories Section -->
+                        <div class="collapsible-section" id="categoriesSection">
+                            <div class="collapsible-header" onclick="toggleSection('categoriesSection')">
+                                <h3>Categories</h3>
+                                <svg class="collapsible-icon" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                </svg>
+                            </div>
+                            <div class="collapsible-body">
+                                <div class="form-group">
+                                    <label class="label-required">Choose Default Category</label>
+                                    <select required>
+                                        <option value="">Select category</option>
+                                        <option value="phones">Phones & Tablets >> Mobile Phones >> Android Phones</option>
+                                        <option value="electronics">Electronics</option>
+                                        <option value="fashion">Fashion</option>
+                                        <option value="home">Home & Living</option>
+                                        <option value="beauty">Beauty & Health</option>
+                                        <option value="sports">Sports & Outdoors</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Information Section -->
+                        <div class="collapsible-section" id="informationSection">
+                            <div class="collapsible-header" onclick="toggleSection('informationSection')">
+                                <h3>Information</h3>
+                                <svg class="collapsible-icon" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                </svg>
+                            </div>
+                            <div class="collapsible-body">
+                                <div class="form-grid">
+                                    <div class="form-group">
+                                        <label class="label-required">Name</label>
+                                        <input type="text" placeholder="e.g., Redmi Note 15G" required>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="label-required">Reference Code (SKU)</label>
+                                        <input type="text" placeholder="e.g., 630286943933" required>
+                                    </div>
+
+                                    <div class="form-group full-width">
+                                        <label class="label-required">Product Code (UPC/EAN/ISBN)</label>
+                                        <div class="upc-display">
+                                            <div style="flex: 1;">
+                                                <div class="upc-label">Auto-Generated UPC</div>
+                                                <div class="upc-code" id="upcCode">763028694393</div>
+                                            </div>
+                                            <button type="button" class="btn btn-secondary" onclick="generateUPC()">
+                                                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+                                                </svg>
+                                                Regenerate UPC
+                                            </button>
+                                        </div>
+                                        <span class="helper-text" style="color: var(--info); margin-top: 0.5rem;">
+                                            <strong>Click here to find the Product UPC</strong> | Can't find the UPC? <a href="#" style="color: var(--primary);">Get a temporary UPC from us</a>
+                                        </span>
+                                    </div>
+
+                                    <div class="form-group full-width">
+                                        <label class="label-required">Manufacturer</label>
+                                        <div style="display: flex; gap: 0.75rem;">
+                                            <select style="flex: 1;" required>
+                                                <option value="">Select manufacturer</option>
+                                                <option value="redblue">Red & Blue Telecom</option>
+                                                <option value="samsung">Samsung</option>
+                                                <option value="apple">Apple</option>
+                                                <option value="nike">Nike</option>
+                                            </select>
+                                            <button type="button" class="btn btn-primary">
+                                                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                                                </svg>
+                                                Add New Manufacturer
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group full-width">
+                                        <label>Short Description</label>
+                                        <textarea placeholder="Brief product overview..." style="min-height: 80px;"></textarea>
+                                    </div>
+
+                                    <div class="form-group full-width">
+                                        <label>Description</label>
+                                        <textarea placeholder="Detailed product description..." style="min-height: 150px;"></textarea>
+                                    </div>
+
+                                    <div class="form-group full-width">
+                                        <label>Tags</label>
+                                        <input type="text" placeholder="Separate tags with commas">
+                                        <span class="helper-text">Each tag has to be followed by a comma. Forbidden characters: !<>;?=+#"°{}_$%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Prices Section -->
+                        <div class="collapsible-section" id="pricesSection">
+                            <div class="collapsible-header" onclick="toggleSection('pricesSection')">
+                                <h3>Prices</h3>
+                                <svg class="collapsible-icon" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                </svg>
+                            </div>
+                            <div class="collapsible-body">
+                                <div class="form-grid">
+                                    <div class="form-group">
+                                        <label>Wholesale Price</label>
+                                        <input type="number" placeholder="300000" step="0.01">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="label-required">Retail Price (Tax Excl.)</label>
+                                        <input type="number" placeholder="300000" step="0.01" required>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Retail Price (Tax incl.)</label>
+                                        <input type="number" placeholder="300000.00" step="0.01">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="label-required">Tax</label>
+                                        <select required>
+                                            <option value="">Select tax</option>
+                                            <option value="no-tax">No Tax</option>
+                                            <option value="vat-5">VAT 5%</option>
+                                            <option value="vat-10">VAT 10%</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group full-width">
+                                        <label>Unit Price Per Quantity</label>
+                                        <div style="display: flex; gap: 0.75rem;">
+                                            <input type="number" placeholder="0" step="0.01" style="flex: 1;">
+                                            <input type="text" placeholder="per kilo, per ltr" style="flex: 1;">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Images Section -->
+                        <div class="collapsible-section" id="imagesSection">
+                            <div class="collapsible-header" onclick="toggleSection('imagesSection')">
+                                <h3>Images</h3>
+                                <svg class="collapsible-icon" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                </svg>
+                            </div>
+                            <div class="collapsible-body">
+                                <p style="background: #fff9e6; padding: 0.75rem; border-radius: 0.5rem; font-size: 0.875rem; margin-bottom: 1rem;">
+                                    ⚠️ You can upload image of maximum size: 8 MB
+                                </p>
+
+                                <div class="form-group">
+                                    <label>New Image Caption</label>
+                                    <input type="text" placeholder="Enter image caption">
+                                </div>
+
+                                <div class="image-upload-area" onclick="document.getElementById('imageInput').click()">
+                                    <input type="file" id="imageInput" class="hidden-input" multiple accept="image/*" onchange="handleImageSelect(event)">
+                                    <svg class="upload-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                    </svg>
+                                    <p style="font-weight: 500; margin-bottom: 0.25rem;">Add new Image to this product</p>
+                                    <button type="button" class="btn btn-primary" style="margin-top: 1rem;">
+                                        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                                        </svg>
+                                        Add Image
+                                    </button>
+                                </div>
+                                <div class="image-preview-grid" id="imagePreviewGrid"></div>
+                            </div>
+                        </div>
+
+                        <!-- Quantities Section -->
+                        <div class="collapsible-section" id="quantitiesSection">
+                            <div class="collapsible-header" onclick="toggleSection('quantitiesSection')">
+                                <h3>Quantities</h3>
+                                <svg class="collapsible-icon" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                </svg>
+                            </div>
+                            <div class="collapsible-body">
+                                <div class="form-grid">
+                                    <div class="form-group">
+                                        <label class="label-required">Quantity</label>
+                                        <input type="number" placeholder="8" min="0" required>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Out of Stock</label>
+                                        <select>
+                                            <option value="deny">Default: Deny orders</option>
+                                            <option value="allow">Allow orders</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="label-required">Minimum Quantity</label>
+                                        <input type="number" placeholder="1" min="1" required>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Available Date</label>
+                                        <input type="date" value="0000-00-00">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Displayed text when in-stock</label>
+                                        <input type="text" placeholder="In Stock">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Displayed text when backordering is allowed</label>
+                                        <input type="text" placeholder="Available for backorder">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Form Actions -->
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-secondary" onclick="switchTab('all-products')">Cancel</button>
+                            <button type="button" class="btn btn-ghost">Save as Draft</button>
+                            <button type="submit" class="btn btn-primary">Submit for Approval</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- PrestaShop Redirect Modal -->
+    <div class="modal-overlay" id="prestashopRedirectModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Product Not Found</h3>
+                <button class="modal-close" onclick="closeModal('prestashopRedirectModal')">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div style="text-align: center; padding: 2rem 1rem;">
+                    <svg width="64" height="64" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="margin: 0 auto 1.5rem; color: var(--warning);">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+                    </svg>
+                    <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.75rem;">This product does not exist in the catalog</h3>
+                    <p style="color: var(--text-secondary); margin-bottom: 2rem;">The product you're trying to add hasn't been created yet. You can create it now or search for similar existing products.</p>
+                    
+                    <div style="display: flex; flex-direction: column; gap: 1rem;">
+                        <button class="btn btn-primary" onclick="closeModal('prestashopRedirectModal'); switchTab('add-product')">
+                            <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                            </svg>
+                            Create Product on Platform
+                        </button>
+                        <button class="btn btn-secondary" onclick="closeModal('prestashopRedirectModal'); switchTab('all-products')">
+                            <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                            </svg>
+                            Search Existing Products Instead
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Review Modal (Admin) -->
+    <div class="modal-overlay" id="productReviewModal">
+        <div class="modal modal-large">
+            <div class="modal-header">
+                <h3>Review Product</h3>
+                <button class="modal-close" onclick="closeModal('productReviewModal')">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Submitted By -->
+                <div style="margin-bottom: 1.5rem;">
+                    <div class="detail-label" style="margin-bottom: 0.5rem;">Submitted By</div>
+                    <div class="user-badge">
+                        <div class="user-avatar">U</div>
+                        <div class="user-info">
+                            <h4>John Seller</h4>
+                            <div class="user-id">USER_67890</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Details -->
+                <div class="detail-grid" style="margin-bottom: 1.5rem;">
+                    <div class="detail-item">
+                        <div class="detail-label">Product Name</div>
+                        <div class="detail-value detail-value-large">Nike Air Max 270</div>
+                    </div>
+
+                    <div class="detail-item">
+                        <div class="detail-label">UPC Code</div>
+                        <div class="detail-value" style="font-family: 'Courier New', monospace; font-weight: 600;">590286943933</div>
+                    </div>
+
+                    <div class="detail-item">
+                        <div class="detail-label">SKU</div>
+                        <div class="detail-value">NIKE270</div>
+                    </div>
+
+                    <div class="detail-item">
+                        <div class="detail-label">Category</div>
+                        <div class="detail-value">Fashion > Shoes > Running</div>
+                    </div>
+
+                    <div class="detail-item">
+                        <div class="detail-label">Manufacturer</div>
+                        <div class="detail-value">Nike</div>
+                    </div>
+
+                    <div class="detail-item">
+                        <div class="detail-label">Stock Quantity</div>
+                        <div class="detail-value">120 units</div>
+                    </div>
+
+                    <div class="detail-item">
+                        <div class="detail-label">Minimum Quantity</div>
+                        <div class="detail-value">1</div>
+                    </div>
+
+                    <div class="detail-item">
+                        <div class="detail-label">Date Submitted</div>
+                        <div class="detail-value">March 28, 2026</div>
+                    </div>
+                </div>
+
+                <!-- Description -->
+                <div style="margin-bottom: 1.5rem;">
+                    <div class="detail-label" style="margin-bottom: 0.5rem;">Description</div>
+                    <div class="detail-value" style="line-height: 1.6;">
+                        Comfortable running shoes with Air Max cushioning technology. Perfect for daily runs and athletic activities. Features breathable mesh upper and durable rubber outsole.
+                    </div>
+                </div>
+
+                <!-- Product Images -->
+                <div style="margin-bottom: 1.5rem;">
+                    <div class="detail-label" style="margin-bottom: 0.5rem;">Product Images</div>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 1rem;">
+                        <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=200&h=200&fit=crop" alt="Product" style="width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 0.5rem; border: 1px solid var(--border);">
+                        <img src="https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=200&h=200&fit=crop" alt="Product" style="width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 0.5rem; border: 1px solid var(--border);">
+                        <img src="https://images.unsplash.com/photo-1605348532760-6753d2c43329?w=200&h=200&fit=crop" alt="Product" style="width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 0.5rem; border: 1px solid var(--border);">
+                    </div>
+                </div>
+
+                <!-- Timeline -->
+                <div>
+                    <div class="detail-label" style="margin-bottom: 1rem;">Activity Timeline</div>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <div class="timeline-header">
+                                    <div class="timeline-title">Product Submitted</div>
+                                    <div class="timeline-date">Mar 28, 2026 - 2:30 PM</div>
+                                </div>
+                                <div class="timeline-description">Product submitted by USER_67890 for approval</div>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <div class="timeline-header">
+                                    <div class="timeline-title">Pending Review</div>
+                                    <div class="timeline-date">Mar 28, 2026 - 2:30 PM</div>
+                                </div>
+                                <div class="timeline-description">Awaiting admin approval</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('productReviewModal')">Close</button>
+                <button class="btn btn-error" onclick="showRejectModal()">
+                    <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                    Reject
+                </button>
+                <button class="btn btn-success" onclick="approveProduct()">
+                    <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                    Approve & Sync to PrestaShop
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Rejection Modal -->
+    <div class="modal-overlay" id="rejectionModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Reject Product</h3>
+                <button class="modal-close" onclick="closeModal('rejectionModal')">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="label-required">Reason for Rejection</label>
+                    <textarea placeholder="Please provide a detailed reason for rejection..." style="min-height: 120px;" required></textarea>
+                    <span class="helper-text">This will be sent to the seller so they can make improvements</span>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('rejectionModal')">Cancel</button>
+                <button class="btn btn-error" onclick="rejectProductWithReason()">
+                    <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                    Confirm Rejection
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Details Modal (View) -->
+    <div class="modal-overlay" id="productDetailsModal">
+        <div class="modal modal-large">
+            <div class="modal-header">
+                <h3>Product Details</h3>
+                <button class="modal-close" onclick="closeModal('productDetailsModal')">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Status Badges -->
+                <div style="display: flex; gap: 1rem; margin-bottom: 1.5rem;">
+                    <span class="badge badge-approved">
+                        <span class="status-dot approved"></span>
+                        Approved
+                    </span>
+                    <span class="badge badge-synced">
+                        <span class="status-dot approved"></span>
+                        Synced to PrestaShop
+                    </span>
+                </div>
+
+                <!-- Submitted By -->
+                <div style="margin-bottom: 1.5rem;">
+                    <div class="detail-label" style="margin-bottom: 0.5rem;">Submitted By</div>
+                    <div class="user-badge">
+                        <div class="user-avatar">U</div>
+                        <div class="user-info">
+                            <h4>Sarah Merchant</h4>
+                            <div class="user-id">USER_12345</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Details -->
+                <div class="detail-grid" style="margin-bottom: 1.5rem;">
+                    <div class="detail-item">
+                        <div class="detail-label">Product Name</div>
+                        <div class="detail-value detail-value-large">Samsung Galaxy S24 Ultra</div>
+                    </div>
+
+                    <div class="detail-item">
+                        <div class="detail-label">UPC Code</div>
+                        <div class="detail-value" style="font-family: 'Courier New', monospace; font-weight: 600;">763028694393</div>
+                    </div>
+
+                    <div class="detail-item">
+                        <div class="detail-label">SKU</div>
+                        <div class="detail-value">SAMS24U</div>
+                    </div>
+
+                    <div class="detail-item">
+                        <div class="detail-label">Category</div>
+                        <div class="detail-value">Electronics > Phones</div>
+                    </div>
+
+                    <div class="detail-item">
+                        <div class="detail-label">Manufacturer</div>
+                        <div class="detail-value">Samsung</div>
+                    </div>
+
+                    <div class="detail-item">
+                        <div class="detail-label">Stock Quantity</div>
+                        <div class="detail-value">45 units</div>
+                    </div>
+                </div>
+
+                <!-- Description -->
+                <div style="margin-bottom: 1.5rem;">
+                    <div class="detail-label" style="margin-bottom: 0.5rem;">Description</div>
+                    <div class="detail-value" style="line-height: 1.6;">
+                        Flagship smartphone with advanced features including 200MP camera, Snapdragon 8 Gen 3 processor, and S Pen support. Perfect for power users and content creators.
+                    </div>
+                </div>
+
+                <!-- Product Images -->
+                <div>
+                    <div class="detail-label" style="margin-bottom: 0.5rem;">Product Images</div>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 1rem;">
+                        <img src="https://images.unsplash.com/photo-1592286927505-2fd7fe7c2021?w=200&h=200&fit=crop" alt="Product" style="width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 0.5rem; border: 1px solid var(--border);">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('productDetailsModal')">Close</button>
+                <button class="btn btn-primary" onclick="alert('Edit functionality')">Edit Product</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- CSV Upload Modal -->
+    <div class="modal-overlay" id="csvModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Bulk Upload Products via CSV</h3>
+                <button class="modal-close" onclick="closeModal('csvModal')">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div style="border: 2px dashed var(--border); border-radius: 0.75rem; padding: 3rem 2rem; text-align: center; cursor: pointer;" onclick="document.getElementById('csvFileInput').click()">
+                    <input type="file" id="csvFileInput" class="hidden-input" accept=".csv">
+                    <svg width="64" height="64" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="margin: 0 auto 1rem; color: var(--text-secondary);">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                    </svg>
+                    <p style="font-weight: 500; font-size: 1rem; margin-bottom: 0.5rem;">Choose a CSV file or drag it here</p>
+                    <p class="helper-text">Maximum file size: 5MB</p>
+                </div>
+
+                <div style="margin-top: 1.5rem; text-align: center;">
+                    <button class="btn btn-secondary">
+                        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                        </svg>
+                        Download CSV Template
+                    </button>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('csvModal')">Cancel</button>
+                <button class="btn btn-primary">
+                    <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+                    </svg>
+                    Upload Products
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Global variables
+        let selectedImages = [];
+
+        // Tab switching
+        function switchTab(tabName) {
+            // Update tab buttons
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            event?.target?.classList.add('active');
+
+            // Update tab content
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.getElementById(tabName)?.classList.add('active');
+        }
+
+        // Collapsible sections
+        function toggleSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            section.classList.toggle('collapsed');
+        }
+
+        // Product filtering
+        function filterProducts() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const statusFilter = document.getElementById('statusFilter').value;
+            const categoryFilter = document.getElementById('categoryFilter').value;
+            const rows = document.querySelectorAll('#productsTableBody tr');
+
+            rows.forEach(row => {
+                const text = row.textContent.toLowerCase();
+                const status = row.dataset.status;
+                const category = row.dataset.category;
+
+                const matchesSearch = text.includes(searchTerm);
+                const matchesStatus = !statusFilter || status === statusFilter;
+                const matchesCategory = !categoryFilter || category === categoryFilter;
+
+                row.style.display = (matchesSearch && matchesStatus && matchesCategory) ? '' : 'none';
+            });
+        }
+
+        // Modal functions
+        function openModal(modalId) {
+            document.getElementById(modalId).classList.add('active');
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+        }
+
+        function openCSVModal() {
+            openModal('csvModal');
+        }
+
+        // Notification dropdown
+        function toggleNotifications() {
+            const dropdown = document.getElementById('notificationDropdown');
+            dropdown.classList.toggle('active');
+            event.stopPropagation();
+        }
+
+        // Close notification dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            const dropdown = document.getElementById('notificationDropdown');
+            const bell = document.querySelector('.notification-bell');
+            if (!bell.contains(e.target)) {
+                dropdown.classList.remove('active');
+            }
+        });
+
+        // Product actions
+        function viewProductDetails(id) {
+            openModal('productDetailsModal');
+        }
+
+        function reviewProduct(id) {
+            openModal('productReviewModal');
+        }
+
+        function approveProduct() {
+            alert('Product approved! Syncing to PrestaShop...');
+            closeModal('productReviewModal');
+        }
+
+        function showRejectModal() {
+            closeModal('productReviewModal');
+            openModal('rejectionModal');
+        }
+
+        function rejectProductWithReason() {
+            alert('Product rejected. Seller will be notified.');
+            closeModal('rejectionModal');
+        }
+
+        function archiveProduct(id) {
+            if (confirm('Archive this product? It can be restored within 30 days.')) {
+                alert(`Product ${id} archived`);
+            }
+        }
+
+        // Image handling
+        function handleImageSelect(event) {
+            const files = Array.from(event.target.files);
+            files.forEach(file => {
+                if (file.type.startsWith('image/')) {
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        selectedImages.push({
+                            file: file,
+                            url: e.target.result
+                        });
+                        displayImagePreviews();
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+        }
+
+        function displayImagePreviews() {
+            const grid = document.getElementById('imagePreviewGrid');
+            grid.innerHTML = selectedImages.map((img, index) => `
+                <div class="image-preview">
+                    <img src="${img.url}" alt="Product image ${index + 1}">
+                    <button class="image-preview-remove" onclick="removeImage(${index})" type="button">
+                        <svg width="12" height="12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                    ${index === 0 ? '<div style="position: absolute; bottom: 0.5rem; left: 0.5rem; background: rgba(0,0,0,0.7); color: white; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-size: 0.625rem;">Cover</div>' : ''}
+                </div>
+            `).join('');
+        }
+
+        function removeImage(index) {
+            selectedImages.splice(index, 1);
+            displayImagePreviews();
+        }
+
+        // UPC generation
+        function generateUPC() {
+            const upcCode = Math.floor(Math.random() * 900000000000) + 100000000000;
+            document.getElementById('upcCode').textContent = upcCode.toString();
+        }
+
+        // Form submission
+        document.getElementById('newProductForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Product submitted for approval! It will be reviewed before syncing to PrestaShop.');
+            switchTab('all-products');
+        });
+
+        // Close modals on overlay click
+        document.querySelectorAll('.modal-overlay').forEach(overlay => {
+            overlay.addEventListener('click', (e) => {
+                if (e.target === overlay) {
+                    overlay.classList.remove('active');
+                }
+            });
+        });
+
+        // Initialize
+        generateUPC();
+
+        // Demo: Open PrestaShop redirect modal on page load (remove in production)
+        // setTimeout(() => openModal('prestashopRedirectModal'), 1000);
+    </script>
+</body>
+</html>
